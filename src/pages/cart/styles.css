@@ -1,0 +1,49 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-container h2 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 8px 0;
+}
+
+.empty-cart-msg {
+  margin-top: 20px;
+}
+
+.shopping-link {
+  color: turquoise;
+  cursor: pointer;
+}
+
+.total-container div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.total-container h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 8px 40px 8px 0;
+}
+
+.total-container h4 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 8px 40px 8px 0;
+}
+
+.total-container p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  text-align: end;
+  width: 60px;
+}
+
+.order-total p {
+  font-weight: 500;
+}

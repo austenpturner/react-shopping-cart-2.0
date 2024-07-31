@@ -1,0 +1,19 @@
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 10px 0;
+}
+
+.mainHeader h4 {
+  align-self: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .mainHeader {
+    margin: 0 20px;
+  }
+}

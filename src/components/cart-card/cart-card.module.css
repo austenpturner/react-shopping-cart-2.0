@@ -1,0 +1,57 @@
+.cartCard {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.cartCard img {
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  width: 100px;
+}
+
+.cartCard div {
+  width: calc((100% - 100px) / 3);
+}
+
+.quantityContainer,
+.priceContainer,
+.titleContainer {
+  display: flex;
+}
+
+.titleContainer {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+
+.quantityContainer div {
+  border: 1px solid #242424;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  margin: 7px 5px;
+  width: 70px;
+}
+
+.quantityContainer div p {
+  align-self: center;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.quantityContainer button {
+  margin: 0 5px;
+}
+
+.priceContainer {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}

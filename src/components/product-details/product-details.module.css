@@ -1,0 +1,115 @@
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px 5px;
+  max-width: 768px;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 20px auto;
+}
+
+@media (min-width: 600px) {
+  .detailsContainer {
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+.imageContainer {
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  width: 300px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productContainer h1 {
+  font-size: 20px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.2rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.price {
+  margin-right: 10px;
+}
+
+.purchaseContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.ratingsAndReviewsContainer h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.ratingContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px auto 30px;
+  max-width: 500px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewsContainer div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewsList {
+  margin: 5px auto;
+  padding: 0;
+  max-width: 500px;
+}
+
+.reviewsList li {
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 2px#b2b2b2;
+  margin: 12px 0;
+  padding: 12px 8px;
+}
+
+.reviewRating,
+.reviewComment,
+.reviewName {
+  margin: 8px 0;
+}
+
+.reviewRating {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.reviewComment {
+  font-style: italic;
+  padding: 5px;
+}
+
+.reviewName {
+  font-size: 14px;
+}

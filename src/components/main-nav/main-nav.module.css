@@ -1,0 +1,15 @@
+.mainNav ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mainNav li {
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+  padding: 4px 8px;
+  text-align: center;
+  &:hover {
+    background-color: aquamarine;
+  }
+}

@@ -1,0 +1,30 @@
+.btnElement {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  height: 28px;
+  padding: 4px 8px;
+}
+
+.details,
+.reviews {
+  background-color: aquamarine;
+  &:hover {
+    background-color: rgb(47, 255, 186);
+  }
+}
+
+.add {
+  background-color: greenyellow;
+  width: 73px;
+  &:hover {
+    background-color: rgb(153, 255, 0);
+  }
+}
+
+.remove {
+  background-color: tomato;
+  &:hover {
+    background-color: rgb(254, 58, 23);
+  }
+}
