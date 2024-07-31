@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const items =
-  localStorage.getItem("cartItems") !== null
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [];
+function handleGetItems(key, defaultValue) {
+  if (localStorage.getItem(key) !== null) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+  return defaultValue;
+}
 
-const total =
-  localStorage.getItem("cartTotal") !== null
-    ? JSON.parse(localStorage.getItem("cartTotal"))
-    : 0;
+function handleSetItems(key, item) {
+  localStorage.setItem(key, JSON.stringify(item));
+}
 
 const initialState = {
-  cartItems: items,
-  cartTotal: total,
+  cartItems: handleGetItems("cartItems", []),
+  cartTotal: handleGetItems("cartTotal", 0),
 };
 
 const cartSlice = createSlice({
@@ -21,16 +22,16 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       state.cartItems.push(action.payload);
-      localStorage.setItem(
+      handleSetItems(
         "cartItems",
-        JSON.stringify(state.cartItems.map((item) => item))
+        state.cartItems.map((item) => item)
       );
     },
     removeFromCart(state, action) {
       state.cartItems.splice(action.payload, 1);
-      localStorage.setItem(
+      handleSetItems(
         "cartItems",
-        JSON.stringify(state.cartItems.map((item) => item))
+        state.cartItems.map((item) => item)
       );
     },
     increaseCartQuantity(state, action) {
@@ -38,9 +39,9 @@ const cartSlice = createSlice({
         ...state.cartItems[action.payload],
         quantity: state.cartItems[action.payload].quantity + 1,
       });
-      localStorage.setItem(
+      handleSetItems(
         "cartItems",
-        JSON.stringify(state.cartItems.map((item) => item))
+        state.cartItems.map((item) => item)
       );
     },
     decreaseCartQuantity(state, action) {
@@ -48,16 +49,16 @@ const cartSlice = createSlice({
         ...state.cartItems[action.payload],
         quantity: state.cartItems[action.payload].quantity - 1,
       });
-      localStorage.setItem(
+      handleSetItems(
         "cartItems",
-        JSON.stringify(state.cartItems.map((item) => item))
+        state.cartItems.map((item) => item)
       );
     },
     updateCartTotal(state, action) {
       state.cartTotal = parseFloat(
         (state.cartTotal + action.payload).toFixed(2)
       );
-      localStorage.setItem("cartTotal", JSON.stringify(state.cartTotal));
+      handleSetItems("cartTotal", state.cartTotal);
     },
   },
 });
