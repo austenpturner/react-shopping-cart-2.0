@@ -1,13 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function CommonSelect({
-  label,
-  name,
-  id,
-  value,
-  onChange,
-  options,
-}) {
+export default function Select({ label, name, id, value, onChange, options }) {
   return (
     <>
       <label htmlFor={name}>{label}</label>
@@ -27,7 +20,7 @@ export default function CommonSelect({
   );
 }
 
-CommonSelect.propTypes = {
+Select.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.string,
