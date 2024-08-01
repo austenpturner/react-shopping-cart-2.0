@@ -12,6 +12,7 @@ export default function Form({
   formControls = [],
   btnText,
   formData,
+  setFormData,
   onSubmit,
 }) {
   function renderFormElement(getCurrentFormControl, getFormData) {
@@ -26,7 +27,12 @@ export default function Form({
             value={getFormData[getCurrentFormControl.name]}
             name={getCurrentFormControl.name}
             id={getCurrentFormControl.id}
-            onChange={getCurrentFormControl.onChange}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getCurrentFormControl.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -39,7 +45,12 @@ export default function Form({
             placeholder={getCurrentFormControl.placeholder}
             value={formData[getCurrentFormControl.name]}
             options={getCurrentFormControl.options}
-            onChange={getCurrentFormControl.onChange}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getCurrentFormControl.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -51,7 +62,12 @@ export default function Form({
             id={getCurrentFormControl.id}
             placeholder={getCurrentFormControl.placeholder}
             value={formData[getCurrentFormControl.name]}
-            onChange={getCurrentFormControl.onChange}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getCurrentFormControl.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -64,7 +80,12 @@ export default function Form({
             value={getFormData[getCurrentFormControl.name]}
             name={getCurrentFormControl.name}
             id={getCurrentFormControl.id}
-            onChange={getCurrentFormControl.onChange}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getCurrentFormControl.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -87,4 +108,5 @@ Form.propTypes = {
   btnText: PropTypes.string,
   formData: PropTypes.object,
   onSubmit: PropTypes.func,
+  setFormData: PropTypes.func,
 };
