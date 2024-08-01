@@ -8,11 +8,25 @@ import Layout from "./layout";
 import ProductListPage from "./pages/product-list";
 import ProductDetailsPage from "./pages/product-details";
 import ShoppingCartPage from "./pages/cart";
+import LoginPage from "./pages/login";
+import RegisterPage from "./pages/register";
+import AuthPage from "./pages/private-route";
+import AccountPage from "./pages/account";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<ProductListPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/account"
+        element={
+          <AuthPage>
+            <AccountPage />
+          </AuthPage>
+        }
+      />
       <Route path="/shopping-cart" element={<ShoppingCartPage />} />
       <Route path="/product-details/:id" element={<ProductDetailsPage />} />
     </Route>
