@@ -1,22 +1,19 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
-const apiKey = import.meta.env.FIREBASE_API_KEY;
-const messagingSenderId = import.meta.env.MESSAGING_SENDER_ID;
-const appId = import.meta.env.APP_ID;
-const measurementId = import.meta.env.MEASUREMENT_ID;
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey,
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "react-shopping-cart-2.firebaseapp.com",
   projectId: "react-shopping-cart-2",
   storageBucket: "react-shopping-cart-2.appspot.com",
-  messagingSenderId,
-  appId,
-  measurementId,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-export default auth;
+export default { auth, db };

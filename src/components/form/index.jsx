@@ -22,6 +22,7 @@ export default function Form({
       case formElementTypes.INPUT:
         element = (
           <Input
+            label={getCurrentFormControl.label}
             type={getCurrentFormControl.type}
             placeholder={getCurrentFormControl.placeholder}
             value={getFormData[getCurrentFormControl.name]}
@@ -75,6 +76,7 @@ export default function Form({
       default:
         element = (
           <Input
+            label={getCurrentFormControl.label}
             type={getCurrentFormControl.type}
             placeholder={getCurrentFormControl.placeholder}
             value={getFormData[getCurrentFormControl.name]}
@@ -95,9 +97,13 @@ export default function Form({
 
   return (
     <form onSubmit={onSubmit}>
-      {formControls.map((formControl) =>
-        renderFormElement(formControl, formData)
-      )}
+      {formControls.map((formControl) => {
+        return (
+          <div key={formControl.id}>
+            {renderFormElement(formControl, formData)}
+          </div>
+        );
+      })}
       <button type="submit">{btnText || "submit"}</button>
     </form>
   );
