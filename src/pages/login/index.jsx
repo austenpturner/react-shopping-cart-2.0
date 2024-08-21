@@ -8,6 +8,7 @@ import useLogin from "../../hooks/useLogin";
 import useRegister from "../../hooks/useRegister";
 import Button from "../../components/button";
 import { getErrorMessage } from "../../util/getErrorMessage";
+import useCartSync from "../../hooks/useCartSync";
 
 const initialState = {
   name: "",
@@ -24,7 +25,7 @@ export default function LoginPage() {
   const loading = useAuth();
   const handleUserLogin = useLogin();
   const handleUserRegister = useRegister();
-  useCartSync(); //! make useCartSync hook
+  useCartSync();
 
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
