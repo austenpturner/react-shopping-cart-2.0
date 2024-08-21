@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import useLogout from "../../hooks/useLogout";
+import Button from "../../components/button";
 
 export default function AccountPage() {
   const loading = useAuth(); //! make useAuth hook
@@ -27,7 +28,6 @@ export default function AccountPage() {
       <h1>Account Page</h1>
       <p>{`Welcome, ${user.username || `user`}!`}</p>
       <Button text={"logout"} type={"logout"} handleAction={handleLogout} />
-      //! make button component
     </div>
   );
 }
