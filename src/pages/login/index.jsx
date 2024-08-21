@@ -1,61 +1,62 @@
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import Form from "../../components/form";
-import { setUser } from "../../store/slices/users-slice";
 import { loginFormControls } from "../../config/formConfig";
-import { useState } from "react";
-import auth from "../../firebase/firebaseConfig.js";
-import {
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { registerFormControls } from "../../config/formConfig";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import useLogin from "../../hooks/useLogin";
+import useRegister from "../../hooks/useRegister";
+import Button from "../../components/button";
 
 const initialState = {
+  name: "",
   email: "",
   password: "",
 };
 
 export default function LoginPage() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+  const [registerUser, setRegisterUser] = useState(false);
   const [userCredentials, setUserCredentials] = useState(initialState);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const loading = useAuth();
+  const handleUserLogin = useLogin();
+  const handleUserRegister = useRegister();
+  useCartSync(); //! make useCartSync hook
 
-  function loginOnSubmit(event) {
-    event.preventDefault();
-    setError("");
+  function handleCredentials(e) {
+    setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
+  }
+
+  function switchRegisterUser() {
+    setRegisterUser(!registerUser);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
     const { email, password } = userCredentials;
-    signInWithEmailAndPassword(auth, email, password);
-    navigate("/").catch((error) => {
-      setError(error);
-      // OR get error.code and set up personalized messages
-    });
-  }
+    let error;
 
-  function handlePasswordReset() {
-    const email = prompt("Please enter your email");
-    sendPasswordResetEmail(auth, email);
-    alert(`Email sent to ${email} with password reset instructions.`);
-    // customize email under firebase site => authentication => templates
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      dispatch(setUser({ id: user.uid, email: user.email }));
+    if (registerUser) {
+      error = await handleUserRegister(email, password, userCredentials);
     } else {
-      dispatch(setUser(null));
+      error = await handleUserLogin(email, password);
     }
-    if (isLoading) {
-      setIsLoading(false);
+
+    if (!error) {
+      const redirectTo = location.state?.from || "/";
+      navigate(redirectTo);
+    } else {
+      setErrorMessage(getErrorMessage(error)); //! make getErrorMessage until function
     }
-  });
+  }
 
-  // console.log(auth);
+  useEffect(() => {
+    setErrorMessage(null);
+  }, [registerUser]);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="page">
         <p>Loading... </p>
@@ -64,19 +65,52 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="page">
-      <h1>Login</h1>
-      <div>
+    <div className="login-page-component">
+      <h1 className="login-page-header">{`${
+        registerUser ? "Register" : "Login"
+      }:`}</h1>
+      {registerUser ? (
+        <Form
+          formControls={registerFormControls}
+          formData={userCredentials}
+          setFormData={handleCredentials}
+          onSubmit={handleSubmit}
+          btnText={"submit"}
+        />
+      ) : (
         <Form
           formControls={loginFormControls}
           formData={userCredentials}
-          setFormData={setUserCredentials}
-          onSubmit={loginOnSubmit}
-          btnText={"log in"}
+          setFormData={handleCredentials}
+          onSubmit={handleSubmit}
+          btnText={"submit"}
         />
-        {error ? <p>{error}</p> : null}
+      )}
+      <p className="login-page-error-message">
+        {errorMessage ? errorMessage : ""}
+      </p>
+
+      <div className="switch-type-btn-container">
+        {!registerUser ? (
+          <>
+            <p>{`Don't have an account?`}</p>
+            <Button
+              text={"register"}
+              handleAction={switchRegisterUser}
+              type={"switchLoginType"}
+            />
+          </>
+        ) : (
+          <>
+            <p>Already have an account?</p>
+            <Button
+              text={"log in"}
+              handleAction={setRegisterUser}
+              type={"switchLoginType"}
+            />
+          </>
+        )}
       </div>
-      <button onClick={handlePasswordReset}>Forgot password?</button>
     </div>
   );
 }
