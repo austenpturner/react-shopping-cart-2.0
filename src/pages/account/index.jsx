@@ -1,19 +1,33 @@
-// import { useSelector } from "react-redux";
-// import { logout } from "../../store/slices/users-slice";
+import { useSelector } from "react-redux";
+import useLogout from "../../hooks/useLogout";
 
 export default function AccountPage() {
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user);
+  const loading = useAuth(); //! make useAuth hook
+  const user = useSelector((state) => state.users.currentUser);
+  const handleLogout = useLogout();
 
-  function handleLogout() {
-    // dispatch(logout());
-    console.log("logout requested");
+  if (loading) {
+    return (
+      <div>
+        <h1>Account Page</h1>
+        <p>Loading... </p>
+      </div>
+    );
+  } else if (!user) {
+    return (
+      <div>
+        <h1>Account Page</h1>
+        <p>You are not logged in.</p>
+      </div>
+    );
   }
 
   return (
     <div>
-      <h1>{`Welcome`}</h1>
-      <button onClick={handleLogout}>Logout</button>
+      <h1>Account Page</h1>
+      <p>{`Welcome, ${user.username || `user`}!`}</p>
+      <Button text={"logout"} type={"logout"} handleAction={handleLogout} />
+      //! make button component
     </div>
   );
 }
