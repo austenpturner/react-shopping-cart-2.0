@@ -1,96 +1,76 @@
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CartCard from "../../components/cartCard";
+import { useEffect, useState } from "react";
+import useFetchCart from "../../hooks/useFetchCart";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
-import CartCard from "../../components/cart-card";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  removeFromCart,
-  increaseCartQuantity,
-  decreaseCartQuantity,
-  updateCartTotal,
-} from "../../store/slices/cart-slice";
+import Button from "../../components/button";
 
-export default function ShoppingCartPage() {
+export default function CartPage() {
+  const cartLoaded = useFetchCart();
   const navigate = useNavigate();
-  const { cartItems, cartTotal } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const cartTotal = useSelector((state) => state.cart.total);
+  const cartItems = useSelector((state) => state.cart.items);
+  const user = useSelector((state) => state.users.currentUser);
 
-  function getProductIndex(product) {
-    return cartItems.findIndex(
-      (cartItem) => cartItem.details.id === product.details.id
+  // console.log(cartLoaded, cartItems);
+
+  function handleLoginRedirect() {
+    navigate("/login", { state: { from: "/cart" } });
+  }
+
+  useEffect(() => {
+    if (!cartLoaded) {
+      setLoading(true);
+    } else if (cartLoaded && cartItems.length === 0) {
+      setTimeout(() => {
+        setLoading(false);
+      }, "1500");
+    } else if (cartLoaded && cartItems.length > 0) {
+      setLoading(false);
+    }
+  }, [cartLoaded, cartItems]);
+
+  if (loading) {
+    return (
+      <div>
+        <h1>Cart</h1>
+        <p>Loading... </p>
+      </div>
     );
   }
 
-  function handleDeleteFromCart(product) {
-    const index = getProductIndex(product);
-    dispatch(removeFromCart(index));
-    dispatch(updateCartTotal(-(product.details.price * product.quantity)));
-  }
-
-  function handleProductQuantityChange(product, action) {
-    const index = getProductIndex(product);
-    if (action === "increase") {
-      dispatch(increaseCartQuantity(index));
-      dispatch(updateCartTotal(product.details.price));
-    } else if (action === "decrease" && cartItems[index].quantity !== 1) {
-      dispatch(decreaseCartQuantity(index));
-      dispatch(updateCartTotal(-product.details.price));
-    } else {
-      dispatch(updateCartTotal(-(product.details.price * product.quantity)));
-      dispatch(removeFromCart(index));
-    }
-  }
-
   return (
-    <div className="page">
-      <h1>Shopping Cart</h1>
-      {cartItems?.length ? (
-        <div className="header-container">
-          <h2>Product</h2>
-          <h2>Quantity</h2>
-          <h2>Total price</h2>
-        </div>
-      ) : null}
+    <div>
+      <h1>Cart</h1>
       {cartItems?.length > 0 ? (
         <div>
-          <hr />
-          {cartItems.map((product) => {
-            return (
-              <CartCard
-                product={product}
-                handleQuantityChange={handleProductQuantityChange}
-                handleDelete={handleDeleteFromCart}
-                key={product.details.id}
-              />
-            );
+          <div className="cart-headers-container">
+            <h2>Items</h2>
+            <h2>Quantity</h2>
+            <h2>Price</h2>
+          </div>
+          {cartItems.map((item) => {
+            return <CartCard key={item.id} item={item} />;
           })}
-          <hr />
+          <div className="total-container">
+            {cartTotal > 0 ? <p>{`Total: $${cartTotal}`}</p> : null}
+          </div>
+          <div className="login-btn-container">
+            {user ? (
+              <Button text={"check out"} />
+            ) : (
+              <p onClick={handleLoginRedirect}>Login to checkout</p>
+            )}
+          </div>
         </div>
       ) : (
-        <p className="empty-cart-msg">
-          Your cart is empty.
-          <a
-            onClick={() => navigate("/")}
-            className="shopping-link"
-          >{` Go shopping!`}</a>
-        </p>
-      )}
-      {cartTotal > 0 ? (
-        <div className="total-container">
-          <div className="cart-total">
-            <h4>Cart total:</h4>
-            <p>{`$${cartTotal.toFixed(2)}`}</p>
-          </div>
-          <div className="shipping">
-            <h4>Shipping:</h4>
-            <p>$4.99</p>
-          </div>
-          <hr />
-          <div className="order-total">
-            <h3>Order Total:</h3>
-            <p>{`$${(cartTotal + 4.99).toFixed(2)}`}</p>
-          </div>
+        <div>
+          <p>Your cart is empty.</p>
+          <Link to={"/"}>Go shopping</Link>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
