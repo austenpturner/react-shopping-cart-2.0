@@ -1,49 +1,23 @@
-.header-container {
+.cart-headers-container {
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
-.header-container h2 {
+.cart-headers-container h2 {
   font-size: 20px;
   font-weight: 400;
-  margin: 8px 0;
 }
 
-.empty-cart-msg {
-  margin-top: 20px;
-}
-
-.shopping-link {
-  color: turquoise;
-  cursor: pointer;
-}
-
-.total-container div {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.total-container h3 {
-  font-size: 20px;
-  font-weight: 500;
-  margin: 8px 40px 8px 0;
-}
-
-.total-container h4 {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 8px 40px 8px 0;
+.total-container {
+  margin: 15px 5px;
+  text-align: right;
 }
 
 .total-container p {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0;
-  text-align: end;
-  width: 60px;
+  font-size: 18px;
 }
 
-.order-total p {
-  font-weight: 500;
+.login-btn-container {
+  text-align: right;
 }
