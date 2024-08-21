@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import useLogout from "../../hooks/useLogout";
 import Button from "../../components/button";
+import useAuth from "../../hooks/useAuth";
 
 export default function AccountPage() {
-  const loading = useAuth(); //! make useAuth hook
+  const loading = useAuth();
   const user = useSelector((state) => state.users.currentUser);
   const handleLogout = useLogout();
 
