@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import useLogin from "../../hooks/useLogin";
 import useRegister from "../../hooks/useRegister";
 import Button from "../../components/button";
+import { getErrorMessage } from "../../util/getErrorMessage";
 
 const initialState = {
   name: "",
@@ -48,7 +49,7 @@ export default function LoginPage() {
       const redirectTo = location.state?.from || "/";
       navigate(redirectTo);
     } else {
-      setErrorMessage(getErrorMessage(error)); //! make getErrorMessage until function
+      setErrorMessage(getErrorMessage(error));
     }
   }
 
