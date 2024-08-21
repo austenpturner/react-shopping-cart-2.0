@@ -10,10 +10,10 @@ import ProductDetailsPage from "./pages/product-details";
 import ShoppingCartPage from "./pages/cart";
 import LoginPage from "./pages/login";
 import AccountPage from "./pages/account";
+import ErrorPage from "./pages/error";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    //! make error page
     <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
       <Route index element={<ProductListPage />} />
       <Route path="/cart" element={<ShoppingCartPage />} />
