@@ -1,15 +1,15 @@
+@use "../../styles/utilStyles/index" as *;
+
 .productCard {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 196.8px;
+  @include flex-col(left, space-between);
+  width: 188px;
 }
 
 .productCardImg {
   background-color: rgb(233, 233, 233);
   border-radius: 5px;
   cursor: pointer;
-  width: 200px;
+  width: 188px;
   &:hover {
     background-color: rgb(243, 243, 243);
   }
@@ -25,7 +25,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 200px;
+  width: 188px;
 }
 
 .price {

@@ -1,4 +1,4 @@
-import styles from "./productCard.module.css";
+import styles from "./productCard.module.scss";
 import PropTypes from "prop-types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
@@ -13,16 +13,16 @@ export default function ProductCard({ product }) {
 
   return (
     <li className={styles.productCard}>
-      <p className={styles.name}>{product.name}</p>
       <LazyLoadImage
         src={product.thumbnail}
         alt={product.title}
         className={styles.productCardImg}
-        width={200}
-        height={200}
+        width={188}
+        height={188}
         effect="blur"
         // onClick={() => navigate(`/product-details/${product.id}`)}
       />
+      <p className={styles.title}>{product.title}</p>
       <p className={styles.price}>{`$${product.price}`}</p>
       <Button
         handleAction={handleAddToCart}

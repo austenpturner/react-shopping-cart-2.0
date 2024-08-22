@@ -1,0 +1,7 @@
+@use "../../styles//utilStyles/index" as *;
+
+.product-list {
+  @include flex-row-wrap(20px, flex-start);
+  list-style: none;
+  padding: 0;
+}

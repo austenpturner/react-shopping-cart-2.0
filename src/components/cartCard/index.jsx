@@ -10,17 +10,18 @@ export default function CartCard({ item }) {
 
   return (
     <div className={styles.cartCard}>
-      <div className={styles.itemNameContainer}>
-        <p className={styles.title}>{title}</p>
+      <div className={`${styles.col} ${styles.itemDetailsContainer}`}>
         <LazyLoadImage
           src={thumbnail}
           alt={title}
           effect="blur"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
+          className={styles.image}
         />
+        <p className={styles.title}>{title}</p>
       </div>
-      <div className={styles.itemQuantityContainer}>
+      <div className={`${styles.col} ${styles.itemQuantityContainer}`}>
         <p className={styles.quantity}>{quantity}</p>
         <div className={styles.quantityBtnContainer}>
           <Button
@@ -39,7 +40,7 @@ export default function CartCard({ item }) {
           />
         </div>
       </div>
-      <div className={styles.itemPriceContainer}>
+      <div className={`${styles.col} ${styles.itemPriceContainer}`}>
         <p className={styles.price}>{`$${price * quantity}`}</p>
         <Button
           handleAction={handleRemoveFromCart}

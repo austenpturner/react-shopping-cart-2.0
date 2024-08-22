@@ -1,17 +1,37 @@
+@use "../../styles/utilStyles/index" as *;
+
 .cartCard {
+  border: 1px solid #242424;
   border-radius: 3px;
-  display: flex;
-  justify-content: space-between;
-  height: 70px;
+  @include flex-row-wrap(10px, space-between);
+  height: 100px;
   margin: 5px auto;
   padding: 10px;
 }
 
+.col {
+  width: 30%;
+}
+
+.title,
+.quantity,
+.price {
+  font-size: 13px;
+  margin: 0 0 5px;
+}
+
+.itemDetailsContainer {
+  @include flex-row(left, center);
+  .title {
+    margin: 0 0 0 10px;
+  }
+}
+
 .itemQuantityContainer {
-  display: flex;
-  /* justify-content: flex-start; */
-  align-items: flex-start;
-  gap: 8px;
+  @include flex-row(center, center);
+  .quantity {
+    margin: 0 6px 0 0;
+  }
 }
 
 .quantityBtnContainer {
@@ -20,14 +40,8 @@
 }
 
 .itemPriceContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.name,
-.quantity,
-.price {
-  margin: 0 0 5px;
+  @include flex-col(space-between, flex-end);
+  .price {
+    padding: 4px;
+  }
 }

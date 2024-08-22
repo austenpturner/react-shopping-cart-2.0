@@ -3,7 +3,7 @@ import ProductCard from "../../components/productCard";
 import useFetchCart from "../../hooks/useFetchCart";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import "./styles.css";
+import "./styles.scss";
 import useFetch from "../../hooks/useFetch";
 
 export default function HomePage() {

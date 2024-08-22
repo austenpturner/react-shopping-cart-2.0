@@ -3,7 +3,7 @@ import CartCard from "../../components/cartCard";
 import { useEffect, useState } from "react";
 import useFetchCart from "../../hooks/useFetchCart";
 import { Link, useNavigate } from "react-router-dom";
-import "./styles.css";
+import "./styles.scss";
 import Button from "../../components/button";
 
 export default function CartPage() {
