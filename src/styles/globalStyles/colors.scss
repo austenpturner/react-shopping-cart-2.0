@@ -1,1 +1,7 @@
 @use "../utilStyles/index" as *;
+
+:root {
+  // LIGHT MODE
+  --light-background: rgba(255, 255, 255, 0.87);
+  --dark-text: #242424;
+}
