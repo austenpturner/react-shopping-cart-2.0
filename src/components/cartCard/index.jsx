@@ -1,26 +1,24 @@
 import styles from "./cartCard.module.scss";
 import PropTypes from "prop-types";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import useCartActions from "../../hooks/useCartActions";
 import Button from "../button";
 
 export default function CartCard({ item }) {
-  const { name, price, quantity } = item;
+  const { title, price, thumbnail, quantity } = item;
   const { handleRemoveFromCart, handleUpdateQuantity } = useCartActions();
-
-  // <LazyLoadImage
-  //   src={product.details.thumbnail}
-  //   alt={product.details.title}
-  //   effect="blur"
-  //   width={100}
-  //   height={100}
-  // />;
-  //! add image back
 
   return (
     <div className={styles.cartCard}>
       <div className={styles.itemNameContainer}>
-        <p className={styles.name}>{name}</p>
+        <p className={styles.title}>{title}</p>
+        <LazyLoadImage
+          src={thumbnail}
+          alt={title}
+          effect="blur"
+          width={100}
+          height={100}
+        />
       </div>
       <div className={styles.itemQuantityContainer}>
         <p className={styles.quantity}>{quantity}</p>

@@ -59,13 +59,13 @@ export default function useCartActions() {
   }
 
   function handleAddToCart(product) {
-    const { id, name, price } = product;
+    const { id, title, price, thumbnail } = product;
     const existingItem = cartItems.find((item) => item.id === id);
 
     if (existingItem) {
       handleUpdateQuantity(existingItem, "increase");
     } else {
-      const newItem = { id, name, price, quantity: 1 };
+      const newItem = { id, title, price, thumbnail, quantity: 1 };
       const updatedItems = [...cartItems, newItem];
       dispatch(addToCart(newItem));
       updateCartInFirestore(updatedItems, id);

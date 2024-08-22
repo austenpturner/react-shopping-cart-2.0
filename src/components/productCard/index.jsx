@@ -1,6 +1,6 @@
 import styles from "./productCard.module.css";
 import PropTypes from "prop-types";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
@@ -14,6 +14,15 @@ export default function ProductCard({ product }) {
   return (
     <li className={styles.productCard}>
       <p className={styles.name}>{product.name}</p>
+      <LazyLoadImage
+        src={product.thumbnail}
+        alt={product.title}
+        className={styles.productCardImg}
+        width={200}
+        height={200}
+        effect="blur"
+        // onClick={() => navigate(`/product-details/${product.id}`)}
+      />
       <p className={styles.price}>{`$${product.price}`}</p>
       <Button
         handleAction={handleAddToCart}
@@ -22,22 +31,6 @@ export default function ProductCard({ product }) {
         type={"addToCart"}
       />
     </li>
-    // <div className={styles.productCard}>
-    //   <LazyLoadImage
-    //     src={product.thumbnail}
-    //     alt={product.title}
-    //     className={styles.productCardImg}
-    //     width={200}
-    //     height={200}
-    //     effect="blur"
-    //     onClick={() => navigate(`/product-details/${product.id}`)}
-    //   />
-    //   <p className={styles.title}>{product.title}</p>
-    //   <div>
-    //     <p className={styles.price}>{`$${product.price}`}</p>
-    //     <CartBtnComponent type={"add"} onClick={handleAddToCart} />
-    //   </div>
-    // </div>
   );
 }
 
