@@ -1,0 +1,27 @@
+.login-page-component {
+  margin: 20px auto;
+  width: 250px;
+}
+
+.login-page-header {
+  font-size: 24px;
+  margin: 20px auto;
+  /* width: 250px; */
+}
+
+.switch-type-btn-container {
+  margin: 10px auto;
+  /* width: 250px; */
+}
+
+.switch-type-btn-container p {
+  font-size: 14px;
+}
+
+.login-page-error-message {
+  color: tomato;
+  font-size: 13px;
+  font-style: italic;
+  height: 50px;
+  margin: 10px 0 0;
+}
