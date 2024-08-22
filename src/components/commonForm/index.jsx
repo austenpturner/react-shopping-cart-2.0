@@ -29,12 +29,7 @@ export default function CommonForm({
             value={getFormData[getCurrentFormControl.name]}
             name={getCurrentFormControl.name}
             id={getCurrentFormControl.id}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getCurrentFormControl.name]: event.target.value,
-              })
-            }
+            onChange={setFormData}
           />
         );
         break;
@@ -47,12 +42,7 @@ export default function CommonForm({
             placeholder={getCurrentFormControl.placeholder}
             value={formData[getCurrentFormControl.name]}
             options={getCurrentFormControl.options}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getCurrentFormControl.name]: event.target.value,
-              })
-            }
+            onChange={setFormData}
           />
         );
         break;
@@ -64,12 +54,7 @@ export default function CommonForm({
             id={getCurrentFormControl.id}
             placeholder={getCurrentFormControl.placeholder}
             value={formData[getCurrentFormControl.name]}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getCurrentFormControl.name]: event.target.value,
-              })
-            }
+            onChange={setFormData}
           />
         );
         break;
@@ -83,12 +68,7 @@ export default function CommonForm({
             value={getFormData[getCurrentFormControl.name]}
             name={getCurrentFormControl.name}
             id={getCurrentFormControl.id}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getCurrentFormControl.name]: event.target.value,
-              })
-            }
+            onChange={setFormData}
           />
         );
         break;
