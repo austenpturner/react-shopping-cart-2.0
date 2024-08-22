@@ -1,0 +1,11 @@
+.commonInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.commonInputContainer label {
+  display: inline-block;
+  font-size: 14px;
+}

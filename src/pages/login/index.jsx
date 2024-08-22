@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Form from "../../components/form";
+import CommonForm from "../../components/commonForm";
 import { loginFormControls } from "../../config/formConfig";
 import { registerFormControls } from "../../config/formConfig";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -72,7 +72,7 @@ export default function LoginPage() {
         registerUser ? "Register" : "Login"
       }:`}</h1>
       {registerUser ? (
-        <Form
+        <CommonForm
           formControls={registerFormControls}
           formData={userCredentials}
           setFormData={handleCredentials}
@@ -80,7 +80,7 @@ export default function LoginPage() {
           btnText={"submit"}
         />
       ) : (
-        <Form
+        <CommonForm
           formControls={loginFormControls}
           formData={userCredentials}
           setFormData={handleCredentials}

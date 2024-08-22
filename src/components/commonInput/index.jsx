@@ -1,7 +1,7 @@
-import styles from "./input.module.css";
+import styles from "./commonInput.module.css";
 import PropTypes from "prop-types";
 
-export default function Input({
+export default function CommonInput({
   label,
   name,
   id,
@@ -12,7 +12,7 @@ export default function Input({
   className,
 }) {
   return (
-    <>
+    <div className={styles.commonInputContainer}>
       <label htmlFor={name}>{label}</label>
       <input
         name={name}
@@ -23,11 +23,11 @@ export default function Input({
         onChange={onChange}
         className={className || styles.commonForm}
       />
-    </>
+    </div>
   );
 }
 
-Input.propTypes = {
+CommonInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.string,
