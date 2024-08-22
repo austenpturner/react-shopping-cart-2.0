@@ -1,10 +1,11 @@
-import styles from "./product-card.module.css";
+import styles from "./productCard.module.css";
 import PropTypes from "prop-types";
 // import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
 import { useContext } from "react";
 import { UIContext } from "../../context";
 import useCartActions from "../../hooks/useCartActions";
+
 export default function ProductCard({ product }) {
   const { state } = useContext(UIContext);
   const buttonText = state.buttonText[product.id] || "Add to cart";
