@@ -58,19 +58,8 @@ export default function LoginPage() {
     setErrorMessage(null);
   }, [registerUser]);
 
-  if (loading) {
-    return (
-      <div className="page">
-        <p>Loading... </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="login-page-component">
-      <h1 className="login-page-header">{`${
-        registerUser ? "Register" : "Login"
-      }:`}</h1>
+  const loginPageElements = (
+    <div>
       {registerUser ? (
         <CommonForm
           formControls={registerFormControls}
@@ -91,7 +80,6 @@ export default function LoginPage() {
       <p className="login-page-error-message">
         {errorMessage ? errorMessage : ""}
       </p>
-
       <div className="switch-type-btn-container">
         {!registerUser ? (
           <>
@@ -113,6 +101,19 @@ export default function LoginPage() {
           </>
         )}
       </div>
+    </div>
+  );
+
+  return (
+    <div className="login-page-component">
+      <h1 className="login-page-header">{`${
+        registerUser ? "Register" : "Login"
+      }:`}</h1>
+      {loading ? (
+        <p className="page-loading">Loading... </p>
+      ) : (
+        loginPageElements
+      )}
     </div>
   );
 }

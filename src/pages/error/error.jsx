@@ -22,9 +22,11 @@ export default function ErrorPage() {
   }, []);
 
   return (
-    <div>
-      <h1>Oops, something went wrong... </h1>
-      <p>{errorMsg}</p>
+    <div className="page-container error-page">
+      <h1 className="page-header error-page-header">
+        Oops, something went wrong...{" "}
+      </h1>
+      <p className="page-error">{errorMsg}</p>
       <Link to={"/"}>Home</Link>
     </div>
   );

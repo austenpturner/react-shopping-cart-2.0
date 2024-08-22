@@ -16,27 +16,22 @@ export default function HomePage() {
     }
   }, [cartLoaded, cartItems]);
 
-  if (loading) {
-    return (
-      <div>
-        <h1>Home Page</h1>
-        <p>Loading... </p>
-      </div>
-    );
-  }
+  const productList = (
+    <ul className="product-list">
+      {products?.length ? (
+        products.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        })
+      ) : (
+        <p>no products found.</p>
+      )}
+    </ul>
+  );
 
   return (
-    <div>
-      <h1>Products</h1>
-      <ul className="product-list">
-        {products?.length ? (
-          products.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })
-        ) : (
-          <p>no products found.</p>
-        )}
-      </ul>
+    <div className="page-container home-page">
+      <h1 className="page-header home-page-header">Products</h1>
+      {loading ? <p className="page-loading">Loading... </p> : productList}
     </div>
   );
 }

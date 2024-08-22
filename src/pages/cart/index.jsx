@@ -32,45 +32,39 @@ export default function CartPage() {
     }
   }, [cartLoaded, cartItems]);
 
-  if (loading) {
-    return (
+  const cartElements =
+    cartItems.length > 0 ? (
       <div>
-        <h1>Cart</h1>
-        <p>Loading... </p>
+        <div className="cart-headers-container">
+          <h2>Items</h2>
+          <h2>Quantity</h2>
+          <h2>Price</h2>
+        </div>
+        {cartItems.map((item) => {
+          return <CartCard key={item.id} item={item} />;
+        })}
+        <div className="total-container">
+          {cartTotal > 0 ? <p>{`Total: $${cartTotal}`}</p> : null}
+        </div>
+        <div className="login-btn-container">
+          {user ? (
+            <Button text={"check out"} />
+          ) : (
+            <p onClick={handleLoginRedirect}>Login to checkout</p>
+          )}
+        </div>
+      </div>
+    ) : (
+      <div>
+        <p>Your cart is empty.</p>
+        <Link to={"/"}>Go shopping</Link>
       </div>
     );
-  }
 
   return (
-    <div>
-      <h1>Cart</h1>
-      {cartItems?.length > 0 ? (
-        <div>
-          <div className="cart-headers-container">
-            <h2>Items</h2>
-            <h2>Quantity</h2>
-            <h2>Price</h2>
-          </div>
-          {cartItems.map((item) => {
-            return <CartCard key={item.id} item={item} />;
-          })}
-          <div className="total-container">
-            {cartTotal > 0 ? <p>{`Total: $${cartTotal}`}</p> : null}
-          </div>
-          <div className="login-btn-container">
-            {user ? (
-              <Button text={"check out"} />
-            ) : (
-              <p onClick={handleLoginRedirect}>Login to checkout</p>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div>
-          <p>Your cart is empty.</p>
-          <Link to={"/"}>Go shopping</Link>
-        </div>
-      )}
+    <div className="page-container cart-page">
+      <h1 className="page-header cart-page-header">Cart</h1>
+      {loading ? <p className="page-loading">Loading... </p> : cartElements}
     </div>
   );
 }
