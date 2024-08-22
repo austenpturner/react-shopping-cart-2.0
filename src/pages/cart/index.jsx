@@ -48,9 +48,13 @@ export default function CartPage() {
         </div>
         <div className="login-btn-container">
           {user ? (
-            <Button text={"check out"} />
+            <Button text="check out" type="checkOut" />
           ) : (
-            <p onClick={handleLoginRedirect}>Login to checkout</p>
+            <Button
+              onClick={handleLoginRedirect}
+              text="Login to checkout"
+              type="login"
+            />
           )}
         </div>
       </div>

@@ -6,24 +6,19 @@
   display: flex;
   justify-content: space-evenly;
   list-style: none;
-}
-
-.navLinkList li {
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 20px;
-  padding: 4px 8px;
-  text-align: center;
-  &:hover {
-    background-color: aquamarine;
+  li {
+    margin-left: 20px;
+    text-align: center;
+    a {
+      border-radius: 3px;
+      color: #242424;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px 8px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline double #242424;
+      }
+    }
   }
-}
-
-.navLinkList li a {
-  text-decoration: none;
-}
-
-.mainNav button {
-  height: 21px;
-  width: 60px;
 }

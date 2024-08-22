@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import "./styles.scss";
 
 export default function Button({ type, action, handleAction, item, text }) {
+  console.log(type);
+
   return (
     <button className={type} onClick={() => handleAction(item, action)}>
       {text}

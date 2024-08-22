@@ -39,7 +39,7 @@ export default function MainNav() {
             <Button
               handleAction={handleClick}
               text={user ? "Logout" : "Login"}
-              type={"logout"}
+              type={user ? "logout" : "login"}
             />
           )}
         </li>

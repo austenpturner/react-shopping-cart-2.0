@@ -1,0 +1,46 @@
+button {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.addToCart,
+.removeFromCart,
+.checkOut {
+  box-shadow: 2px 2px 2px 1px rgba($color: #b8b8b8, $alpha: 0.5);
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.addToCart,
+.checkOut {
+  background-color: #7e7e7e;
+}
+
+.removeFromCart {
+  background-color: rgb(243, 119, 97);
+  padding: 4px 12px;
+}
+
+.increaseQuantity,
+.decreaseQuantity {
+  border: 1px solid rgb(173, 173, 173);
+  padding: 4px;
+  width: 24px;
+}
+
+.checkOut {
+  border: 1px solid rgb(173, 173, 173);
+  padding: 6px 20px;
+}
+
+.logout,
+.login {
+  padding: 4px 10px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
