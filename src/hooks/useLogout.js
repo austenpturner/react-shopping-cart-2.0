@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { auth } from "../firebase/firebaseConfig";
+import firebase from "../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
-import { setUser } from "../store/slices/users-slice";
-import { clearCart } from "../store/slices/cart-slice";
+import { setUser } from "../store/slices/usersSlice";
+import { clearCart } from "../store/slices/cartSlice";
 
 export default function useLogout() {
   const dispatch = useDispatch();
+  const auth = firebase.auth;
 
   function handleLogout() {
     signOut(auth)

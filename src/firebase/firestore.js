@@ -1,5 +1,7 @@
 import { doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
-import { db } from "./firebaseConfig";
+import firebase from "./firebaseConfig";
+
+const db = firebase.db;
 
 async function setUserCart(userId, cart) {
   try {

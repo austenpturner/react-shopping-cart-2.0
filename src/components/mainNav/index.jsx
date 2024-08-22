@@ -3,7 +3,7 @@ import styles from "./main-nav.module.css";
 import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout.js";
-import Button from "../button/index.js";
+import Button from "../button/index.jsx";
 
 export default function MainNav() {
   const loading = useAuth();

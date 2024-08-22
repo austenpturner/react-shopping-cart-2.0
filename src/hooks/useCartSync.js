@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCart, setUserCart } from "../firebase/firestore";
-import { setCart } from "../store/slices/cart-slice";
+import { setCart } from "../store/slices/cartSlice";
 
 export default function useCartSync() {
   const dispatch = useDispatch();

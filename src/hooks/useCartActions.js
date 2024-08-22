@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserCart } from "../config/firestore";
+import { updateUserCart } from "../firebase/firestore";
 import {
   addToCart,
   removeFromCart,
   updateCartItem,
 } from "../store/slices/cartSlice";
 import { useContext } from "react";
-import { UIContext } from "../context";
+import { UIContext } from "../context/uiContext";
 
 export default function useCartActions() {
   const dispatch = useDispatch();

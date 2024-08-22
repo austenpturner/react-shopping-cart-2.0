@@ -1,10 +1,11 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { auth } from "../firebase/firebaseConfig";
-import { setUser } from "../store/slices/users-slice";
+import firebase from "../firebase/firebaseConfig";
+import { setUser } from "../store/slices/usersSlice";
 
 export default function useLogin() {
   const dispatch = useDispatch();
+  const auth = firebase.auth;
 
   async function handleUserLogin(email, password) {
     try {

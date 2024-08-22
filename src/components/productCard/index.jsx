@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
 import { useContext } from "react";
-import { UIContext } from "../../context";
+import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
 
 export default function ProductCard({ product }) {

@@ -1,8 +1,9 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase/firebaseConfig";
+import firebase from "../firebase/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function useRegister() {
+  const { auth, db } = firebase;
   async function handleUserRegister(email, password, userCredentials) {
     try {
       const userCredential = await createUserWithEmailAndPassword(

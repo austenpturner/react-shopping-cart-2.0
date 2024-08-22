@@ -29,7 +29,7 @@ const cartSlice = createSlice({
   initialState: loadInitialCart(),
   reducers: {
     addToCart(state, action) {
-      state.cartItems.push(action.payload);
+      state.items.push(action.payload);
       state.total = calculateTotal(state.items);
     },
     setCart(state, action) {

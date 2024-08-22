@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import useLogout from "../../hooks/useLogout";
-import Button from "../../components/button";
+import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 
 export default function AccountPage() {

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { auth } from "../firebase/firebaseConfig";
+import firebase from "../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { setUser } from "../store/slices/users-slice";
+import { setUser } from "../store/slices/usersSlice";
 
 export default function useAuth() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const auth = firebase.auth;
 
   useEffect(() => {
     const checkForUser = onAuthStateChanged(auth, (currentUser) => {
