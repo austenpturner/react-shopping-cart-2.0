@@ -8,27 +8,25 @@ export default function AccountPage() {
   const user = useSelector((state) => state.users.currentUser);
   const handleLogout = useLogout();
 
-  if (loading) {
-    return (
-      <div>
-        <h1>Account Page</h1>
-        <p>Loading... </p>
-      </div>
-    );
-  } else if (!user) {
-    return (
-      <div>
-        <h1>Account Page</h1>
-        <p>You are not logged in.</p>
-      </div>
-    );
+  function getHeadingText() {
+    if (loading) {
+      return `Loading... `;
+    } else if (!user) {
+      return `You are not logged in. Please log in to access your account.`;
+    } else {
+      return `Welcome, ${user.username || `user`}!`;
+    }
   }
 
   return (
-    <div>
-      <h1>Account Page</h1>
-      <p>{`Welcome, ${user.username || `user`}!`}</p>
-      <Button text={"logout"} type={"logout"} handleAction={handleLogout} />
+    <div className="page-container account-page">
+      <h1 className="page-header account-page-header">Account Page</h1>
+      <h2 className="page-subheader account-page-subheader">
+        {getHeadingText()}
+      </h2>
+      {user ? (
+        <Button text={"logout"} type={"logout"} handleAction={handleLogout} />
+      ) : null}
     </div>
   );
 }
