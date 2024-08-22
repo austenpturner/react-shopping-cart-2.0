@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./main-nav.module.css";
+import styles from "./mainNav.module.scss";
 import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout.js";

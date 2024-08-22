@@ -1,6 +1,6 @@
 import CartBtnComponent from "../buttons/cart-btn";
 import PropTypes from "prop-types";
-import styles from "./product-details.module.css";
+import styles from "./productDetails.module.scss";
 import ReviewsButton from "../buttons/reviews-btn";
 import { useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";

@@ -1,4 +1,4 @@
-import styles from "./commonInput.module.css";
+import styles from "./commonInput.module.scss";
 import PropTypes from "prop-types";
 
 export default function CommonInput({

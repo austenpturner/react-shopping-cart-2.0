@@ -2,7 +2,7 @@ import CommonInput from "../commonInput";
 import PropTypes from "prop-types";
 import Select from "../select";
 import TextArea from "../text-area";
-import styles from "./commonForm.module.css";
+import styles from "./commonForm.module.scss";
 
 const formElementTypes = {
   INPUT: "input",

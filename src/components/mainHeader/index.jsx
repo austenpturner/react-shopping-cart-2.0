@@ -1,5 +1,5 @@
 import MainNav from "../mainNav";
-import styles from "./header.module.css";
+import styles from "./header.module.scss";
 
 export default function MainHeader() {
   return (
