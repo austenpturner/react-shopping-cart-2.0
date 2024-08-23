@@ -1,5 +1,4 @@
 import ProductCard from "../../components/productCard";
-// import { products } from "../../config/productsConfig";
 import useFetchCart from "../../hooks/useFetchCart";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ export default function HomePage() {
   const cartItems = useSelector((state) => state.cart.items);
   const [loading, setLoading] = useState(true);
   const { data, loadingData } = useFetch(`https://dummyjson.com/products/`);
-  // console.log(data.products.length, loadingData);
 
   useEffect(() => {
     if (cartLoaded && cartItems && data?.products?.length > 0 && !loadingData) {

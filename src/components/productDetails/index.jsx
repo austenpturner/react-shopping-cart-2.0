@@ -1,21 +1,29 @@
-import CartBtnComponent from "../buttons/cart-btn";
+import Button from "../button";
 import PropTypes from "prop-types";
 import styles from "./productDetails.module.scss";
-import ReviewsButton from "../buttons/reviews-btn";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FaStar } from "react-icons/fa";
+import { UIContext } from "../../context/uiContext";
+import useCartActions from "../../hooks/useCartActions";
 
-export default function ProductDetails({ data, handleAddToCart }) {
-  const [showReviews, setShowReview] = useState(false);
+export default function ProductDetails({ product }) {
+  const [showReviews, setShowReviews] = useState(false);
+  const { state } = useContext(UIContext);
+  const buttonText = state.buttonText[product.id] || "Add to cart";
+  const { handleAddToCart } = useCartActions();
+
+  function handleShowReviews() {
+    setShowReviews(!showReviews);
+  }
 
   return (
     <div className={styles.productContainer}>
       <div className={styles.detailsContainer}>
         <div className={styles.imageContainer}>
           <LazyLoadImage
-            src={data?.thumbnail}
-            alt={data.title}
+            src={product?.thumbnail}
+            alt={product.title}
             effect="blur"
             className={styles.detailsImage}
             width={300}
@@ -23,11 +31,16 @@ export default function ProductDetails({ data, handleAddToCart }) {
           />
         </div>
         <div className={styles.details}>
-          <h1>{data?.title}</h1>
-          <p className={styles.description}>{data?.description}</p>
+          <h1>{product?.title}</h1>
+          <p className={styles.description}>{product?.description}</p>
           <div className={styles.purchaseContainer}>
-            <p className={styles.price}>{`$${data?.price}`}</p>
-            <CartBtnComponent type={"add"} onClick={handleAddToCart} />
+            <p className={styles.price}>{`$${product?.price}`}</p>
+            <Button
+              type={"addToCart"}
+              handleAction={handleAddToCart}
+              item={product}
+              text={buttonText}
+            />
           </div>
         </div>
       </div>
@@ -36,16 +49,17 @@ export default function ProductDetails({ data, handleAddToCart }) {
         <h2>Reviews & Ratings</h2>
         <div className={styles.ratingContainer}>
           <div className={styles.column}>
-            <p>{`${data.reviews.length} reviews`}</p>
-            <ReviewsButton
-              handleShowReviews={() => setShowReview(!showReviews)}
-              showReviews={showReviews}
+            <p>{`${product.reviews.length} reviews`}</p>
+            <Button
+              handleAction={handleShowReviews}
+              type="switch"
+              text="show reviews"
             />
           </div>
           <div className={styles.column}>
-            <p>{`${data?.rating} out of 5`}</p>
+            <p>{`${product?.rating} out of 5`}</p>
             <div>
-              {[...Array(Math.round(data?.rating))].map((_, index) => {
+              {[...Array(Math.round(product?.rating))].map((_, index) => {
                 index += 1;
                 return <FaStar key={index} />;
               })}
@@ -55,8 +69,8 @@ export default function ProductDetails({ data, handleAddToCart }) {
         <div className={styles.reviewsContainer}>
           {showReviews ? (
             <ul className={styles.reviewsList}>
-              {data?.reviews?.length > 0 ? (
-                data.reviews.map((review, index) => {
+              {product?.reviews?.length > 0 ? (
+                product.reviews.map((review, index) => {
                   return (
                     <li key={index}>
                       <p
@@ -85,6 +99,5 @@ export default function ProductDetails({ data, handleAddToCart }) {
 }
 
 ProductDetails.propTypes = {
-  data: PropTypes.object,
-  handleAddToCart: PropTypes.func,
+  product: PropTypes.object,
 };
