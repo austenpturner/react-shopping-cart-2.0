@@ -7,15 +7,16 @@ import useAuth from "./useAuth";
 export default function useFetchCart() {
   const dispatch = useDispatch();
   useAuth();
-
   const user = useSelector((state) => state.users.currentUser);
+  const syncing = useSelector((state) => state.cart.syncing);
   const [cartLoaded, setCartLoaded] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (user && !syncing) {
       const fetchCart = async () => {
         try {
           const cart = await getUserCart(user.id);
+
           if (cart) {
             dispatch(setCart(cart));
           }
@@ -29,7 +30,7 @@ export default function useFetchCart() {
     } else {
       setCartLoaded(true);
     }
-  }, [user, dispatch]);
+  }, [user, dispatch, syncing]);
 
   return cartLoaded;
 }

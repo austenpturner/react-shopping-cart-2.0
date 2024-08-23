@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCart, setUserCart } from "../firebase/firestore";
-import { setCart } from "../store/slices/cartSlice";
+import { setCart, setSyncing } from "../store/slices/cartSlice";
 import { getTotal } from "../util/getTotal";
 
 export default function useCartSync() {
@@ -37,6 +37,8 @@ export default function useCartSync() {
 
   useEffect(() => {
     async function syncCartWithFirestore() {
+      dispatch(setSyncing(true));
+
       try {
         const localCart = JSON.parse(localStorage.getItem("cart")) || {
           items: [],
@@ -56,6 +58,8 @@ export default function useCartSync() {
         localStorage.removeItem("cart");
       } catch (error) {
         console.log(error);
+      } finally {
+        dispatch(setSyncing(false));
       }
     }
     if (!user) {

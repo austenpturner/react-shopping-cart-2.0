@@ -8,9 +8,10 @@ function loadInitialCart() {
     return {
       items: parsedCart.items || [],
       total: parsedCart.total || 0,
+      syncing: false,
     };
   }
-  return { items: [], total: 0 };
+  return { items: [], total: 0, syncing: false };
 }
 
 const cartSlice = createSlice({
@@ -47,10 +48,19 @@ const cartSlice = createSlice({
       state.items = [];
       state.total = 0;
     },
+    setSyncing(state, action) {
+      state.syncing = action.payload;
+    },
   },
 });
 
-export const { setCart, addToCart, removeFromCart, updateCartItem, clearCart } =
-  cartSlice.actions;
+export const {
+  setCart,
+  addToCart,
+  removeFromCart,
+  updateCartItem,
+  clearCart,
+  setSyncing,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
