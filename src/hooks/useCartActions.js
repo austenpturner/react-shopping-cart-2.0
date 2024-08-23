@@ -80,20 +80,20 @@ export default function useCartActions() {
     updateCartInFirestore(updatedItems);
   }
 
-  function handleUpdateQuantity(item, type) {
+  function handleUpdateQuantity(item, action) {
     let newFirestoreCart;
 
-    if (type === "increase") {
-      const { updatedCartItem, updatedItems } = getUpdatedItems(type, item);
+    if (action === "increase") {
+      const { updatedCartItem, updatedItems } = getUpdatedItems(action, item);
       newFirestoreCart = updatedItems;
       dispatch(updateCartItem(updatedCartItem));
-    } else if (type === "decrease" && item.quantity === 1) {
+    } else if (action === "decrease" && item.quantity === 1) {
       newFirestoreCart = cartItems.filter(
         (cartItem) => cartItem.id !== item.id
       );
       dispatch(removeFromCart(item));
     } else {
-      const { updatedCartItem, updatedItems } = getUpdatedItems(type, item);
+      const { updatedCartItem, updatedItems } = getUpdatedItems(action, item);
       newFirestoreCart = updatedItems;
       dispatch(updateCartItem(updatedCartItem));
     }

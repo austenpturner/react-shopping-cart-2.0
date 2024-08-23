@@ -51,11 +51,10 @@ export default function CartPage() {
             <Button text="check out" type="checkOut" />
           ) : (
             <Button
-              onClick={handleLoginRedirect}
-              text="Login to checkout"
+              handleAction={handleLoginRedirect}
+              text="Log in to checkout"
               type="login"
             />
-            //! handleAction is not a function at onClick
           )}
         </div>
       </div>

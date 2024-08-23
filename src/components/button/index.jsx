@@ -3,7 +3,10 @@ import "./styles.scss";
 
 export default function Button({ type, action, handleAction, item, text }) {
   return (
-    <button className={type} onClick={() => handleAction(item, action)}>
+    <button
+      className={type}
+      onClick={handleAction ? () => handleAction(item, action) : null}
+    >
       {text}
     </button>
   );
