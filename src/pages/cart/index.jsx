@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import CartCard from "../../components/cartCard";
 import { useEffect, useState } from "react";
 import useFetchCart from "../../hooks/useFetchCart";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styles.scss";
 import Button from "../../components/button";
 
@@ -18,6 +18,10 @@ export default function CartPage() {
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/cart" } });
+  }
+
+  function handleHomeRedirect() {
+    navigate("/");
   }
 
   useEffect(() => {
@@ -53,7 +57,7 @@ export default function CartPage() {
             <Button
               handleAction={handleLoginRedirect}
               text="Log in to checkout"
-              type="login"
+              type="navigate"
             />
           )}
         </div>
@@ -61,7 +65,11 @@ export default function CartPage() {
     ) : (
       <div>
         <p>Your cart is empty.</p>
-        <Link to={"/"}>Go shopping</Link>
+        <Button
+          text="Go shopping"
+          type="navigate"
+          handleAction={handleHomeRedirect}
+        />
       </div>
     );
 
