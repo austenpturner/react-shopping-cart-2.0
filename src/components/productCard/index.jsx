@@ -5,11 +5,13 @@ import Button from "../button";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   const { state } = useContext(UIContext);
   const buttonText = state.buttonText[product.id] || "Add to cart";
   const { handleAddToCart } = useCartActions();
+  const navigate = useNavigate();
 
   return (
     <li className={styles.productCard}>
@@ -20,7 +22,7 @@ export default function ProductCard({ product }) {
         width={188}
         height={188}
         effect="blur"
-        // onClick={() => navigate(`/product-details/${product.id}`)}
+        onClick={() => navigate(`/product-details/${product.id}`)}
       />
       <p className={styles.title}>{product.title}</p>
       <p className={styles.price}>{`$${product.price}`}</p>

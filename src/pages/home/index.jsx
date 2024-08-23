@@ -1,21 +1,14 @@
 import ProductCard from "../../components/productCard";
-import useFetchCart from "../../hooks/useFetchCart";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+// import useFetchCart from "../../hooks/useFetchCart";
+// import { useSelector } from "react-redux";
+// import { useEffect, useState } from "react";
 import "./styles.scss";
 import useFetch from "../../hooks/useFetch";
+import usePageSetup from "../../hooks/usePageSetup";
 
 export default function HomePage() {
-  const cartLoaded = useFetchCart();
-  const cartItems = useSelector((state) => state.cart.items);
-  const [loading, setLoading] = useState(true);
   const { data, loadingData } = useFetch(`https://dummyjson.com/products/`);
-
-  useEffect(() => {
-    if (cartLoaded && cartItems && data?.products?.length > 0 && !loadingData) {
-      setLoading(false);
-    }
-  }, [cartLoaded, cartItems, data, loadingData]);
+  const { loading } = usePageSetup(data?.products?.length > 0, loadingData);
 
   const productList = (
     <ul className="product-list">

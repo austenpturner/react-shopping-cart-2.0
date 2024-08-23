@@ -2,38 +2,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import ProductDetails from "../../components/productDetails";
 import Button from "../../components/button";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import useFetchCart from "../../hooks/useFetchCart";
+import usePageSetup from "../../hooks/usePageSetup";
 
 export default function ProductPage() {
-  const cartLoaded = useFetchCart();
-  const cartItems = useSelector((state) => state.cart.items);
-  const [loading, setLoading] = useState(true);
   const params = useParams();
   const { id } = params;
   const navigate = useNavigate();
   const { data, loadingData } = useFetch(
     `https://dummyjson.com/products/${id}`
   );
+  const { loading } = usePageSetup(data, loadingData);
 
   function handleNavigateHome() {
     navigate("/");
   }
-
-  useEffect(() => {
-    if (!cartLoaded && loadingData) {
-      setLoading(true);
-    } else if (cartLoaded && cartItems.length === 0 && data) {
-      setTimeout(() => {
-        setLoading(false);
-      }, "1500");
-    } else if (cartLoaded && cartItems.length > 0 && data) {
-      setLoading(false);
-    }
-  }, [cartLoaded, cartItems, loadingData, data]);
-
-  // console.log(data);
 
   function getProductDetailContent() {
     if (data) {
