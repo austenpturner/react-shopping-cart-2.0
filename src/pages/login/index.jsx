@@ -9,6 +9,7 @@ import useRegister from "../../hooks/useRegister";
 import Button from "../../components/button";
 import { getErrorMessage } from "../../util/getErrorMessage";
 import useCartSync from "../../hooks/useCartSync";
+import "./styles.scss";
 
 const initialState = {
   name: "",
@@ -61,33 +62,39 @@ export default function LoginPage() {
   const loginPageElements = (
     <div>
       {registerUser ? (
-        <CommonForm
-          formControls={registerFormControls}
-          formData={userCredentials}
-          setFormData={handleCredentials}
-          onSubmit={handleSubmit}
-          btnText={"submit"}
-        />
+        <div className="form-container">
+          <CommonForm
+            formControls={registerFormControls}
+            formData={userCredentials}
+            setFormData={handleCredentials}
+            onSubmit={handleSubmit}
+            btnText={"submit"}
+          />
+        </div>
       ) : (
-        <CommonForm
-          formControls={loginFormControls}
-          formData={userCredentials}
-          setFormData={handleCredentials}
-          onSubmit={handleSubmit}
-          btnText={"submit"}
-        />
+        <div className="form-container">
+          <CommonForm
+            formControls={loginFormControls}
+            formData={userCredentials}
+            setFormData={handleCredentials}
+            onSubmit={handleSubmit}
+            btnText={"submit"}
+          />
+        </div>
       )}
       <p className="login-page-error-message">
         {errorMessage ? errorMessage : ""}
       </p>
-      <div className="switch-type-btn-container">
+      <div
+        className={!registerUser ? "register-btn-container" : "btn-container"}
+      >
         {!registerUser ? (
           <>
             <p>{`Don't have an account?`}</p>
             <Button
               text={"register"}
               handleAction={switchRegisterUser}
-              type={"switchLoginType"}
+              type={"register"}
             />
           </>
         ) : (
@@ -96,7 +103,7 @@ export default function LoginPage() {
             <Button
               text={"log in"}
               handleAction={setRegisterUser}
-              type={"switchLoginType"}
+              type={"login"}
             />
           </>
         )}
@@ -106,9 +113,7 @@ export default function LoginPage() {
 
   return (
     <div className="login-page-component">
-      <h1 className="login-page-header">{`${
-        registerUser ? "Register" : "Login"
-      }:`}</h1>
+      <h1 className="header">{`${registerUser ? "Register" : "Log In"}:`}</h1>
       {loading ? (
         <p className="page-loading">Loading... </p>
       ) : (

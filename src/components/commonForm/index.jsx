@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Select from "../select";
 import TextArea from "../text-area";
 import styles from "./commonForm.module.scss";
+import Button from "../button/index";
 
 const formElementTypes = {
   INPUT: "input",
@@ -85,7 +86,7 @@ export default function CommonForm({
           </div>
         );
       })}
-      <button type="submit">{btnText || "submit"}</button>
+      <Button type="submit" text={btnText || "submit"} />
     </form>
   );
 }
