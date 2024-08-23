@@ -55,6 +55,7 @@ export default function CartPage() {
               text="Login to checkout"
               type="login"
             />
+            //! handleAction is not a function at onClick
           )}
         </div>
       </div>

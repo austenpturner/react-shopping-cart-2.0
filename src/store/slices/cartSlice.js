@@ -1,16 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-function calculateTotal(items) {
-  if (!Array.isArray(items)) {
-    return 0;
-  }
-  const total = parseFloat(
-    items
-      .reduce((total, item) => total + item.price * item.quantity, 0)
-      .toFixed(2)
-  );
-  return total;
-}
+import { getTotal } from "../../util/getTotal";
 
 function loadInitialCart() {
   const savedCart = localStorage.getItem("cart");
@@ -30,12 +19,12 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       state.items.push(action.payload);
-      state.total = calculateTotal(state.items);
+      state.total = getTotal(state.items);
     },
     setCart(state, action) {
       if (Array.isArray(action.payload)) {
         state.items = action.payload;
-        state.total = calculateTotal(action.payload);
+        state.total = getTotal(action.payload);
       } else {
         state.items = action.payload.items;
         state.total = action.payload.total;
@@ -43,7 +32,7 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       state.items = state.items.filter((item) => item.id !== action.payload.id);
-      state.total = calculateTotal(state.items);
+      state.total = getTotal(state.items);
     },
     updateCartItem(state, action) {
       const index = state.items.findIndex(
@@ -51,7 +40,7 @@ const cartSlice = createSlice({
       );
       if (index !== -1) {
         state.items[index].quantity = action.payload.quantity;
-        state.total = calculateTotal(state.items);
+        state.total = getTotal(state.items);
       }
     },
     clearCart(state) {

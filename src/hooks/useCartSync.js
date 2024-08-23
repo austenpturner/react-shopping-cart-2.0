@@ -2,24 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCart, setUserCart } from "../firebase/firestore";
 import { setCart } from "../store/slices/cartSlice";
+import { getTotal } from "../util/getTotal";
 
 export default function useCartSync() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.currentUser);
   const cartItems = useSelector((state) => state.cart.items);
   const cartTotal = useSelector((state) => state.cart.total);
-
-  function calculateTotal(items) {
-    if (!Array.isArray(items)) {
-      return 0;
-    }
-    const total = parseFloat(
-      items
-        .reduce((total, item) => total + item.price * item.quantity, 0)
-        .toFixed(2)
-    );
-    return total;
-  }
 
   function mergeCarts(cart, mergedCart) {
     cart.forEach((item) => {
@@ -59,7 +48,7 @@ export default function useCartSync() {
         );
         const combinedCart = {
           items: combinedItems,
-          total: calculateTotal(combinedItems),
+          total: getTotal(combinedItems),
         };
 
         dispatch(setCart(combinedCart));
