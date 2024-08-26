@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout.js";
 import Button from "../button/index.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useWindowResize from "../../hooks/useWindowResize.js";
 
 export default function MainNav() {
   const loading = useAuth();
@@ -12,6 +13,7 @@ export default function MainNav() {
   const user = useSelector((state) => state.users.currentUser);
   const handleLogout = useLogout();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { width } = useWindowResize();
 
   function handleToggleMobileNav() {
     setMobileNavOpen(!mobileNavOpen);
@@ -26,6 +28,12 @@ export default function MainNav() {
       navigate("/login");
     }
   }
+
+  useEffect(() => {
+    if (width >= 1024) {
+      setMobileNavOpen(false);
+    }
+  }, [width]);
 
   return (
     <div className={styles.mainNavContainer}>
