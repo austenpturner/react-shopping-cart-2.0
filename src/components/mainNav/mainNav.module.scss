@@ -1,13 +1,66 @@
-.mainNav {
-  font-size: 16px;
+@use "../../styles/utilStyles/" as *;
+
+.mobileNavBtn {
+  background-color: #fff;
+  color: #242424;
+  position: absolute;
+  width: 2rem;
+  aspect-ratio: 1;
+  top: 0px;
+  right: 20px;
+  z-index: 9999;
+  .hamburger {
+    fill: #242424;
+    .line {
+      transform-origin: center;
+      transition: 300ms ease-in-out;
+    }
+  }
+  &[aria-expanded="true"] {
+    background-color: rgb(160, 160, 160);
+    .hamburger > .line {
+      fill: #fff;
+      &__top,
+      &__bottom {
+        y: 45;
+      }
+      &__top {
+        rotate: 45deg;
+      }
+      &__bottom {
+        rotate: -45deg;
+      }
+      &__middle {
+        opacity: 0;
+      }
+    }
+  }
+  @include breakpoint(large) {
+    display: none;
+  }
 }
 
-.navLinkList {
-  display: flex;
-  justify-content: space-evenly;
-  list-style: none;
+.mainNav {
+  @include breakpoint-down(medium) {
+    @include flex-col(flex-start, flex-start, 20px);
+    background-color: rgb(160, 160, 160);
+    padding: min(20vh, 120px) 8%;
+    position: fixed;
+    inset: 0 0 0 calc(100% - min(50%, 250px));
+    width: min(50%, 250px);
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+    z-index: 1000;
+    &[data-visible="true"] {
+      transform: translateX(0%);
+    }
+  }
+  @include breakpoint(large) {
+    @include flex-row(space-evenly);
+  }
+
   li {
-    margin-left: 15px;
+    font-size: 16px;
     text-align: center;
     a {
       border-radius: 3px;
@@ -18,6 +71,12 @@
       text-decoration: none;
       &:hover {
         text-decoration: underline double #242424;
+      }
+      @include breakpoint-down(medium) {
+        color: #fff;
+        &:hover {
+          text-decoration: underline double #fff;
+        }
       }
     }
   }

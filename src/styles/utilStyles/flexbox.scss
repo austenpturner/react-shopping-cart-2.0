@@ -1,22 +1,24 @@
-@mixin flex-row-wrap($gap, $justify) {
+@mixin flex-row-wrap($justify, $gap: 0) {
   display: flex;
   flex-flow: row wrap;
-  gap: $gap;
   justify-content: $justify;
+  gap: $gap;
 }
 
-@mixin flex-row($justify, $align) {
+@mixin flex-row($justify: flex-start, $align: stretch, $gap: 0) {
   display: flex;
   flex-direction: row;
   justify-content: $justify;
   align-items: $align;
+  gap: $gap;
 }
 
-@mixin flex-col($justify, $align) {
+@mixin flex-col($justify: flex-start, $align: stretch, $gap: 0) {
   display: flex;
   flex-direction: column;
   justify-content: $justify;
   align-items: $align;
+  gap: $gap;
 }
 
 @mixin flex-details($direction, $justify) {

@@ -3,7 +3,7 @@
 .cartCard {
   border: 1px solid #242424;
   border-radius: 3px;
-  @include flex-row-wrap(10px, space-between);
+  @include flex-row-wrap(space-between, 10px);
   height: 100px;
   margin: 5px auto;
   padding: 10px;

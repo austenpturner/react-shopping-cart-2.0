@@ -1,7 +1,7 @@
 @use "../../styles//utilStyles/index" as *;
 
 .product-list {
-  @include flex-row-wrap(20px, flex-start);
+  @include flex-row-wrap(flex-start, 20px);
   list-style: none;
   padding: 0;
 }

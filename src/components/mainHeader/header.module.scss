@@ -9,11 +9,12 @@
 .mainHeader h4 {
   align-self: center;
   font-weight: bold;
+  margin: 0;
   text-transform: uppercase;
 }
 
 @media (max-width: 1024px) {
   .mainHeader {
-    margin: 0 20px;
+    margin: 0 10px;
   }
 }
