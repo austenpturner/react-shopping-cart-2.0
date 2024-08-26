@@ -19,8 +19,8 @@ export default function ProductCard({ product }) {
         src={product.thumbnail}
         alt={product.title}
         className={styles.productCardImg}
-        width={188}
-        height={188}
+        // width={188}
+        // height={188}
         effect="blur"
         onClick={() => navigate(`/product-details/${product.id}`)}
       />

@@ -1,7 +1,7 @@
 @use "../../styles/utilStyles/index" as *;
 
 .cartCard {
-  border: 1px solid #242424;
+  border: 1px solid var(--dark-text);
   border-radius: 3px;
   @include flex-row-wrap(space-between, 10px);
   height: 100px;

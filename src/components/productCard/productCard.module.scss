@@ -1,17 +1,23 @@
 @use "../../styles/utilStyles/index" as *;
 
 .productCard {
-  @include flex-col(left, space-between);
-  width: 188px;
+  @include flex-col(space-between);
+  width: calc((100vw - 80px) / 2);
+  @include breakpoint(medium) {
+    width: calc((100vw - 120px) / 4);
+  }
+  @include breakpoint(large) {
+    width: 176.8px;
+  }
 }
 
 .productCardImg {
-  background-color: rgb(233, 233, 233);
+  background-color: var(--light-grey);
   border-radius: 5px;
+  width: 100%;
   cursor: pointer;
-  width: 188px;
   &:hover {
-    background-color: rgb(243, 243, 243);
+    background-color: var(--lighter-grey);
   }
 }
 
@@ -25,7 +31,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 188px;
 }
 
 .price {

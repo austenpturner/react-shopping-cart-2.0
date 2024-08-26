@@ -4,7 +4,7 @@
   margin: 0 auto;
   max-width: 1024px;
   padding: 0 20px;
-  @include breakpoint(large) {
-    padding: 0;
-  }
+  // @include breakpoint(large) {
+  //   padding: 0;
+  // }
 }

@@ -1,11 +1,10 @@
 @use "../../styles//utilStyles/" as *;
 
 .commonInputContainer {
-  @include flex-col(space-between, left);
+  @include flex-col(space-between, stretch, 3px);
 }
 
 .commonInputContainer label {
   display: inline-block;
   font-size: 14px;
-  margin: 3px 0;
 }

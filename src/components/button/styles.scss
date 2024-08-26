@@ -1,3 +1,5 @@
+@use "../../styles//utilStyles/" as *;
+
 button {
   border: none;
   border-radius: 3px;
@@ -9,8 +11,8 @@ button {
 .addToCart,
 .removeFromCart,
 .checkOut {
-  box-shadow: 2px 2px 2px 1px rgba($color: #b8b8b8, $alpha: 0.5);
-  color: white;
+  box-shadow: 2px 2px 2px 1px rgba($color: var(--box-shadow), $alpha: 0.5);
+  color: var(--light-text);
   font-size: 12px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
@@ -18,23 +20,23 @@ button {
 
 .addToCart,
 .checkOut {
-  background-color: #7e7e7e;
+  background-color: var(--dark-grey);
 }
 
 .removeFromCart {
-  background-color: rgb(243, 119, 97);
+  background-color: var(--coral);
   padding: 4px 12px;
 }
 
 .increaseQuantity,
 .decreaseQuantity {
-  border: 1px solid rgb(173, 173, 173);
+  border: 1px solid var(--medium-grey);
   padding: 4px;
   width: 24px;
 }
 
 .checkOut {
-  border: 1px solid rgb(173, 173, 173);
+  border: 1px solid var(--medium-grey);
   padding: 6px 20px;
 }
 
