@@ -4,19 +4,22 @@ import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout.js";
 import Button from "../button/index.jsx";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useWindowResize from "../../hooks/useWindowResize.js";
+import { UIContext } from "../../context/uiContext.jsx";
 
 export default function MainNav() {
   const loading = useAuth();
   const navigate = useNavigate();
   const user = useSelector((state) => state.users.currentUser);
+  const { state, uiDispatch } = useContext(UIContext);
   const handleLogout = useLogout();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const { width } = useWindowResize();
 
   function handleToggleMobileNav() {
     setMobileNavOpen(!mobileNavOpen);
+    uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
   }
 
   function handleClick() {
@@ -32,6 +35,7 @@ export default function MainNav() {
   useEffect(() => {
     if (width >= 1024) {
       setMobileNavOpen(false);
+      uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
     }
   }, [width]);
 
@@ -43,14 +47,15 @@ export default function MainNav() {
         }
         aria-expanded={mobileNavOpen}
         aria-controls="mainNav"
-        className={
-          mobileNavOpen
-            ? `${styles.mobileNavBtn} ${styles.toggleOpen}`
-            : `${styles.mobileNavBtn}`
-        }
+        className={styles.mobileNavBtn}
         onClick={handleToggleMobileNav}
       >
-        <svg className={styles.hamburger} viewBox="0 0 100 100" width="35">
+        <svg
+          className={styles.hamburger}
+          viewBox="0 0 100 100"
+          width="35"
+          aria-hidden="true"
+        >
           <rect
             className={`${styles.line} ${styles.line__top}`}
             width="90"

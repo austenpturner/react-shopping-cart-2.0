@@ -1,10 +1,11 @@
 @use "../utilStyles/index" as *;
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .page-container {
   margin: 0 auto;
   max-width: 1024px;
   padding: 0 20px;
-  // @include breakpoint(large) {
-  //   padding: 0;
-  // }
 }
