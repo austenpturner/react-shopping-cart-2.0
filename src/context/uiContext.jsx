@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 export const UIContext = createContext(null);
 
 function uiReducer(state, action) {
+  console.log(action.payload);
+
   switch (action.type) {
     case "SET_BUTTON_TEXT":
       return {
@@ -23,12 +25,40 @@ function uiReducer(state, action) {
         ...state,
         overlayVisible: action.payload,
       };
+    case "SHOW_MODAL":
+      return {
+        ...state,
+        modal: {
+          isVisible: true,
+          content: action.payload.content,
+          type: action.payload.type,
+        },
+        overlayVisible: true,
+      };
+    case "HIDE_MODAL":
+      return {
+        ...state,
+        modal: {
+          isVisible: false,
+          content: null,
+          type: null,
+        },
+        overlayVisible: false,
+      };
     default:
       return state;
   }
 }
 
-const initialState = { buttonText: {}, overlayVisible: false };
+const initialState = {
+  buttonText: {},
+  overlayVisible: false,
+  modal: {
+    isVisible: false,
+    content: null,
+    type: null,
+  },
+};
 
 export default function UIProvider({ children }) {
   const [state, uiDispatch] = useReducer(uiReducer, initialState);

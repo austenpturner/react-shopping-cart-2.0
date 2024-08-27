@@ -1,0 +1,30 @@
+@use "../../styles/utilStyles/" as *;
+
+.modal {
+  background-color: var(--light-background);
+  display: none;
+  position: fixed;
+  top: 15%;
+  left: 10%;
+  width: 80%;
+  @include breakpoint(large) {
+    top: 20%;
+    left: 25%;
+    width: 50%;
+  }
+  z-index: 9999;
+  &[data-visible="true"] {
+    display: block;
+  }
+  button[class="closeModal"] {
+    background-color: transparent;
+    font-family: var(--font-quicksand);
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    right: 0;
+    aspect-ratio: 1;
+    width: 36px;
+  }
+}

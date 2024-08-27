@@ -11,7 +11,7 @@ button {
 .addToCart,
 .removeFromCart,
 .checkOut {
-  box-shadow: 2px 2px 2px 1px rgba($color: var(--box-shadow), $alpha: 0.5);
+  box-shadow: 2px 2px 4px 1px #bfbfbf89;
   color: var(--light-text);
   font-size: 12px;
   letter-spacing: 1.2px;
@@ -44,8 +44,18 @@ button {
 .login,
 .register,
 .submit,
-.navigate {
+.navigate,
+.quickShop,
+.details {
   padding: 4px 10px;
   letter-spacing: 1.1px;
   text-transform: uppercase;
+}
+
+.quickShop {
+  background-color: var(--light-background);
+  &:hover {
+    background-color: var(--light-text);
+    box-shadow: 2px 2px 4px 1px #bfbfbf89;
+  }
 }

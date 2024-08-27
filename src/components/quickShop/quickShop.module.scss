@@ -1,0 +1,32 @@
+@use "../../styles//utilStyles/" as *;
+
+.quickShopContainer {
+  @include flex-col(space-between, center, 20px);
+  @include breakpoint(medium) {
+    @include flex-row(space-between, stretch, 20px);
+  }
+  padding: 30px;
+  .quickShopImg {
+    background-color: var(--light-grey);
+    border-radius: 3px;
+    width: 300px;
+  }
+  h4 {
+    margin: 0;
+  }
+  p {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+  .detailsContainer {
+    @include flex-col(space-between, stretch, 14px);
+    .description {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .priceContainer {
+      @include flex-row(space-between);
+    }
+  }
+}

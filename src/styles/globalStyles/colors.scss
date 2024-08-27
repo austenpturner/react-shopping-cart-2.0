@@ -1,7 +1,8 @@
 @use "../utilStyles/index" as *;
 
 :root {
-  --light-background: hsla(0, 0%, 100%, 0.87);
+  --light-background: #fff;
+  --light-transparent: hsla(0, 0%, 100%, 0.87);
   --dark-text: #242424;
   --light-text: #fff;
 

@@ -11,6 +11,7 @@ import CartPage from "./pages/cart";
 import LoginPage from "./pages/login";
 import AccountPage from "./pages/account";
 import ErrorPage from "./pages/error/error";
+import Overlay from "./components/overlay/overlay";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
+      <Overlay />
       <RouterProvider router={router} />
     </>
   );

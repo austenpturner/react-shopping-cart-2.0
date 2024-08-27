@@ -35,7 +35,9 @@ export default function MainNav() {
   useEffect(() => {
     if (width >= 1024) {
       setMobileNavOpen(false);
-      uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
+      if (!state.modal.isVisible) {
+        uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
+      }
     }
   }, [width]);
 
