@@ -25,6 +25,9 @@
       font-size: 13px;
       line-height: 1.5;
     }
+    .rating {
+      @include flex-row(flex-start, center, 10px);
+    }
     .priceContainer {
       @include flex-row(space-between);
     }

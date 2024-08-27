@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
+import { FaStar } from "react-icons/fa";
 
 export default function QuickShop({ product }) {
   const navigate = useNavigate();
@@ -30,7 +31,15 @@ export default function QuickShop({ product }) {
       />
       <div className={styles.detailsContainer}>
         <h4>{product.title}</h4>
-        <p className={styles.rating}>Rating: {product.rating}</p>
+        <p className={styles.rating}>
+          <span>
+            {[...Array(Math.round(product?.rating))].map((_, index) => {
+              index += 1;
+              return <FaStar key={index} />;
+            })}
+          </span>
+          <span>{product.rating} out of 5</span>
+        </p>
         <p className={styles.description}>{product.description}</p>
         <div className={styles.priceContainer}>
           <p className={styles.price}>${product.price}</p>
