@@ -113,7 +113,9 @@ export default function LoginPage() {
 
   return (
     <div className="login-page-component">
-      <h1 className="header">{`${registerUser ? "Register" : "Log In"}:`}</h1>
+      <h1 className="page-header">{`${
+        registerUser ? "Register" : "Log In"
+      }:`}</h1>
       {loading ? (
         <p className="page-loading">Loading... </p>
       ) : (

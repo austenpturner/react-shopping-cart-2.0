@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
   const [imageSize, setImageSize] = useState(null);
 
   function handleShowQuickShopModal() {
-    console.log(`show modal for ${product.title}`);
+    console.log(product);
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {

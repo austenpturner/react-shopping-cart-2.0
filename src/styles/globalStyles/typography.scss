@@ -8,10 +8,10 @@ h5 {
   font-family: var(--font-quicksand);
 }
 
-h1 {
-  font-size: 28px;
-  font-weight: 500;
-}
+// h1 {
+//   font-size: 28px;
+//   font-weight: 500;
+// }
 
 h2 {
   font-size: 20px;
@@ -24,4 +24,13 @@ li,
 label,
 button {
   font-family: var(--font-open-sans);
+}
+
+.page-header {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.page-subheader {
+  font-size: 18px;
 }

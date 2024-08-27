@@ -10,9 +10,6 @@ export default function Overlay() {
       uiDispatch({ type: "HIDE_MODAL" });
       uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
     }
-    // else {
-    //   uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
-    // }
   }
 
   return (
@@ -20,7 +17,7 @@ export default function Overlay() {
       className={styles.overlay}
       data-visible={state.overlayVisible ? true : false}
       aria-hidden="true"
-      style={state.modal.isVisible ? { zIndex: 4000 } : { zIndex: 1000 }}
+      style={state.modal.isVisible ? { zIndex: 4000 } : null}
       onClick={handleCloseComponents}
     ></div>
   );

@@ -18,8 +18,10 @@ export default function MainNav() {
   const { width } = useWindowResize();
 
   function handleToggleMobileNav() {
-    setMobileNavOpen(!mobileNavOpen);
-    uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
+    if (width < 1024) {
+      setMobileNavOpen(!mobileNavOpen);
+      uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
+    }
   }
 
   function handleClick() {

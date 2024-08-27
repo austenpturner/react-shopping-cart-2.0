@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 export const UIContext = createContext(null);
 
 function uiReducer(state, action) {
-  console.log(action.payload);
-
   switch (action.type) {
     case "SET_BUTTON_TEXT":
       return {

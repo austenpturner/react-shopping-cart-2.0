@@ -65,17 +65,19 @@
     text-align: center;
     a {
       border-radius: 3px;
-      color: var(--dark-background);
       cursor: pointer;
       font-size: 14px;
       text-decoration: none;
       &:hover {
-        text-decoration: underline double var(--dark-background);
+        text-decoration: underline double var(--light-text);
       }
       @include breakpoint-down(medium) {
         color: var(--light-text);
+      }
+      @include breakpoint(large) {
+        color: var(--dark-background);
         &:hover {
-          text-decoration: underline double var(--light-text);
+          text-decoration-color: var(--dark-background);
         }
       }
     }

@@ -13,8 +13,6 @@ export default function QuickShop({ product }) {
   const buttonText = state.buttonText[product.id] || "Add to cart";
   const { handleAddToCart } = useCartActions();
 
-  //   console.log(product);
-
   function handleNavigateToDetails() {
     navigate(`/product-details/${product.id}`);
     uiDispatch({ type: "HIDE_MODAL" });
