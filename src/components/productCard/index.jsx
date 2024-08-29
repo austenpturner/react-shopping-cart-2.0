@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import useWindowResize from "../../hooks/useWindowResize.js";
 import { useState } from "react";
 import { useEffect } from "react";
+import { FaHeart } from "react-icons/fa";
 
 export default function ProductCard({ product }) {
   const { state, uiDispatch } = useContext(UIContext);
@@ -56,10 +57,16 @@ export default function ProductCard({ product }) {
           onClick={() => navigate(`/product-details/${product.id}`)}
         />
         <Button
-          text={"quick shop"}
+          icon={<FaHeart />}
+          type="favorite"
           item={product}
-          className={styles.quickShopBtn}
-          type={"quickShop"}
+          // className={styles.favoritesBtn}
+        />
+        <Button
+          text="quick shop"
+          item={product}
+          // className={styles.quickShopBtn}
+          type="quickShop"
           handleAction={handleShowQuickShopModal}
         />
       </div>

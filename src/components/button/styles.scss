@@ -52,10 +52,26 @@ button {
   text-transform: uppercase;
 }
 
-.quickShop {
+.quickShop,
+.favorite {
   background-color: var(--light-background);
   &:hover {
     background-color: var(--light-text);
     box-shadow: 2px 2px 4px 1px #bfbfbf89;
+  }
+}
+
+.quickShop {
+  bottom: 10%;
+  left: 10%;
+  width: 80%;
+}
+.favorite {
+  top: 5px;
+  right: 5px;
+  svg {
+    color: var(--coral);
+    height: 1.2rem;
+    width: 1.2rem;
   }
 }

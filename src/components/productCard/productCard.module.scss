@@ -11,29 +11,26 @@
   }
   .imgContainer {
     position: relative;
-    .productCardImg {
+    span {
       background-color: var(--light-grey);
       border-radius: 5px;
+      display: block;
       width: 100%;
-    }
-    button {
-      display: none;
-      position: absolute;
-      bottom: 15%;
-      left: 10%;
-      width: 80%;
-    }
-    &:hover {
-      .productCardImg {
+      &:hover {
         background-color: var(--lighter-grey);
         cursor: pointer;
       }
-      @include breakpoint(medium) {
-        button {
-          cursor: pointer;
-          display: block;
-        }
-      }
+    }
+    > button {
+      display: none;
+      position: absolute;
+      z-index: 2;
+    }
+    &:hover > button {
+      display: block;
+    }
+    &:hover span:has(+ button) {
+      background-color: var(--lighter-grey);
     }
   }
 

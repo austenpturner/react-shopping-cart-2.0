@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
 import "./styles.scss";
 
-export default function Button({ type, action, handleAction, item, text }) {
+export default function Button({
+  type,
+  action,
+  handleAction,
+  item,
+  text,
+  icon,
+}) {
   return (
     <button
       className={type}
       onClick={handleAction ? () => handleAction(item, action) : null}
     >
-      {text}
+      {text ? text : icon}
     </button>
   );
 }
@@ -18,4 +25,5 @@ Button.propTypes = {
   action: PropTypes.string,
   handleAction: PropTypes.func,
   item: PropTypes.object,
+  icon: PropTypes.element,
 };
