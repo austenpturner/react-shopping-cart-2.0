@@ -10,14 +10,19 @@ import useWindowResize from "../../hooks/useWindowResize.js";
 import { useState } from "react";
 import { useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavorites } from "../../store/slices/favoritesSlice.js";
 
 export default function ProductCard({ product }) {
   const { state, uiDispatch } = useContext(UIContext);
+  const user = useSelector((state) => state.users.currentUser);
   const buttonText = state.buttonText[product.id] || "Add to cart";
   const { handleAddToCart } = useCartActions();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { width } = useWindowResize();
   const [imageSize, setImageSize] = useState(null);
+  const favorites = useSelector((state) => state.favorites);
 
   function handleShowQuickShopModal() {
     console.log(product);
@@ -28,6 +33,33 @@ export default function ProductCard({ product }) {
         type: "quickShop",
       },
     });
+  }
+
+  function handleShowLoginModal() {
+    // console.log(product);
+    uiDispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        content: product,
+        type: "requestLogin",
+      },
+    });
+  }
+
+  function handleAddToFavorites() {
+    if (user) {
+      console.log(product);
+      const { id, title, thumbnail } = product;
+      const item = {
+        id,
+        title,
+        thumbnail,
+      };
+      dispatch(addToFavorites(item));
+      console.log(favorites);
+    } else {
+      handleShowLoginModal();
+    }
   }
 
   function getImageSize() {
@@ -60,12 +92,11 @@ export default function ProductCard({ product }) {
           icon={<FaHeart />}
           type="favorite"
           item={product}
-          // className={styles.favoritesBtn}
+          handleAction={handleAddToFavorites}
         />
         <Button
           text="quick shop"
           item={product}
-          // className={styles.quickShopBtn}
           type="quickShop"
           handleAction={handleShowQuickShopModal}
         />

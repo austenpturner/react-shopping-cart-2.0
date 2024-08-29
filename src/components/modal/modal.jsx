@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import styles from "./modal.module.scss";
 import QuickShop from "../quickShop/quickShop";
+import RequestLogin from "../requestLogin/requestLogin";
+import LogoutConfirmation from "../logoutConfirmation/logoutConfirmation";
 
 export default function Modal() {
   const { state, uiDispatch } = useContext(UIContext);
@@ -13,12 +15,23 @@ export default function Modal() {
     uiDispatch({ type: "HIDE_MODAL" });
   }
 
+  function renderModalContent() {
+    switch (type) {
+      case "quickShop":
+        return <QuickShop product={content} />;
+      case "requestLogin":
+        return <RequestLogin />;
+      case "logoutConfirmation":
+        return <LogoutConfirmation />;
+      default:
+        return null;
+    }
+  }
+
   return (
     <div className={styles.modal} data-visible={isVisible ? true : false}>
       <Button handleAction={handleCloseModal} text="X" type="closeModal" />
-      <div className={styles.modalContent}>
-        {type === "quickShop" ? <QuickShop product={content} /> : null}
-      </div>
+      <div className={styles.modalContent}>{renderModalContent()}</div>
     </div>
   );
 }

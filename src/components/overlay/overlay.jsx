@@ -8,8 +8,10 @@ export default function Overlay() {
   function handleCloseComponents() {
     if (state.modal.isVisible) {
       uiDispatch({ type: "HIDE_MODAL" });
-      uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
+    } else if (state.openMobileNav) {
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
     }
+    uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
   }
 
   return (

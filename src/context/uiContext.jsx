@@ -18,6 +18,11 @@ function uiReducer(state, action) {
         ...state,
         buttonText: initialState.buttonText,
       };
+    case "TOGGLE_MOBILE_NAV":
+      return {
+        ...state,
+        openMobileNav: action.payload,
+      };
     case "TOGGLE_OVERLAY":
       return {
         ...state,
@@ -50,6 +55,7 @@ function uiReducer(state, action) {
 
 const initialState = {
   buttonText: {},
+  openMobileNav: false,
   overlayVisible: false,
   modal: {
     isVisible: false,

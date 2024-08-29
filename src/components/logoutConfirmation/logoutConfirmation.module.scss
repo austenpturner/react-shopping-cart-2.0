@@ -1,0 +1,9 @@
+@use "../../styles//utilStyles/" as *;
+
+.logoutConfirmationModal {
+  @include flex-col(space-evenly, center, 10px);
+  padding: 20px;
+  div {
+    @include flex-row(space-around, center, 10px);
+  }
+}

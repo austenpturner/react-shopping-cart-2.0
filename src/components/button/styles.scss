@@ -46,10 +46,16 @@ button {
 .submit,
 .navigate,
 .quickShop,
-.details {
+.details,
+.confirmation {
+  background-color: var(--light-grey);
   padding: 4px 10px;
   letter-spacing: 1.1px;
   text-transform: uppercase;
+  &:hover {
+    // background-color: var(--light-grey);
+    box-shadow: 2px 2px 4px 1px #bfbfbf89;
+  }
 }
 
 .quickShop,

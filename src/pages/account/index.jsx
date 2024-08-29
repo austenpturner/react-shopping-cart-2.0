@@ -1,17 +1,29 @@
 import { useSelector } from "react-redux";
-import useLogout from "../../hooks/useLogout";
 import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UIContext } from "../../context/uiContext";
 
 export default function AccountPage() {
   const navigate = useNavigate();
   const loading = useAuth();
   const user = useSelector((state) => state.users.currentUser);
-  const handleLogout = useLogout();
+  const { uiDispatch } = useContext(UIContext);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
+  }
+
+  function handleShowLogoutConfirmation() {
+    // console.log(product);
+    uiDispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        content: null,
+        type: "logoutConfirmation",
+      },
+    });
   }
 
   function getSubheaderText() {
@@ -31,7 +43,11 @@ export default function AccountPage() {
         <h2 className="page-subheader">{getSubheaderText()}</h2>
       )}
       {user ? (
-        <Button text={"logout"} type={"logout"} handleAction={handleLogout} />
+        <Button
+          text={"logout"}
+          type={"logout"}
+          handleAction={handleShowLogoutConfirmation}
+        />
       ) : (
         <Button
           text={"log in"}

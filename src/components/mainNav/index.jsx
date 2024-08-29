@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./mainNav.module.scss";
 import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
-import useLogout from "../../hooks/useLogout.js";
 import Button from "../button/index.jsx";
 import { useContext, useEffect, useState } from "react";
 import useWindowResize from "../../hooks/useWindowResize.js";
@@ -13,21 +12,31 @@ export default function MainNav() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.users.currentUser);
   const { state, uiDispatch } = useContext(UIContext);
-  const handleLogout = useLogout();
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(state.openMobileNav);
   const { width } = useWindowResize();
 
   function handleToggleMobileNav() {
     if (width < 1024) {
-      setMobileNavOpen(!mobileNavOpen);
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: !state.openMobileNav });
       uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
     }
   }
 
+  function handleShowLogoutConfirmation() {
+    // console.log(product);
+    uiDispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        content: null,
+        type: "logoutConfirmation",
+      },
+    });
+  }
+
   function handleClick() {
-    if (user && confirm("Are you sure you want to log out?")) {
-      handleLogout();
-      handleToggleMobileNav();
+    if (user) {
+      handleShowLogoutConfirmation();
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
     } else {
       handleToggleMobileNav();
       navigate("/login");
@@ -36,12 +45,16 @@ export default function MainNav() {
 
   useEffect(() => {
     if (width >= 1024) {
-      setMobileNavOpen(false);
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: !state.openMobileNav });
       if (!state.modal.isVisible) {
         uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
       }
     }
   }, [width]);
+
+  useEffect(() => {
+    setMobileNavOpen(state.openMobileNav);
+  }, [state.openMobileNav]);
 
   return (
     <div className={styles.mainNavContainer}>
