@@ -3,6 +3,8 @@ import useFetch from "../../hooks/useFetch";
 import ProductDetails from "../../components/productDetails";
 import Button from "../../components/button";
 import usePageSetup from "../../hooks/usePageSetup";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import styles from "./product.module.scss";
 
 export default function ProductPage() {
   const params = useParams();
@@ -26,11 +28,11 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="page-container">
+    <div className={`page-container ${styles.productPage}`}>
       <Button
         handleAction={handleNavigateHome}
         type="navigate"
-        text="back to products"
+        icon={<FaArrowLeftLong />}
       />
       {loading ? (
         <p className="loading-message">Loading... </p>

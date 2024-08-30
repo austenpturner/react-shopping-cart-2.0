@@ -17,8 +17,10 @@ export default function MainNav() {
 
   function handleToggleMobileNav() {
     if (width < 1024) {
-      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: !state.openMobileNav });
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: !state.overlayVisible });
       uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
+    } else {
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
     }
   }
 
@@ -45,7 +47,7 @@ export default function MainNav() {
 
   useEffect(() => {
     if (width >= 1024) {
-      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: !state.openMobileNav });
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
       if (!state.modal.isVisible) {
         uiDispatch({ type: "TOGGLE_OVERLAY", payload: false });
       }

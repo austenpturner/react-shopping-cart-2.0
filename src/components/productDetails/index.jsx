@@ -1,21 +1,38 @@
 import Button from "../button";
 import PropTypes from "prop-types";
 import styles from "./productDetails.module.scss";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FaStar } from "react-icons/fa";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
+import useWindowResize from "../../hooks/useWindowResize";
 
 export default function ProductDetails({ product }) {
   const [showReviews, setShowReviews] = useState(false);
   const { state } = useContext(UIContext);
   const buttonText = state.buttonText[product.id] || "Add to cart";
   const { handleAddToCart } = useCartActions();
+  const { width } = useWindowResize();
+  const [imageSize, setImageSize] = useState(null);
 
   function handleShowReviews() {
     setShowReviews(!showReviews);
   }
+
+  function getImageSize() {
+    if (width >= 768) {
+      setImageSize(300);
+    } else if (width >= 450) {
+      setImageSize(400);
+    } else {
+      setImageSize(width * 0.9);
+    }
+  }
+
+  useEffect(() => {
+    getImageSize();
+  }, [width]);
 
   return (
     <div className={styles.productContainer}>
@@ -26,13 +43,16 @@ export default function ProductDetails({ product }) {
             alt={product.title}
             effect="blur"
             className={styles.detailsImage}
-            width={300}
-            height={300}
+            width={imageSize}
+            height={imageSize}
           />
         </div>
         <div className={styles.details}>
-          <h1>{product?.title}</h1>
-          <p className={styles.description}>{product?.description}</p>
+          <div>
+            <h1>{product?.title}</h1>
+            <p className={styles.description}>{product?.description}</p>
+          </div>
+
           <div className={styles.purchaseContainer}>
             <p className={styles.price}>{`$${product?.price}`}</p>
             <Button

@@ -11,16 +11,22 @@ button {
 .addToCart,
 .removeFromCart,
 .checkOut {
-  box-shadow: 2px 2px 4px 1px #bfbfbf89;
   color: var(--light-text);
   font-size: 12px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
+  &:hover {
+    box-shadow: 2px 2px 4px 1px #bfbfbf89;
+  }
 }
 
 .addToCart,
 .checkOut {
   background-color: var(--dark-grey);
+}
+
+.addToCart {
+  min-width: 106px;
 }
 
 .removeFromCart {
@@ -53,7 +59,6 @@ button {
   letter-spacing: 1.1px;
   text-transform: uppercase;
   &:hover {
-    // background-color: var(--light-grey);
     box-shadow: 2px 2px 4px 1px #bfbfbf89;
   }
 }
@@ -73,8 +78,12 @@ button {
   width: 80%;
 }
 .favorite {
-  top: 5px;
-  right: 5px;
+  top: 3%;
+  right: 3%;
+  @include breakpoint(large) {
+    top: 3%;
+    right: 5%;
+  }
   svg {
     color: var(--coral);
     height: 1.2rem;
