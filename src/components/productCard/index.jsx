@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 import useWindowResize from "../../hooks/useWindowResize.js";
 import { useState } from "react";
 import { useEffect } from "react";
-import { FaHeart } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites } from "../../store/slices/favoritesSlice.js";
+import { FaCheck, FaHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import useFavoriteActions from "../../hooks/useFavoriteActions.js";
 
 export default function ProductCard({ product }) {
   const { state, uiDispatch } = useContext(UIContext);
@@ -19,10 +19,13 @@ export default function ProductCard({ product }) {
   const buttonText = state.buttonText[product.id] || "Add to cart";
   const { handleAddToCart } = useCartActions();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { width } = useWindowResize();
   const [imageSize, setImageSize] = useState(null);
+  const { handleAddToFavorites, handleFetchFavorites } = useFavoriteActions();
   const favorites = useSelector((state) => state.favorites);
+  const isFavorited = favorites.includes(product.id);
+
+  console.log(favorites);
 
   function handleShowQuickShopModal() {
     console.log(product);
@@ -46,17 +49,10 @@ export default function ProductCard({ product }) {
     });
   }
 
-  function handleAddToFavorites() {
+  function addToFavoritesRequest(product) {
     if (user) {
       console.log(product);
-      const { id, title, thumbnail } = product;
-      const item = {
-        id,
-        title,
-        thumbnail,
-      };
-      dispatch(addToFavorites(item));
-      console.log(favorites);
+      handleAddToFavorites(product);
     } else {
       handleShowLoginModal();
     }
@@ -76,6 +72,11 @@ export default function ProductCard({ product }) {
     getImageSize();
   }, [width]);
 
+  useEffect(() => {
+    handleFetchFavorites();
+    console.log(`favorites fetched`, favorites);
+  }, [favorites]);
+
   return (
     <li className={styles.productCard}>
       <div className={styles.imgContainer}>
@@ -89,10 +90,10 @@ export default function ProductCard({ product }) {
           onClick={() => navigate(`/product-details/${product.id}`)}
         />
         <Button
-          icon={<FaHeart />}
+          icon={isFavorited ? <FaCheck /> : <FaHeart />}
           type="favorite"
           item={product}
-          handleAction={handleAddToFavorites}
+          handleAction={addToFavoritesRequest}
         />
         <Button
           text="quick shop"

@@ -52,18 +52,18 @@ async function deleteUserCart(userId) {
   }
 }
 
-async function addFavorite(userId, productId) {
+async function addFavoriteToFirestore(userId, item) {
   try {
     const userDocRef = doc(db, "users", userId);
     await updateDoc(userDocRef, {
-      favorites: arrayUnion(productId),
+      favorites: arrayUnion(item),
     });
   } catch (error) {
     console.log(`Error adding favorites`, error);
   }
 }
 
-async function removeFavorite(userId, productId) {
+async function removeFavoriteFromFirestore(userId, productId) {
   try {
     const userDocRef = doc(db, "users", userId);
     await updateDoc(userDocRef, {
@@ -74,15 +74,18 @@ async function removeFavorite(userId, productId) {
   }
 }
 
-async function getFavorites(userId) {
-  const userDocRef = doc(db, "users", userId);
-  const userDoc = await getDoc(userDocRef);
-
-  if (userDoc.exists()) {
-    return userDoc.data().favorites || [];
-  } else {
-    console.error(`User document does not exist`);
-    return [];
+async function getFavoritesFromFirestore(userId) {
+  try {
+    const userDocRef = doc(db, "users", userId);
+    const userSnap = await getDoc(userDocRef);
+    if (userSnap.exists()) {
+      // console.log(`firestore favorites:` userSnap.data().favorites);
+      return userSnap.data().favorites || [];
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.log(`Failed to get favorites from Firestore`, error);
   }
 }
 
@@ -91,7 +94,7 @@ export {
   getUserCart,
   updateUserCart,
   deleteUserCart,
-  addFavorite,
-  removeFavorite,
-  getFavorites,
+  addFavoriteToFirestore,
+  removeFavoriteFromFirestore,
+  getFavoritesFromFirestore,
 };
