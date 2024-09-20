@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = { favorites: [] };
 
 const favoritesSlice = createSlice({
   name: "favorites",
@@ -8,18 +8,18 @@ const favoritesSlice = createSlice({
   reducers: {
     addToFavoritesSlice(state, action) {
       console.log(action.payload);
-      state.push(action.payload);
+      state.favorites.push(action.payload);
     },
     setFavoritesSlice(state, action) {
       console.log(`setting redux favorites`, action.payload);
 
-      state = action.payload;
+      state.favorites = action.payload;
     },
     removeFromFavoritesSlice(state, action) {
-      state.delete(action.payload);
+      state.favorites.delete(action.payload);
     },
     clearFavoritesSlice(state, action) {
-      state = action.payload || [];
+      state.favorites = action.payload || [];
     },
   },
 });

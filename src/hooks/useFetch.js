@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 export default function useFetch(url, options = {}) {
   const [data, setData] = useState(null);
-  const [loadingData, setLoadingData] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
   async function fetchData() {
-    setLoadingData(true);
+    setDataLoaded(false);
     try {
       const response = await fetch(url, { ...options });
 
@@ -15,14 +15,14 @@ export default function useFetch(url, options = {}) {
       const result = await response.json();
 
       if (result) {
-        setLoadingData(false);
+        setDataLoaded(true);
         setErrorMsg(null);
         setData(result);
       }
     } catch (error) {
       console.log(error);
       setErrorMsg(`An error occurred: ${error}`);
-      setLoadingData(false);
+      setDataLoaded(true);
     }
   }
 
@@ -32,7 +32,7 @@ export default function useFetch(url, options = {}) {
 
   return {
     data,
-    loadingData,
+    dataLoaded,
     errorMsg,
   };
 }

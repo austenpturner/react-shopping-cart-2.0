@@ -80,7 +80,7 @@ async function getFavoritesFromFirestore(userId) {
     const userSnap = await getDoc(userDocRef);
     if (userSnap.exists()) {
       // console.log(`firestore favorites:` userSnap.data().favorites);
-      return userSnap.data().favorites || [];
+      return userSnap.data().favorites;
     } else {
       return [];
     }

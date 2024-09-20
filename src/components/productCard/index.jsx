@@ -21,11 +21,9 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const { width } = useWindowResize();
   const [imageSize, setImageSize] = useState(null);
-  const { handleAddToFavorites, handleFetchFavorites } = useFavoriteActions();
-  const favorites = useSelector((state) => state.favorites);
-  const isFavorited = favorites.includes(product.id);
-
-  console.log(favorites);
+  const { handleAddToFavorites } = useFavoriteActions();
+  const favorites = useSelector((state) => state.favorites.favorites);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   function handleShowQuickShopModal() {
     console.log(product);
@@ -39,7 +37,6 @@ export default function ProductCard({ product }) {
   }
 
   function handleShowLoginModal() {
-    // console.log(product);
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {
@@ -73,8 +70,11 @@ export default function ProductCard({ product }) {
   }, [width]);
 
   useEffect(() => {
-    handleFetchFavorites();
-    console.log(`favorites fetched`, favorites);
+    const match = favorites.find((favorite) => favorite.id === product.id);
+    if (match) {
+      console.log(match.title);
+      setIsFavorite(true);
+    }
   }, [favorites]);
 
   return (
@@ -90,7 +90,7 @@ export default function ProductCard({ product }) {
           onClick={() => navigate(`/product-details/${product.id}`)}
         />
         <Button
-          icon={isFavorited ? <FaCheck /> : <FaHeart />}
+          icon={isFavorite ? <FaCheck className="check" /> : <FaHeart />}
           type="favorite"
           item={product}
           handleAction={addToFavoritesRequest}
