@@ -18,25 +18,12 @@ export default function useFavoriteActions() {
     if (user) {
       try {
         const favorites = await getFavoritesFromFirestore(user.id);
-        console.log(favorites);
         dispatch(setFavoritesSlice(favorites));
       } catch (error) {
         console.log(`Failed to fetch and set favorites`, error);
       }
     }
   }
-
-  //   async function updateFavoritesInFirestore(updatedFavoritesSet) {
-  //     if (user) {
-  //         try {
-  //             const updatedFavoritesArray = Array.from(updatedFavoritesSet);
-  //             await updateFirestoreFavorites(user.id, updatedFavoritesArray)
-  //         } catch (error) {
-  //             console.log(`Failed to update Firestore favorites`, error);
-
-  //         }
-  //     }
-  //   }
 
   async function handleAddToFavorites(product) {
     if (user) {
@@ -47,7 +34,6 @@ export default function useFavoriteActions() {
           title,
           thumbnail,
         };
-        console.log(item);
         dispatch(addToFavoritesSlice(item));
         addFavoriteToFirestore(user.id, item);
       } catch (error) {
@@ -56,11 +42,17 @@ export default function useFavoriteActions() {
     }
   }
 
-  async function handleRemoveFromFavorites(item) {
+  async function handleRemoveFromFavorites(product) {
     if (user) {
+      const { id, title, thumbnail } = product;
+      const item = {
+        id,
+        title,
+        thumbnail,
+      };
       try {
         dispatch(removeFromFavoritesSlice(item));
-        removeFavoriteFromFirestore(user.id, item.id);
+        removeFavoriteFromFirestore(user.id, item);
       } catch (error) {
         console.log(`Failed to remove from favorites`, error);
       }

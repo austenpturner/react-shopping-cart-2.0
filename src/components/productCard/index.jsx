@@ -21,7 +21,8 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const { width } = useWindowResize();
   const [imageSize, setImageSize] = useState(null);
-  const { handleAddToFavorites } = useFavoriteActions();
+  const { handleAddToFavorites, handleRemoveFromFavorites } =
+    useFavoriteActions();
   const favorites = useSelector((state) => state.favorites.favorites);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -47,9 +48,10 @@ export default function ProductCard({ product }) {
   }
 
   function addToFavoritesRequest(product) {
-    if (user) {
-      console.log(product);
+    if (user && !isFavorite) {
       handleAddToFavorites(product);
+    } else if (user && isFavorite) {
+      handleRemoveFromFavorites(product);
     } else {
       handleShowLoginModal();
     }
@@ -72,9 +74,11 @@ export default function ProductCard({ product }) {
   useEffect(() => {
     const match = favorites.find((favorite) => favorite.id === product.id);
     if (match) {
-      console.log(match.title);
       setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
     }
+    // console.log(favorites);
   }, [favorites]);
 
   return (

@@ -7,16 +7,15 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addToFavoritesSlice(state, action) {
-      console.log(action.payload);
       state.favorites.push(action.payload);
     },
     setFavoritesSlice(state, action) {
-      console.log(`setting redux favorites`, action.payload);
-
       state.favorites = action.payload;
     },
     removeFromFavoritesSlice(state, action) {
-      state.favorites.delete(action.payload);
+      state.favorites = state.favorites.filter(
+        (item) => item.id !== action.payload.id
+      );
     },
     clearFavoritesSlice(state, action) {
       state.favorites = action.payload || [];

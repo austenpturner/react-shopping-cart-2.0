@@ -13,8 +13,6 @@ export default function useFetchFavorites() {
   async function fetchFavorites() {
     try {
       const favorites = await getFavoritesFromFirestore(user.id);
-      //   console.log(favorites);
-
       if (favorites) {
         dispatch(setFavoritesSlice(favorites));
       }
@@ -28,6 +26,8 @@ export default function useFetchFavorites() {
   useEffect(() => {
     if (user) {
       fetchFavorites();
+    } else {
+      setFavoritesLoaded(true);
     }
   }, [user, dispatch]);
 

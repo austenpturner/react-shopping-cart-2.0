@@ -52,25 +52,52 @@ async function deleteUserCart(userId) {
   }
 }
 
+// async function addFavoriteToFirestore(userId, item) {
+//   try {
+//     const userDocRef = doc(db, "users", userId);
+//     await updateDoc(userDocRef, {
+//       favorites: arrayUnion(item),
+//     });
+//   } catch (error) {
+//     console.log(`Error adding favorites`, error);
+//   }
+// }
+
 async function addFavoriteToFirestore(userId, item) {
   try {
     const userDocRef = doc(db, "users", userId);
-    await updateDoc(userDocRef, {
-      favorites: arrayUnion(item),
-    });
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+      await setDoc(userDocRef, { favorites: [item] });
+    } else {
+      if (!userDoc.data().favorites) {
+        await updateDoc(userDocRef, {
+          favorites: [item],
+        });
+      } else {
+        await updateDoc(userDocRef, {
+          favorites: arrayUnion(item),
+        });
+      }
+    }
   } catch (error) {
-    console.log(`Error adding favorites`, error);
+    console.error("Error adding favorite to Firestore:", error);
   }
 }
 
-async function removeFavoriteFromFirestore(userId, productId) {
+async function removeFavoriteFromFirestore(userId, product) {
   try {
     const userDocRef = doc(db, "users", userId);
-    await updateDoc(userDocRef, {
-      favorites: arrayRemove(productId),
-    });
+    const userDoc = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      await updateDoc(userDocRef, {
+        favorites: arrayRemove(product),
+      });
+    }
   } catch (error) {
-    console.log(`Error removing favorite`, error);
+    console.log(`Error removing favorite from Firestore`, error);
   }
 }
 
