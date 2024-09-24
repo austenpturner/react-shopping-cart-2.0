@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Layout from "./layout";
 import Home from "./pages/home";
-import ProductPage from "./pages/product";
+import DetailsPage from "./pages/details";
 import CartPage from "./pages/cart";
 import LoginPage from "./pages/login";
 import AccountPage from "./pages/account";
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/account" element={<AccountPage />} />
-      <Route path="/product-details/:id" element={<ProductPage />} />
+      <Route path="/product-details/:id" element={<DetailsPage />} />
     </Route>
   )
 );

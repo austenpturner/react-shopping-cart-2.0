@@ -27,7 +27,6 @@ export default function ProductCard({ product }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   function handleShowQuickShopModal() {
-    console.log(product);
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {

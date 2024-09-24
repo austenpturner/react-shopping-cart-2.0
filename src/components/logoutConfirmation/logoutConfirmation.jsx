@@ -11,7 +11,6 @@ export default function LogoutConfirmation() {
   const [logoutConfirmed, setLogoutConfirmed] = useState(false);
 
   function handleLogoutConfirmation() {
-    console.log(`logout confirmed`);
     handleLogout();
     setLogoutConfirmed(true);
   }

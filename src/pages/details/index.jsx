@@ -6,14 +6,13 @@ import usePageSetup from "../../hooks/usePageSetup";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import styles from "./product.module.scss";
 
-export default function ProductPage() {
+export default function DetailsPage() {
   const params = useParams();
   const { id } = params;
   const navigate = useNavigate();
-  const { data, loadingData } = useFetch(
-    `https://dummyjson.com/products/${id}`
-  );
-  const { loading } = usePageSetup(data, loadingData);
+  const { data, dataLoaded } = useFetch(`https://dummyjson.com/products/${id}`);
+
+  const { loading } = usePageSetup(data, dataLoaded);
 
   function handleNavigateHome() {
     navigate("/");
@@ -28,7 +27,7 @@ export default function ProductPage() {
   }
 
   return (
-    <div className={`page-container ${styles.productPage}`}>
+    <div className={`page-container ${styles.detailsPage}`}>
       <Button
         handleAction={handleNavigateHome}
         type="navigate"
