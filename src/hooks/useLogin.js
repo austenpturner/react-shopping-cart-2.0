@@ -11,13 +11,13 @@ export default function useLogin() {
     try {
       const userAuth = await signInWithEmailAndPassword(auth, email, password);
       const { uid, userEmail, displayName } = userAuth.user;
-      dispatch(
-        setUser({
-          id: uid,
-          email: userEmail,
-          username: displayName,
-        })
-      );
+      const user = {
+        id: uid,
+        email: userEmail,
+        username: displayName,
+      };
+      dispatch(setUser(user));
+      return user;
     } catch (error) {
       return error.code;
     }

@@ -52,6 +52,9 @@ export default function ProductCard({ product }) {
     } else if (user && isFavorite) {
       handleRemoveFromFavorites(product);
     } else {
+      const { title, thumbnail, id } = product;
+      const item = { title, thumbnail, id };
+      localStorage.setItem(`pendingFavorite`, JSON.stringify(item));
       handleShowLoginModal();
     }
   }
@@ -72,12 +75,12 @@ export default function ProductCard({ product }) {
 
   useEffect(() => {
     const match = favorites.find((favorite) => favorite.id === product.id);
+
     if (match) {
       setIsFavorite(true);
     } else {
       setIsFavorite(false);
     }
-    // console.log(favorites);
   }, [favorites]);
 
   return (

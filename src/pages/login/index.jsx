@@ -10,6 +10,7 @@ import Button from "../../components/button";
 import { getErrorMessage } from "../../util/getErrorMessage";
 import useCartSync from "../../hooks/useCartSync";
 import "./styles.scss";
+import useFavoriteActions from "../../hooks/useFavoriteActions";
 
 const initialState = {
   name: "",
@@ -27,6 +28,7 @@ export default function LoginPage() {
   const handleUserLogin = useLogin();
   const handleUserRegister = useRegister();
   useCartSync();
+  const { handleAddToFavorites } = useFavoriteActions();
 
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
@@ -40,19 +42,32 @@ export default function LoginPage() {
     e.preventDefault();
     const { email, password } = userCredentials;
     let error;
+    let result;
 
     if (registerUser) {
       error = await handleUserRegister(email, password, userCredentials);
     } else {
-      error = await handleUserLogin(email, password);
+      result = await handleUserLogin(email, password);
     }
 
-    if (!error) {
-      const redirectTo = location.state?.from || "/";
-      navigate(redirectTo);
-    } else {
+    if (!result || typeof result === "string") {
+      setErrorMessage(getErrorMessage(result));
+      return;
+    } else if (error) {
       setErrorMessage(getErrorMessage(error));
+      return;
     }
+
+    const pendingFavorite = JSON.parse(localStorage.getItem(`pendingFavorite`));
+    const loginUser = result;
+
+    if (pendingFavorite) {
+      await handleAddToFavorites(pendingFavorite, loginUser);
+      localStorage.removeItem(`pendingFavorite`);
+    }
+
+    const redirectTo = location.state?.from || "/";
+    navigate(redirectTo);
   }
 
   useEffect(() => {

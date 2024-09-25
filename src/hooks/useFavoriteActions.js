@@ -25,20 +25,24 @@ export default function useFavoriteActions() {
     }
   }
 
-  async function handleAddToFavorites(product) {
-    if (user) {
-      try {
-        const { id, title, thumbnail } = product;
-        const item = {
-          id,
-          title,
-          thumbnail,
-        };
+  async function handleAddToFavorites(product, loginUser) {
+    try {
+      const { id, title, thumbnail } = product;
+      const item = {
+        id,
+        title,
+        thumbnail,
+      };
+      if (loginUser || user) {
         dispatch(addToFavoritesSlice(item));
-        addFavoriteToFirestore(user.id, item);
-      } catch (error) {
-        console.log(`Failed to add to favorites`, error);
       }
+      if (loginUser) {
+        await addFavoriteToFirestore(loginUser.id, item);
+      } else if (user) {
+        await addFavoriteToFirestore(user.id, item);
+      }
+    } catch (error) {
+      console.log(`Failed to add to favorites`, error);
     }
   }
 

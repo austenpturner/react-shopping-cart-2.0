@@ -52,17 +52,6 @@ async function deleteUserCart(userId) {
   }
 }
 
-// async function addFavoriteToFirestore(userId, item) {
-//   try {
-//     const userDocRef = doc(db, "users", userId);
-//     await updateDoc(userDocRef, {
-//       favorites: arrayUnion(item),
-//     });
-//   } catch (error) {
-//     console.log(`Error adding favorites`, error);
-//   }
-// }
-
 async function addFavoriteToFirestore(userId, item) {
   try {
     const userDocRef = doc(db, "users", userId);

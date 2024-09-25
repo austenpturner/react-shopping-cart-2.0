@@ -18,7 +18,6 @@ const favoritesSlice = createSlice({
       );
     },
     clearFavoritesSlice(state, action) {
-      console.log(`clearing favorites slice`);
       state.favorites = action.payload || [];
     },
   },
