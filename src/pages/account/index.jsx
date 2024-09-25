@@ -2,8 +2,7 @@ import { useSelector } from "react-redux";
 import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { UIContext } from "../../context/uiContext";
+import { useEffect, useState } from "react";
 import "./styles.scss";
 import AccountOverview from "../../components/accountOverview/accountOverview";
 import FavoritesList from "../../components/favoritesList/favoritesList";
@@ -14,7 +13,6 @@ export default function AccountPage() {
   const navigate = useNavigate();
   const loading = useAuth();
   const user = useSelector((state) => state.users.currentUser);
-  const { uiDispatch } = useContext(UIContext);
   const [currentView, setCurrentView] = useState(<AccountOverview />);
   const [currentViewType, setCurrentViewType] = useState("overview");
   const [showViewTypes, setShowViewTypes] = useState(false);
@@ -22,20 +20,6 @@ export default function AccountPage() {
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
-  }
-
-  function handleShowLogoutConfirmation() {
-    uiDispatch({
-      type: "SHOW_MODAL",
-      payload: {
-        content: null,
-        type: "logoutConfirmation",
-      },
-    });
-  }
-
-  function handleShowViewList() {
-    setShowViewTypes(!showViewTypes);
   }
 
   function handleChangeView(viewType) {
@@ -79,7 +63,10 @@ export default function AccountPage() {
       ) : (
         <div className="page-content">
           <div className="view-container">
-            <p className="current-view-type" onClick={handleShowViewList}>
+            <p
+              className="current-view-type"
+              onClick={() => setShowViewTypes(!showViewTypes)}
+            >
               <span>{currentViewType}</span>
               {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
             </p>
@@ -106,11 +93,6 @@ export default function AccountPage() {
             )}
             <div className="current-view">{currentView}</div>
           </div>
-          <Button
-            text={"sign out"}
-            type={"logout"}
-            handleAction={handleShowLogoutConfirmation}
-          />
         </div>
       )}
     </div>
