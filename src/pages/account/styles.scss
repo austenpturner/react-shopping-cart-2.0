@@ -1,0 +1,26 @@
+@use "../../styles/utilStyles/" as *;
+
+.view-container {
+  @include flex-row();
+  .view-list {
+    @include flex-col(center, stretch, 20px);
+    padding: 10px 20px 0 0;
+    li {
+      cursor: pointer;
+      font-size: 13px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+  }
+  .current-view {
+    padding: 10px;
+    width: 100%;
+    h2 {
+      margin: 0;
+    }
+  }
+}
+
+.page-content button {
+  float: right;
+}
