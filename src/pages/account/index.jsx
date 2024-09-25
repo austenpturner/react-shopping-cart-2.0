@@ -2,11 +2,13 @@ import { useSelector } from "react-redux";
 import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UIContext } from "../../context/uiContext";
 import "./styles.scss";
 import AccountOverview from "../../components/accountOverview/accountOverview";
 import FavoritesList from "../../components/favoritesList/favoritesList";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
+import useWindowResize from "../../hooks/useWindowResize";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -14,6 +16,9 @@ export default function AccountPage() {
   const user = useSelector((state) => state.users.currentUser);
   const { uiDispatch } = useContext(UIContext);
   const [currentView, setCurrentView] = useState(<AccountOverview />);
+  const [currentViewType, setCurrentViewType] = useState("overview");
+  const [showViewTypes, setShowViewTypes] = useState(false);
+  const { width } = useWindowResize();
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
@@ -29,7 +34,15 @@ export default function AccountPage() {
     });
   }
 
+  function handleShowViewList() {
+    setShowViewTypes(!showViewTypes);
+  }
+
   function handleChangeView(viewType) {
+    setCurrentViewType(viewType);
+    if (width < 768) {
+      setShowViewTypes(false);
+    }
     switch (viewType) {
       case "overview":
         setCurrentView(<AccountOverview />);
@@ -41,6 +54,14 @@ export default function AccountPage() {
         setCurrentView(<AccountOverview />);
     }
   }
+
+  useEffect(() => {
+    if (width >= 768) {
+      setShowViewTypes(true);
+    } else {
+      setShowViewTypes(false);
+    }
+  }, [width]);
 
   const viewTypes = ["overview", "password", "orders", "reviews", "favorites"];
 
@@ -58,22 +79,38 @@ export default function AccountPage() {
       ) : (
         <div className="page-content">
           <div className="view-container">
-            <ul className="view-list">
-              {viewTypes.map((type, index) => {
-                return (
-                  <li key={index} onClick={() => handleChangeView(type)}>
-                    {type}
-                  </li>
-                );
-              })}
-            </ul>
+            <p className="current-view-type" onClick={handleShowViewList}>
+              <span>{currentViewType}</span>
+              {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
+            </p>
+            {showViewTypes ? (
+              <ul className="view-list">
+                {viewTypes.map((type, index) => {
+                  return (
+                    <li
+                      key={index}
+                      onClick={() => handleChangeView(type)}
+                      className={
+                        currentViewType === type && width >= 768
+                          ? "current"
+                          : ""
+                      }
+                    >
+                      {type}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              ""
+            )}
             <div className="current-view">{currentView}</div>
           </div>
-          {/* <Button
+          <Button
             text={"sign out"}
             type={"logout"}
             handleAction={handleShowLogoutConfirmation}
-          /> */}
+          />
         </div>
       )}
     </div>

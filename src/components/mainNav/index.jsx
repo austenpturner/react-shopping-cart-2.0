@@ -25,7 +25,6 @@ export default function MainNav() {
   }
 
   function handleShowLogoutConfirmation() {
-    // console.log(product);
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {

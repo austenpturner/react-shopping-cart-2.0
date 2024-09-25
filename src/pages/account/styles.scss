@@ -1,20 +1,63 @@
 @use "../../styles/utilStyles/" as *;
 
 .view-container {
-  @include flex-row();
+  @include breakpoint(medium) {
+    @include flex-row();
+  }
+  position: relative;
+  .current-view-type {
+    border: 1px solid var(--light-grey);
+    cursor: pointer;
+    letter-spacing: 1.2px;
+    margin: 0 auto;
+    padding: 6px 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    @include breakpoint(medium) {
+      display: none;
+    }
+    span {
+      margin-right: 5px;
+    }
+  }
   .view-list {
-    @include flex-col(center, stretch, 20px);
-    padding: 10px 20px 0 0;
+    @include flex-col(center, center);
+    background-color: var(--light-grey);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    @include breakpoint(medium) {
+      @include flex-col(center, stretch, 10px);
+      background-color: var(--light-background);
+      margin-right: 20px;
+      position: relative;
+      width: auto;
+    }
     li {
       cursor: pointer;
       font-size: 13px;
       letter-spacing: 1.2px;
+      padding: 10px;
+      text-align: center;
       text-transform: uppercase;
+      width: 100%;
+      @include breakpoint-down(small) {
+        &:hover {
+          background-color: var(--lighter-grey);
+        }
+      }
+      @include breakpoint(medium) {
+        text-align: left;
+      }
     }
   }
   .current-view {
-    padding: 10px;
+    padding-top: 10px;
     width: 100%;
+    @include breakpoint(medium) {
+      padding: 0;
+    }
     h2 {
       margin: 0;
     }
@@ -23,4 +66,8 @@
 
 .page-content button {
   float: right;
+}
+
+.current {
+  background-color: var(--lighter-grey);
 }
