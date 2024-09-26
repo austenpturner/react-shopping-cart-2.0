@@ -109,7 +109,12 @@ export default function ProductCard({ product }) {
         />
       </div>
       <p className={styles.title}>{product.title}</p>
-      <p className={styles.price}>{`$${product.price}`}</p>
+      {product.price ? (
+        <p className={styles.price}>{`$${product.price}`}</p>
+      ) : (
+        ""
+      )}
+
       <Button
         handleAction={handleAddToCart}
         item={product}

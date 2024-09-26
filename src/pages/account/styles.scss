@@ -28,7 +28,7 @@
     left: 0;
     width: 100%;
     @include breakpoint(medium) {
-      @include flex-col(center, stretch, 10px);
+      @include flex-col(flex-start, stretch, 10px);
       background-color: var(--light-background);
       margin-right: 20px;
       position: relative;
@@ -64,9 +64,9 @@
   }
 }
 
-.page-content button {
-  float: right;
-}
+// .page-content button {
+//   float: right;
+// }
 
 .current {
   background-color: var(--lighter-grey);

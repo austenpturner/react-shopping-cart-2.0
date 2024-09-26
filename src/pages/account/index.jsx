@@ -8,6 +8,9 @@ import AccountOverview from "../../components/accountOverview/accountOverview";
 import FavoritesList from "../../components/favoritesList/favoritesList";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import useWindowResize from "../../hooks/useWindowResize";
+import PasswordChange from "../../components/passwordChange/passwordChange";
+import Orders from "../../components/orders/orders";
+import Reviews from "../../components/reviews/reviews";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -30,6 +33,15 @@ export default function AccountPage() {
     switch (viewType) {
       case "overview":
         setCurrentView(<AccountOverview />);
+        break;
+      case "password":
+        setCurrentView(<PasswordChange />);
+        break;
+      case "orders":
+        setCurrentView(<Orders />);
+        break;
+      case "reviews":
+        setCurrentView(<Reviews />);
         break;
       case "favorites":
         setCurrentView(<FavoritesList />);

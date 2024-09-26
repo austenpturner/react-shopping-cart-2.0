@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import useFetchFavorites from "../../hooks/useFetchFavorites";
 import { useEffect, useState } from "react";
+import ProductCard from "../productCard";
+import styles from "./favoriteList.module.scss";
 
 export default function FavoritesList() {
   const favoritesLoaded = useFetchFavorites();
   const favorites = useSelector((state) => state.favorites.favorites);
   const [loading, setLoading] = useState(true);
-
-  //   console.log(favorites);
 
   useEffect(() => {
     if (favoritesLoaded) {
@@ -16,21 +16,20 @@ export default function FavoritesList() {
   }, [favoritesLoaded]);
 
   const favoritesList = (
-    <ul>
+    <div className={styles.favoritesList}>
       {favorites?.length ? (
         favorites.map((favorite) => {
-          return <li key={favorite.id}>{favorite.title}</li>;
+          return (
+            <div key={favorite.id} className={styles.favoriteItem}>
+              <ProductCard product={favorite} />
+            </div>
+          );
         })
       ) : (
-        <p>no favorites saved</p>
+        <p className={styles.noFavorites}>No favorites saved.</p>
       )}
-    </ul>
-  );
-
-  return (
-    <div>
-      <h2>favorites</h2>
-      {loading ? <p>loading... </p> : favoritesList}
     </div>
   );
+
+  return <div>{loading ? <p>loading... </p> : favoritesList}</div>;
 }

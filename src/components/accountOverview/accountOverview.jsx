@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import Button from "../button";
 
 export default function AccountOverview() {
   const user = useSelector((state) => state.users.currentUser);
@@ -6,7 +7,9 @@ export default function AccountOverview() {
   return (
     <div>
       <h2>{`Welcome, ${user.username || `user`}!`}</h2>
-      <p>Email: {user.email}</p>
+      <p>email: {user.email}</p>
+      <p>username: {user.username}</p>
+      <Button text="update username" />
     </div>
   );
 }
