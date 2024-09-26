@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import useWindowResize from "../../hooks/useWindowResize.js";
 import { useState } from "react";
 import { useEffect } from "react";
-import { FaCheck, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import useFavoriteActions from "../../hooks/useFavoriteActions.js";
 
@@ -96,7 +96,13 @@ export default function ProductCard({ product }) {
           onClick={() => navigate(`/product-details/${product.id}`)}
         />
         <Button
-          icon={isFavorite ? <FaCheck className="check" /> : <FaHeart />}
+          icon={
+            isFavorite ? (
+              <FaHeart className="red" />
+            ) : (
+              <FaHeart className="grey" />
+            )
+          }
           type="favorite"
           item={product}
           handleAction={addToFavoritesRequest}

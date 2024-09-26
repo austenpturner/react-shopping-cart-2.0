@@ -85,11 +85,13 @@ button {
     right: 5%;
   }
   svg {
-    color: var(--coral);
     height: 1.2rem;
     width: 1.2rem;
-    &.check {
-      color: var(--check-green);
+    &.red {
+      color: var(--coral);
+    }
+    &.grey {
+      color: var(--medium-grey);
     }
   }
 }
