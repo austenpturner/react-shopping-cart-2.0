@@ -31,5 +31,10 @@ export default function FavoritesList() {
     </div>
   );
 
-  return <div>{loading ? <p>loading... </p> : favoritesList}</div>;
+  return (
+    <div>
+      <h2>favorites</h2>
+      {loading ? <p>loading... </p> : favoritesList}
+    </div>
+  );
 }

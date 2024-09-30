@@ -1,0 +1,26 @@
+@use "../../styles//utilStyles/" as *;
+
+.commonForm {
+  @include flex-col(flex-start);
+  button {
+    margin: 10px 0;
+  }
+}
+
+.usernameInput,
+.nameInput {
+  @include flex-row(flex-start, flex-end, 5px);
+  margin-bottom: 10px;
+  input {
+    border: 1px solid var(--medium-grey);
+    padding: 2px 4px;
+  }
+  button {
+    font-size: 11px;
+    margin: 0;
+    &:hover {
+      box-shadow: none;
+      background-color: var(--lighter-grey);
+    }
+  }
+}

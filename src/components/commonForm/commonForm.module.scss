@@ -1,8 +1,0 @@
-@use "../../styles//utilStyles/" as *;
-
-.commonForm {
-  @include flex-col(flex-start);
-  button {
-    margin: 10px 0;
-  }
-}

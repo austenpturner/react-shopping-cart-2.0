@@ -2,7 +2,7 @@ import CommonInput from "../commonInput";
 import PropTypes from "prop-types";
 import Select from "../select";
 import TextArea from "../text-area";
-import styles from "./commonForm.module.scss";
+import "./commonForm.scss";
 import Button from "../button/index";
 
 const formElementTypes = {
@@ -16,6 +16,7 @@ export default function CommonForm({
   formData,
   setFormData,
   onSubmit,
+  className,
 }) {
   function renderFormElement(getCurrentFormControl, getFormData) {
     let element = null;
@@ -27,7 +28,7 @@ export default function CommonForm({
             label={getCurrentFormControl.label}
             type={getCurrentFormControl.type}
             placeholder={getCurrentFormControl.placeholder}
-            value={getFormData[getCurrentFormControl.name]}
+            value={formData[getCurrentFormControl.name]}
             name={getCurrentFormControl.name}
             id={getCurrentFormControl.id}
             onChange={setFormData}
@@ -78,11 +79,11 @@ export default function CommonForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className={styles.commonForm}>
+    <form onSubmit={onSubmit} className={`${className} commonForm`}>
       {formControls.map((formControl) => {
         return (
           <div key={formControl.id}>
-            {renderFormElement(formControl, formData)}
+            {renderFormElement(formControl, formData, className)}
           </div>
         );
       })}
@@ -97,4 +98,5 @@ CommonForm.propTypes = {
   formData: PropTypes.object,
   onSubmit: PropTypes.func,
   setFormData: PropTypes.func,
+  className: PropTypes.string,
 };

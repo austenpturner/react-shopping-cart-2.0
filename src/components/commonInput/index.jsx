@@ -18,10 +18,10 @@ export default function CommonInput({
         name={name}
         id={id}
         type={type || "text"}
-        placeholder={placeholder || "Enter value here... "}
-        value={value}
+        placeholder={placeholder}
+        value={value || ""}
         onChange={onChange}
-        className={className || styles.commonForm}
+        className={className}
       />
     </div>
   );

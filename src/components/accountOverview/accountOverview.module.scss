@@ -1,0 +1,8 @@
+@use "../../styles//utilStyles/" as *;
+
+.accountEmail {
+  font-size: 14px;
+  span {
+    color: var(--dark-grey);
+  }
+}
