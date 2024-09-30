@@ -33,7 +33,7 @@ export default function FavoritesList() {
 
   return (
     <div>
-      <h2>favorites</h2>
+      <h2 className="page-subheader">favorites</h2>
       {loading ? <p>loading... </p> : favoritesList}
     </div>
   );

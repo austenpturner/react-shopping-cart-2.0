@@ -4,7 +4,7 @@ export default function Reviews() {
   const orders = [];
   return (
     <div>
-      <h2>reviews</h2>
+      <h2 className="page-subheader">reviews</h2>
       {orders?.length ? (
         orders.map((order) => {
           <div key={order.index}>{order.name}</div>;

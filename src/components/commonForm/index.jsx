@@ -2,7 +2,7 @@ import CommonInput from "../commonInput";
 import PropTypes from "prop-types";
 import Select from "../select";
 import TextArea from "../text-area";
-import "./commonForm.scss";
+import styles from "./commonForm.module.scss";
 import Button from "../button/index";
 
 const formElementTypes = {
@@ -79,7 +79,7 @@ export default function CommonForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className={`${className} commonForm`}>
+    <form onSubmit={onSubmit} className={`${className} ${styles.commonForm}`}>
       {formControls.map((formControl) => {
         return (
           <div key={formControl.id}>

@@ -20,6 +20,8 @@ export default function useRegister() {
       await setDoc(cartRef, { cart });
       return null;
     } catch (error) {
+      console.log(error.code);
+
       return error.code;
     }
   }

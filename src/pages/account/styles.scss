@@ -56,6 +56,7 @@
     padding-top: 10px;
     width: 100%;
     @include breakpoint(medium) {
+      align-self: flex-start;
       padding: 0;
     }
     h2 {
@@ -66,4 +67,37 @@
 
 .current {
   background-color: var(--lighter-grey);
+}
+
+.usernameInput,
+.nameInput {
+  @include flex-row(flex-start, flex-end, 5px);
+  margin-bottom: 10px;
+  input {
+    border: 1px solid var(--medium-grey);
+    padding: 2px 4px;
+  }
+  button {
+    font-size: 11px;
+    margin: 0;
+    &:hover {
+      box-shadow: none;
+      background-color: var(--lighter-grey);
+    }
+  }
+}
+
+.passwordUpdate {
+  @include flex-col(flex-start, stretch, 5px);
+  margin-top: 20px;
+  input {
+    max-width: 400px;
+  }
+  button {
+    width: 160px;
+    &:hover {
+      box-shadow: none;
+      background-color: var(--lighter-grey);
+    }
+  }
 }

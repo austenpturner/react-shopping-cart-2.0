@@ -19,6 +19,8 @@ export default function useLogin() {
       dispatch(setUser(user));
       return user;
     } catch (error) {
+      console.log(error.code);
+
       return error.code;
     }
   }

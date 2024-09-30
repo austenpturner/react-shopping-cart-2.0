@@ -37,7 +37,9 @@ export default function AccountOverview() {
 
   return (
     <div className={styles.overviewContainer}>
-      <h2>{`welcome, ${user.username || `user`}!`}</h2>
+      <h2 className="page-subheader">{`welcome, ${
+        user.username || `user`
+      }!`}</h2>
       <p className={styles.accountEmail}>
         email: <span>{user.email}</span>
       </p>

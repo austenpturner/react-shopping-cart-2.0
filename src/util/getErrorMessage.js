@@ -1,34 +1,45 @@
-export function getErrorMessage(errorCode) {
-  console.log(errorCode);
+const generalErrors = {
+  "auth/network-request-failed": "Network error, please try again.",
+  "auth/weak-password":
+    "Please enter a valid password. It must be at least six characters.",
+  "auth/internal-error":
+    "An error occurred, please try again. If the problem persists, please contact support.",
+  "auth/invalid-argument": "Your entry was invalid. Please try again.",
+};
 
-  switch (errorCode) {
-    case "auth/email-already-in-use":
-      return "That email is already in use. Try logging in?";
-    case "auth/id-token-expired" ||
-      "auth/id-token-revoked" ||
-      "auth/insufficient-permission":
-      return "An error occurred. Please contact support for help.";
-    case "auth/internal-error":
-      return "An error occurred. Please try again. If the problem persists, please contact support for help";
-    case "auth/invalid-argument":
-      return "Your entry was invalid. Please try again.";
-    case "auth/invalid-display-name":
-      return "Please enter a valid username.";
-    case "auth/invalid-email":
-      return "Please enter a valid email.";
-    case "auth/missing-email":
-      return "Please enter an email.";
-    case "auth/invalid-password":
-      return "Incorrect password. Please try again.";
-    case "auth/missing-password":
-      return "Please enter a password. It must be at least six characters.";
-    case "auth/weak-password":
-      return "Please enter a valid password. It must be at least six characters.";
-    case "auth/invalid-credential":
-      return "No user found with that email and password. Please try again.";
-    case "auth/user-not-found":
-      return "No user found with that email and password. Try registering?";
-    default:
-      return "An error occurred. Please try again. If the problem persists, please contact support for help.";
-  }
+const specificErrors = {
+  login: {
+    "auth/invalid-credential":
+      "No user found with that email and password. Please try again.",
+    "auth/user-not-found":
+      "No user found with that email and password. Have you registered?",
+    "auth/invalid-email": "Please enter a valid email.",
+    "auth/missing-email": "Please enter your email.",
+    "auth/invalid-password": "Incorrect password. Please try again.",
+    "auth/missing-password": "Please enter a password.",
+  },
+  register: {
+    "auth/email-already-in-use":
+      "That email is already in use. Try logging in?",
+    "auth/invalid-display-name": "Please enter a valid username.",
+    "auth/invalid-email": "Please enter a valid email.",
+    "auth/missing-email": "Please enter your email.",
+    "auth/missing-password": "Please enter a password.",
+  },
+  updatePassword: {
+    "auth/invalid-credential":
+      "Current password is incorrect, please try again.",
+    "auth/invalid-password": "Incorrect password. Please try again.",
+    "auth/missing-password": "Please enter your current password.",
+  },
+};
+
+export function getErrorMessage(errorCode, context) {
+  console.log(errorCode, context);
+
+  return (
+    specificErrors[context]?.[errorCode] ||
+    generalErrors[errorCode] ||
+    "An error occurred. Please try again."
+  );
 }

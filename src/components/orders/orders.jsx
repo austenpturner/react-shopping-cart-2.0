@@ -4,7 +4,7 @@ export default function Orders() {
   const orders = [];
   return (
     <div>
-      <h2>orders</h2>
+      <h2 className="page-subheader">orders</h2>
       {orders?.length ? (
         orders.map((order) => {
           <div key={order.index}>{order.name}</div>;

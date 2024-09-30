@@ -24,3 +24,27 @@ export const nameUpdateControls = [
     type: "text",
   },
 ];
+
+export const passwordUpdateControls = [
+  {
+    label: "current password",
+    id: "password-current",
+    name: "current",
+    componentType: "input",
+    type: "password",
+  },
+  {
+    label: "new password",
+    id: "password-new",
+    name: "new",
+    componentType: "input",
+    type: "password",
+  },
+  {
+    label: "confirm new password",
+    id: "password-confirm",
+    name: "confirm",
+    componentType: "input",
+    type: "password",
+  },
+];

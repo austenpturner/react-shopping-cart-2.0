@@ -11,6 +11,7 @@ import { getErrorMessage } from "../../util/getErrorMessage";
 import useCartSync from "../../hooks/useCartSync";
 import "./styles.scss";
 import useFavoriteActions from "../../hooks/useFavoriteActions";
+import { isStrongPassword } from "../../util/isStrongPassword";
 
 const initialState = {
   name: "",
@@ -44,18 +45,27 @@ export default function LoginPage() {
     let error;
     let result;
 
-    if (registerUser) {
-      error = await handleUserRegister(email, password, userCredentials);
-    } else {
-      result = await handleUserLogin(email, password);
+    if (!isStrongPassword(password)) {
+      setErrorMessage(
+        "Password must be at least 6 characters and contain at least one letter and number."
+      );
+      return;
     }
 
-    if (!result || typeof result === "string") {
-      setErrorMessage(getErrorMessage(result));
-      return;
-    } else if (error) {
-      setErrorMessage(getErrorMessage(error));
-      return;
+    if (registerUser) {
+      error = await handleUserRegister(email, password, userCredentials);
+      if (error) {
+        console.log(error);
+        setErrorMessage(getErrorMessage(error, "register"));
+        return;
+      }
+    } else {
+      result = await handleUserLogin(email, password);
+      if (!result || typeof result === "string") {
+        console.log(result);
+        setErrorMessage(getErrorMessage(result, "login"));
+        return;
+      }
     }
 
     const pendingFavorite = JSON.parse(localStorage.getItem(`pendingFavorite`));
