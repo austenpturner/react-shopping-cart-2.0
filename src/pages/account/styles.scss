@@ -89,12 +89,12 @@
 
 .passwordUpdate {
   @include flex-col(flex-start, stretch, 5px);
-  margin-top: 20px;
+  margin: 15px 0 5px;
   input {
     max-width: 400px;
   }
   button {
-    width: 160px;
+    width: 80px;
     &:hover {
       box-shadow: none;
       background-color: var(--lighter-grey);

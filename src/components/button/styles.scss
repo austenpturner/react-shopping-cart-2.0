@@ -6,6 +6,9 @@ button {
   cursor: pointer;
   font-size: 12px;
   padding: 4px 8px;
+  svg {
+    margin-left: 5px;
+  }
 }
 
 .addToCart,
@@ -93,5 +96,12 @@ button {
     &.grey {
       color: var(--medium-grey);
     }
+  }
+}
+
+.update {
+  &:hover {
+    box-shadow: none;
+    background-color: var(--lighter-grey);
   }
 }

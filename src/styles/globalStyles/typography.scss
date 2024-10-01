@@ -35,3 +35,16 @@ button {
 .page-subheader {
   text-transform: capitalize;
 }
+
+.loading {
+  font-style: italic;
+  font-size: 14px;
+  margin: 0;
+}
+
+.error {
+  color: var(--error-red);
+  font-size: 13px;
+  font-style: italic;
+  margin: 0;
+}

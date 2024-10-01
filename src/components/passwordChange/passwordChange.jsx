@@ -11,6 +11,7 @@ import Button from "../button";
 import styles from "./passwordChange.module.scss";
 import { getErrorMessage } from "../../util/getErrorMessage";
 import { isStrongPassword } from "../../util/isStrongPassword";
+import { FaCaretDown } from "react-icons/fa";
 
 const initialState = {
   current: "",
@@ -69,23 +70,25 @@ export default function PasswordChange() {
       <h2 className="page-subheader">account password</h2>
       <Button
         text="change password"
+        icon={<FaCaretDown />}
         handleAction={() => setChangePassword(true)}
+        type="update"
       />
       <div
         className={styles.passwordUpdateContainer}
         data-visible={changePassword ? true : false}
       >
-        {errorMsg && <p>{errorMsg}</p>}
-        {successMsg && <p>{successMsg}</p>}
-        {loading && <p>Loading... </p>}
         <CommonForm
           formControls={passwordUpdateControls}
-          btnText="update password"
+          btnText="update"
           formData={passwordUpdate}
           setFormData={handlePasswordUpdate}
           onSubmit={handlePasswordSubmit}
           className="passwordUpdate"
         />
+        {errorMsg && <p className="error">{errorMsg}</p>}
+        {successMsg && <p className={styles.successMsg}>{successMsg}</p>}
+        {loading && <p className="loading">Loading... </p>}
       </div>
     </div>
   );

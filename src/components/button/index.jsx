@@ -14,7 +14,8 @@ export default function Button({
       className={type}
       onClick={handleAction ? () => handleAction(item, action) : null}
     >
-      {text ? text : icon}
+      {text && text}
+      {icon && icon}
     </button>
   );
 }

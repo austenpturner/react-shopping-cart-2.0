@@ -5,6 +5,8 @@ const generalErrors = {
   "auth/internal-error":
     "An error occurred, please try again. If the problem persists, please contact support.",
   "auth/invalid-argument": "Your entry was invalid. Please try again.",
+  "auth/too-many-requests":
+    "You've made too many requests. Please try again later.",
 };
 
 const specificErrors = {

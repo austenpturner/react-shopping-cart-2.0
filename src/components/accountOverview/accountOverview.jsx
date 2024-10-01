@@ -49,7 +49,7 @@ export default function AccountOverview() {
           formData={usernameUpdate}
           setFormData={handleUsernameUpdate}
           onSubmit={handleUsernameSubmit}
-          btnText={"update username"}
+          btnText={"update"}
           className="usernameInput"
         />
       </div>
@@ -59,7 +59,7 @@ export default function AccountOverview() {
           formData={nameUpdate}
           setFormData={handleNameUpdate}
           onSubmit={handleNameSubmit}
-          btnText={"update name"}
+          btnText={"update"}
           className="nameInput"
         />
       </div>
