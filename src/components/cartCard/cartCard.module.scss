@@ -1,12 +1,12 @@
 @use "../../styles/utilStyles/index" as *;
 
 .cartCard {
-  border: 1px solid var(--dark-text);
+  border: 1px solid var(--medium-grey);
   border-radius: 3px;
   @include flex-row-wrap(space-between, 10px);
   height: 100px;
   margin: 5px auto;
-  padding: 10px;
+  padding: 8px;
 }
 
 .col {
@@ -21,16 +21,24 @@
 }
 
 .itemDetailsContainer {
-  @include flex-row(left, center);
+  @include flex-row(left, flex-start);
+  img,
+  .title {
+    cursor: pointer;
+  }
+  img {
+    background-color: var(--light-grey);
+    border-radius: 3px;
+  }
   .title {
     margin: 0 0 0 10px;
   }
 }
 
 .itemQuantityContainer {
-  @include flex-row(center, center);
+  @include flex-row(center, flex-start);
   .quantity {
-    margin: 0 6px 0 0;
+    margin: 4px 6px 0 0;
   }
 }
 
@@ -41,7 +49,4 @@
 
 .itemPriceContainer {
   @include flex-col(space-between, flex-end);
-  .price {
-    padding: 4px;
-  }
 }

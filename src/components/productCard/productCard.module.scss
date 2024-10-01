@@ -37,9 +37,10 @@
   .title,
   .price {
     font-size: 12px;
-    margin: 5px 0;
+    margin: 2px 0;
   }
   .title {
+    cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

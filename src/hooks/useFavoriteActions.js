@@ -14,6 +14,19 @@ export default function useFavoriteActions() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.currentUser);
 
+  function createItem(product) {
+    const { id, title, thumbnail, price, rating, description } = product;
+    const item = {
+      id,
+      title,
+      thumbnail,
+      price,
+      rating,
+      description,
+    };
+    return item;
+  }
+
   async function handleFetchFavorites() {
     if (user) {
       try {
@@ -27,12 +40,7 @@ export default function useFavoriteActions() {
 
   async function handleAddToFavorites(product, loginUser) {
     try {
-      const { id, title, thumbnail } = product;
-      const item = {
-        id,
-        title,
-        thumbnail,
-      };
+      const item = createItem(product);
       if (loginUser || user) {
         dispatch(addToFavoritesSlice(item));
       }
@@ -48,12 +56,7 @@ export default function useFavoriteActions() {
 
   async function handleRemoveFromFavorites(product) {
     if (user) {
-      const { id, title, thumbnail } = product;
-      const item = {
-        id,
-        title,
-        thumbnail,
-      };
+      const item = createItem(product);
       try {
         dispatch(removeFromFavoritesSlice(item));
         removeFavoriteFromFirestore(user.id, item);

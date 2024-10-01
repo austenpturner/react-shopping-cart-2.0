@@ -5,7 +5,7 @@
   @include breakpoint(medium) {
     @include flex-row(space-between, stretch, 20px);
   }
-  padding: 30px;
+  padding: 50px 30px;
   .quickShopImg {
     background-color: var(--light-grey);
     border-radius: 3px;

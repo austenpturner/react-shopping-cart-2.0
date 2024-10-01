@@ -4,7 +4,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
-import useCartActions from "../../hooks/useCartActions";
 import { useNavigate } from "react-router-dom";
 import useWindowResize from "../../hooks/useWindowResize.js";
 import { useState } from "react";
@@ -14,10 +13,8 @@ import { useSelector } from "react-redux";
 import useFavoriteActions from "../../hooks/useFavoriteActions.js";
 
 export default function ProductCard({ product }) {
-  const { state, uiDispatch } = useContext(UIContext);
+  const { uiDispatch } = useContext(UIContext);
   const user = useSelector((state) => state.users.currentUser);
-  const buttonText = state.buttonText[product.id] || "Add to cart";
-  const { handleAddToCart } = useCartActions();
   const navigate = useNavigate();
   const { width } = useWindowResize();
   const [imageSize, setImageSize] = useState(null);
@@ -37,6 +34,8 @@ export default function ProductCard({ product }) {
   }
 
   function handleShowLoginModal() {
+    console.log(product);
+
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {
@@ -75,7 +74,6 @@ export default function ProductCard({ product }) {
 
   useEffect(() => {
     const match = favorites.find((favorite) => favorite.id === product.id);
-
     if (match) {
       setIsFavorite(true);
     } else {
@@ -114,19 +112,13 @@ export default function ProductCard({ product }) {
           handleAction={handleShowQuickShopModal}
         />
       </div>
-      <p className={styles.title}>{product.title}</p>
-      {product.price ? (
-        <p className={styles.price}>{`$${product.price}`}</p>
-      ) : (
-        ""
-      )}
-
-      <Button
-        handleAction={handleAddToCart}
-        item={product}
-        text={buttonText}
-        type={"addToCart"}
-      />
+      <p
+        className={styles.title}
+        onClick={() => navigate(`/product-details/${product.id}`)}
+      >
+        {product.title}
+      </p>
+      {product.price && <p className={styles.price}>{`$${product.price}`}</p>}
     </li>
   );
 }
