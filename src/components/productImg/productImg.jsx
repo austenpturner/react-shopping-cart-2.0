@@ -68,24 +68,36 @@ export default function ProductImg({ product, page }) {
   }
 
   function getImageSize() {
-    // product page sizing
-    if (width >= 1024) {
-      setImageSize(176.8);
-    } else if (width >= 768) {
-      setImageSize((width - 120) / 4);
-    } else {
-      setImageSize((width - 80) / 2);
-    }
-    // details page sizing
-    // if (width >= 768) {
-    //   setImageSize(300);
-    // } else if (width >= 450) {
-    //   setImageSize(400);
-    // } else {
-    //   setImageSize(width * 0.9);
-    // }
-    // quick shop
-    // setImageSize(300);
+    const breakpoints = {
+      products: {
+        1024: 176.8,
+        768: (width - 120) / 4,
+        default: (width - 80) / 2,
+      },
+      details: {
+        768: 300,
+        450: 400,
+        default: width * 0.9,
+      },
+      quickShop: {
+        450: 300,
+        default: width * 0.7,
+      },
+    };
+
+    const getPageSize = (page, width) => {
+      const pageBreakpoints = breakpoints[page] || {};
+      const sortedWidths = Object.keys(pageBreakpoints)
+        .map(Number)
+        .sort((a, b) => b - a);
+
+      for (const bp of sortedWidths) {
+        if (width >= bp) return pageBreakpoints[bp];
+      }
+      return pageBreakpoints.default || 300; // Default size
+    };
+
+    setImageSize(getPageSize(page, width));
   }
 
   useEffect(() => {
