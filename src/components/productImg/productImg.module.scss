@@ -1,0 +1,30 @@
+@use "../../styles/utilStyles/index" as *;
+
+.imgContainer {
+  position: relative;
+  span {
+    background-color: var(--light-grey);
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+  }
+  > button {
+    display: none;
+    position: absolute;
+    z-index: 2;
+  }
+  &:hover > button {
+    display: block;
+  }
+  &:hover span:has(.hoverCursor) {
+    background-color: var(--lighter-grey);
+  }
+  &[data-visible="true"] > button {
+    display: block;
+  }
+}
+
+.hoverCursor:hover {
+  background-color: var(--lighter-grey);
+  cursor: pointer;
+}

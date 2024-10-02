@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import styles from "./quickShop.module.scss";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
 import { FaStar } from "react-icons/fa";
+import ProductImg from "../productImg/productImg";
 
 export default function QuickShop({ product }) {
   const navigate = useNavigate();
@@ -21,14 +21,7 @@ export default function QuickShop({ product }) {
 
   return (
     <div className={styles.quickShopContainer}>
-      <LazyLoadImage
-        src={product.thumbnail}
-        alt={product.title}
-        className={styles.quickShopImg}
-        width={300}
-        height={300}
-        effect="blur"
-      />
+      <ProductImg product={product} page="quickShop" />
       <div className={styles.detailsContainer}>
         <h4>{product.title}</h4>
         <p className={styles.rating}>
