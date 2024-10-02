@@ -20,7 +20,7 @@ export default function ProductDetails({ product }) {
   return (
     <div className={styles.productContainer}>
       <div className={styles.detailsContainer}>
-        <ProductImg product={product} page="details" />
+        <ProductImg product={product} parent="details" />
         <div className={styles.details}>
           <div>
             <h1>{product?.title}</h1>

@@ -21,7 +21,7 @@ export default function QuickShop({ product }) {
 
   return (
     <div className={styles.quickShopContainer}>
-      <ProductImg product={product} page="quickShop" />
+      <ProductImg product={product} parent="quickShop" />
       <div className={styles.detailsContainer}>
         <h4>{product.title}</h4>
         <p className={styles.rating}>

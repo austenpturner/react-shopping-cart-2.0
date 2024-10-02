@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { UIContext } from "../../context/uiContext";
 import PropTypes from "prop-types";
 
-export default function ProductImg({ product, page }) {
+export default function ProductImg({ product, parent }) {
   const navigate = useNavigate();
   const { uiDispatch } = useContext(UIContext);
   const user = useSelector((state) => state.users.currentUser);
@@ -60,8 +60,8 @@ export default function ProductImg({ product, page }) {
     } else if (user && isFavorite) {
       handleRemoveFromFavorites(product);
     } else {
-      const { title, thumbnail, id } = product;
-      const item = { title, thumbnail, id };
+      const { title, thumbnail, id, rating, price, description } = product;
+      const item = { title, thumbnail, id, rating, price, description };
       localStorage.setItem(`pendingFavorite`, JSON.stringify(item));
       handleShowLoginModal();
     }
@@ -85,19 +85,19 @@ export default function ProductImg({ product, page }) {
       },
     };
 
-    const getPageSize = (page, width) => {
-      const pageBreakpoints = breakpoints[page] || {};
-      const sortedWidths = Object.keys(pageBreakpoints)
+    const getPageSize = (parent, width) => {
+      const parentBreakpoints = breakpoints[parent] || {};
+      const sortedWidths = Object.keys(parentBreakpoints)
         .map(Number)
         .sort((a, b) => b - a);
 
       for (const bp of sortedWidths) {
-        if (width >= bp) return pageBreakpoints[bp];
+        if (width >= bp) return parentBreakpoints[bp];
       }
-      return pageBreakpoints.default || 300; // Default size
+      return parentBreakpoints.default || 300;
     };
 
-    setImageSize(getPageSize(page, width));
+    setImageSize(getPageSize(parent, width));
   }
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export default function ProductImg({ product, page }) {
   }, [favorites]);
 
   useEffect(() => {
-    if (page === "favorites" || page === "products") {
+    if (parent === "favorites" || parent === "products") {
       setFavoriteBtnVisible(false);
       setNavigateOnClick(true);
       setShowQuickShopBtn(true);
@@ -123,7 +123,7 @@ export default function ProductImg({ product, page }) {
       setNavigateOnClick(false);
       setShowQuickShopBtn(false);
     }
-  }, [page]);
+  }, [parent]);
 
   return (
     <div
@@ -165,5 +165,5 @@ export default function ProductImg({ product, page }) {
 
 ProductImg.propTypes = {
   product: PropTypes.object,
-  page: PropTypes.string,
+  parent: PropTypes.string,
 };

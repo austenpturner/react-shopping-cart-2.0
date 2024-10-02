@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
 
   return (
     <li className={styles.productCard}>
-      <ProductImg product={product} page="products" />
+      <ProductImg product={product} parent="products" />
       <p
         className={styles.title}
         onClick={() => navigate(`/product-details/${product.id}`)}
