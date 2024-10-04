@@ -16,8 +16,9 @@ export default function AccountPage() {
   const navigate = useNavigate();
   const loading = useAuth();
   const user = useSelector((state) => state.users.currentUser);
-  const [currentView, setCurrentView] = useState(<AccountOverview />);
-  const [currentViewType, setCurrentViewType] = useState("overview");
+  const [currentViewType, setCurrentViewType] = useState(() => {
+    return sessionStorage.getItem("currentViewType") || "overview";
+  });
   const [showViewTypes, setShowViewTypes] = useState(false);
   const { width } = useWindowResize();
 
@@ -25,29 +26,11 @@ export default function AccountPage() {
     navigate("/login", { state: { from: "/account" } });
   }
 
-  function handleChangeView(viewType) {
-    setCurrentViewType(viewType);
+  function handleChangeView(name) {
+    setCurrentViewType(name);
+    sessionStorage.setItem("currentViewType", name);
     if (width < 768) {
       setShowViewTypes(false);
-    }
-    switch (viewType) {
-      case "overview":
-        setCurrentView(<AccountOverview />);
-        break;
-      case "password":
-        setCurrentView(<PasswordChange />);
-        break;
-      case "orders":
-        setCurrentView(<Orders />);
-        break;
-      case "reviews":
-        setCurrentView(<Reviews />);
-        break;
-      case "favorites":
-        setCurrentView(<FavoritesList />);
-        break;
-      default:
-        setCurrentView(<AccountOverview />);
     }
   }
 
@@ -59,7 +42,43 @@ export default function AccountPage() {
     }
   }, [width]);
 
-  const viewTypes = ["overview", "password", "orders", "reviews", "favorites"];
+  const views = [
+    {
+      name: "overview",
+      component: <AccountOverview />,
+    },
+    {
+      name: "password",
+      component: <PasswordChange />,
+    },
+    {
+      name: "orders",
+      component: <Orders />,
+    },
+    {
+      name: "review",
+      component: <Reviews />,
+    },
+    {
+      name: "favorites",
+      component: <FavoritesList />,
+    },
+  ];
+
+  const currentView = views.find(
+    (view) => view.name === currentViewType
+  )?.component;
+
+  // useEffect(() => {
+  //   sessionStorage.getItem();
+  // }, []);
+
+  // console.log("from:", location.state.from);
+  // console.log("pathname:", window.location.pathname);
+  // console.log(
+  //   "navigation type:",
+  //   window.performance.getEntriesByType("navigation")[0].type
+  // );
 
   const pageContent = (
     <div>
@@ -84,18 +103,18 @@ export default function AccountPage() {
             </p>
             {showViewTypes ? (
               <ul className="view-list">
-                {viewTypes.map((type, index) => {
+                {views.map((view, index) => {
                   return (
                     <li
                       key={index}
-                      onClick={() => handleChangeView(type)}
+                      onClick={() => handleChangeView(view.name)}
                       className={
-                        currentViewType === type && width >= 768
+                        currentViewType === view.name && width >= 768
                           ? "current"
                           : ""
                       }
                     >
-                      {type}
+                      {view.name}
                     </li>
                   );
                 })}

@@ -1,6 +1,6 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import styles from "./productImg.module.scss";
 import { useContext } from "react";
@@ -25,6 +25,7 @@ export default function ProductImg({ product, parent }) {
   const [favoriteBtnVisible, setFavoriteBtnVisible] = useState(null);
   const [navigateOnClick, setNavigateOnClick] = useState(null);
   const [showQuickShopBtn, setShowQuickShopBtn] = useState(null);
+  const location = useLocation();
 
   function handleShowQuickShopModal() {
     uiDispatch({
@@ -50,7 +51,9 @@ export default function ProductImg({ product, parent }) {
 
   function handleNavigateOnClick() {
     if (navigateOnClick) {
-      navigate(`/product-details/${product.id}`);
+      navigate(`/product-details/${product.id}`, {
+        state: { from: location },
+      });
     }
   }
 

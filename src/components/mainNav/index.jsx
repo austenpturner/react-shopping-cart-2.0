@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./mainNav.module.scss";
 import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
@@ -14,6 +14,29 @@ export default function MainNav() {
   const { state, uiDispatch } = useContext(UIContext);
   const [mobileNavOpen, setMobileNavOpen] = useState(state.openMobileNav);
   const { width } = useWindowResize();
+
+  const pages = [
+    {
+      name: "products",
+      link: "/",
+    },
+    {
+      name: "cart",
+      link: "/cart",
+    },
+    {
+      name: "account",
+      link: "/account",
+    },
+  ];
+
+  function handleNavigate(page) {
+    navigate(page.link);
+    if (page.name === "account") {
+      sessionStorage.setItem("currentViewType", "overview");
+    }
+    handleToggleMobileNav();
+  }
 
   function handleToggleMobileNav() {
     if (width < 1024) {
@@ -106,21 +129,13 @@ export default function MainNav() {
           id="mainNav"
           data-visible={mobileNavOpen ? true : false}
         >
-          <li>
-            <Link to={"/"} onClick={handleToggleMobileNav}>
-              Products
-            </Link>
-          </li>
-          <li>
-            <Link to={"cart"} onClick={handleToggleMobileNav}>
-              Cart
-            </Link>
-          </li>
-          <li>
-            <Link to={"account"} onClick={handleToggleMobileNav}>
-              Account
-            </Link>
-          </li>
+          {pages.map((page, index) => {
+            return (
+              <li key={index} onClick={() => handleNavigate(page)}>
+                {page.name}
+              </li>
+            );
+          })}
           <li>
             {loading ? (
               <button></button>

@@ -27,12 +27,14 @@
     position: absolute;
     left: 0;
     width: 100%;
+    z-index: 1;
     @include breakpoint(medium) {
       @include flex-col(flex-start, stretch, 10px);
       background-color: var(--light-background);
       margin-right: 20px;
       position: relative;
       width: auto;
+      z-index: 0;
     }
     li {
       cursor: pointer;

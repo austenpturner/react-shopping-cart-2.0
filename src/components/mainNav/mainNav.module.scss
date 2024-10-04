@@ -61,24 +61,22 @@
   }
 
   li {
-    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
     text-align: center;
-    a {
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 14px;
-      text-decoration: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    &:hover {
+      text-decoration: underline double var(--light-text);
+    }
+    @include breakpoint-down(medium) {
+      color: var(--light-text);
+    }
+    @include breakpoint(large) {
+      color: var(--dark-background);
       &:hover {
-        text-decoration: underline double var(--light-text);
-      }
-      @include breakpoint-down(medium) {
-        color: var(--light-text);
-      }
-      @include breakpoint(large) {
-        color: var(--dark-background);
-        &:hover {
-          text-decoration-color: var(--dark-background);
-        }
+        text-decoration-color: var(--dark-background);
       }
     }
   }
