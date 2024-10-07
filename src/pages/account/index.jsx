@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import AccountOverview from "../../components/accountOverview/accountOverview";
 import FavoritesList from "../../components/favoritesList/favoritesList";
@@ -11,6 +11,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import PasswordChange from "../../components/passwordChange/passwordChange";
 import Orders from "../../components/orders/orders";
 import Reviews from "../../components/reviews/reviews";
+import { UIContext } from "../../context/uiContext";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function AccountPage() {
   });
   const [showViewTypes, setShowViewTypes] = useState(false);
   const { width } = useWindowResize();
+  const { state } = useContext(UIContext);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
@@ -69,17 +71,6 @@ export default function AccountPage() {
     (view) => view.name === currentViewType
   )?.component;
 
-  // useEffect(() => {
-  //   sessionStorage.getItem();
-  // }, []);
-
-  // console.log("from:", location.state.from);
-  // console.log("pathname:", window.location.pathname);
-  // console.log(
-  //   "navigation type:",
-  //   window.performance.getEntriesByType("navigation")[0].type
-  // );
-
   const pageContent = (
     <div>
       {!user ? (
@@ -96,7 +87,11 @@ export default function AccountPage() {
           <div className="view-container">
             <p
               className="current-view-type"
+              tabIndex={state.overlayVisible ? "-1" : "0"}
               onClick={() => setShowViewTypes(!showViewTypes)}
+              onKeyDown={(e) =>
+                e.key === "Enter" && setShowViewTypes(!showViewTypes)
+              }
             >
               <span>{currentViewType}</span>
               {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
@@ -107,12 +102,16 @@ export default function AccountPage() {
                   return (
                     <li
                       key={index}
+                      tabIndex={state.overlayVisible ? "-1" : "0"}
                       onClick={() => handleChangeView(view.name)}
                       className={
                         currentViewType === view.name && width >= 768
                           ? "current"
                           : ""
                       }
+                      onKeyDown={(e) => {
+                        e.key === "Enter" && handleChangeView(view.name);
+                      }}
                     >
                       {view.name}
                     </li>

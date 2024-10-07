@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 
 export default function ProductImg({ product, parent }) {
   const navigate = useNavigate();
-  const { uiDispatch } = useContext(UIContext);
+  const { state, uiDispatch } = useContext(UIContext);
   const user = useSelector((state) => state.users.currentUser);
   const { width } = useWindowResize();
   const [imageSize, setImageSize] = useState(null);
@@ -38,8 +38,6 @@ export default function ProductImg({ product, parent }) {
   }
 
   function handleShowLoginModal() {
-    console.log(product);
-
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {
@@ -49,7 +47,7 @@ export default function ProductImg({ product, parent }) {
     });
   }
 
-  function handleNavigateOnClick() {
+  function handleNavigate() {
     if (navigateOnClick) {
       navigate(`/product-details/${product.id}`, {
         state: { from: location },
@@ -140,7 +138,11 @@ export default function ProductImg({ product, parent }) {
         width={imageSize}
         height={imageSize}
         effect="blur"
-        onClick={handleNavigateOnClick}
+        onClick={handleNavigate}
+        onKeyDown={(e) => {
+          e.key === "Enter" && handleNavigate();
+        }}
+        tabIndex={state.overlayVisible || !navigateOnClick ? "-1" : "0"}
       />
       <Button
         icon={

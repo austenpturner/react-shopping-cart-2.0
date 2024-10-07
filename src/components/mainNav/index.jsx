@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./mainNav.module.scss";
 import { useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
@@ -31,7 +31,6 @@ export default function MainNav() {
   ];
 
   function handleNavigate(page) {
-    navigate(page.link);
     if (page.name === "account") {
       sessionStorage.setItem("currentViewType", "overview");
     }
@@ -131,9 +130,14 @@ export default function MainNav() {
         >
           {pages.map((page, index) => {
             return (
-              <li key={index} onClick={() => handleNavigate(page)}>
+              <Link
+                key={index}
+                onClick={() => handleNavigate(page)}
+                to={page.link}
+                tabIndex={mobileNavOpen || width >= 1024 ? "0" : "-1"}
+              >
                 {page.name}
-              </li>
+              </Link>
             );
           })}
           <li>

@@ -60,7 +60,7 @@
     @include flex-row(space-evenly, flex-start, 10px);
   }
 
-  li {
+  a {
     border-radius: 3px;
     cursor: pointer;
     font-size: 14px;

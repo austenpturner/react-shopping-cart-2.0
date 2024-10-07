@@ -24,7 +24,8 @@
   }
 }
 
-.hoverCursor:hover {
+.hoverCursor:hover,
+.hoverCursor:focus {
   background-color: var(--lighter-grey);
   cursor: pointer;
 }

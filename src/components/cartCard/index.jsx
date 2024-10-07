@@ -4,12 +4,23 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import useCartActions from "../../hooks/useCartActions";
 import Button from "../button";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UIContext } from "../../context/uiContext";
 
 export default function CartCard({ item }) {
   const { title, price, thumbnail, quantity } = item;
   const navigate = useNavigate();
   const { handleRemoveFromCart, handleUpdateQuantity } = useCartActions();
   const location = useLocation();
+  const { state } = useContext(UIContext);
+
+  function handleNavigate(event) {
+    if (event.key === "Enter") {
+      navigate(`/product-details/${item.id}`, {
+        state: { from: location },
+      });
+    }
+  }
 
   return (
     <div className={styles.cartCard}>
@@ -21,11 +32,13 @@ export default function CartCard({ item }) {
           width={80}
           height={80}
           className={styles.image}
+          tabIndex={state.overlayVisible ? "-1" : "0"}
           onClick={() =>
             navigate(`/product-details/${item.id}`, {
               state: { from: location },
             })
           }
+          onKeyDown={handleNavigate}
         />
         <div>
           <p
