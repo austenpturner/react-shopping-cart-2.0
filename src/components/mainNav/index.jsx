@@ -89,6 +89,7 @@ export default function MainNav() {
         aria-controls="mainNav"
         className={styles.mobileNavBtn}
         onClick={handleToggleMobileNav}
+        tabIndex={state.modal.isVisible ? "-1" : "0"}
       >
         <svg
           className={styles.hamburger}

@@ -13,11 +13,25 @@ export default function Button({
 }) {
   const { state } = useContext(UIContext);
 
+  function getTabIndex() {
+    if (state.overlayVisible && type === "confirmation") {
+      return "0";
+    } else if (state.overlayVisible && type === "closeModal") {
+      return "0";
+    } else if (type === "logout" && !state.openMobileNav) {
+      return "-1";
+    } else if (state.openMobileNav && type !== "logout") {
+      return "-1";
+    } else {
+      return "0";
+    }
+  }
+
   return (
     <button
       className={type}
       onClick={handleAction ? () => handleAction(item, action) : null}
-      tabIndex={state.overlayVisible && type !== "logout" ? "-1" : "0"}
+      tabIndex={getTabIndex()}
     >
       {text && text}
       {icon && icon}
