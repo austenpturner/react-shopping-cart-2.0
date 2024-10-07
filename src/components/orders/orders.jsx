@@ -3,7 +3,7 @@ import Button from "../button";
 export default function Orders() {
   const orders = [];
   return (
-    <div>
+    <>
       <h2 className="page-subheader">orders</h2>
       {orders?.length ? (
         orders.map((order) => {
@@ -15,6 +15,6 @@ export default function Orders() {
           <Button text="go shopping" />
         </div>
       )}
-    </div>
+    </>
   );
 }

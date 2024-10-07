@@ -72,7 +72,7 @@ export default function AccountPage() {
   )?.component;
 
   const pageContent = (
-    <div>
+    <>
       {!user ? (
         <div>
           <p>Please log in to access your account.</p>
@@ -83,49 +83,47 @@ export default function AccountPage() {
           />
         </div>
       ) : (
-        <div className="page-content">
-          <div className="view-container">
-            <p
-              className="current-view-type"
-              tabIndex={state.overlayVisible ? "-1" : "0"}
-              onClick={() => setShowViewTypes(!showViewTypes)}
-              onKeyDown={(e) =>
-                e.key === "Enter" && setShowViewTypes(!showViewTypes)
-              }
-            >
-              <span>{currentViewType}</span>
-              {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
-            </p>
-            {showViewTypes ? (
-              <ul className="view-list">
-                {views.map((view, index) => {
-                  return (
-                    <li
-                      key={index}
-                      tabIndex={state.overlayVisible ? "-1" : "0"}
-                      onClick={() => handleChangeView(view.name)}
-                      className={
-                        currentViewType === view.name && width >= 768
-                          ? "current"
-                          : ""
-                      }
-                      onKeyDown={(e) => {
-                        e.key === "Enter" && handleChangeView(view.name);
-                      }}
-                    >
-                      {view.name}
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              ""
-            )}
-            <div className="current-view">{currentView}</div>
-          </div>
+        <div className="view-container">
+          <p
+            className="current-view-type"
+            tabIndex={state.overlayVisible ? "-1" : "0"}
+            onClick={() => setShowViewTypes(!showViewTypes)}
+            onKeyDown={(e) =>
+              e.key === "Enter" && setShowViewTypes(!showViewTypes)
+            }
+          >
+            <span>{currentViewType}</span>
+            {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
+          </p>
+          {showViewTypes ? (
+            <ul className="view-list">
+              {views.map((view, index) => {
+                return (
+                  <li
+                    key={index}
+                    tabIndex={state.overlayVisible ? "-1" : "0"}
+                    onClick={() => handleChangeView(view.name)}
+                    className={
+                      currentViewType === view.name && width >= 768
+                        ? "current"
+                        : ""
+                    }
+                    onKeyDown={(e) => {
+                      e.key === "Enter" && handleChangeView(view.name);
+                    }}
+                  >
+                    {view.name}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            ""
+          )}
+          <div className="current-view">{currentView}</div>
         </div>
       )}
-    </div>
+    </>
   );
 
   return (

@@ -36,7 +36,7 @@ export default function AccountOverview() {
   }
 
   return (
-    <div className={styles.overviewContainer}>
+    <>
       <h2 className="page-subheader">{`welcome, ${
         user.username || `user`
       }!`}</h2>
@@ -63,6 +63,6 @@ export default function AccountOverview() {
           className="nameInput"
         />
       </div>
-    </div>
+    </>
   );
 }

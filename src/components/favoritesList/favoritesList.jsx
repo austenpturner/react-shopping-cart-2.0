@@ -16,25 +16,27 @@ export default function FavoritesList() {
   }, [favoritesLoaded]);
 
   const favoritesList = (
-    <div className={styles.favoritesList}>
+    <ul className={styles.favoritesList}>
       {favorites?.length ? (
         favorites.map((favorite) => {
           return (
-            <div key={favorite.id} className={styles.favoriteItem}>
-              <ProductCard product={favorite} />
-            </div>
+            <ProductCard
+              key={favorite.id}
+              product={favorite}
+              parent={"favorites"}
+            />
           );
         })
       ) : (
         <p className={styles.noFavorites}>No favorites saved.</p>
       )}
-    </div>
+    </ul>
   );
 
   return (
-    <div>
+    <>
       <h2 className="page-subheader">favorites</h2>
       {loading ? <p>loading... </p> : favoritesList}
-    </div>
+    </>
   );
 }

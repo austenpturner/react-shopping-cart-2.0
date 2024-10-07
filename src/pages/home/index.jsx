@@ -11,7 +11,9 @@ export default function HomePage() {
     <ul className="product-list">
       {data?.products?.length > 0 ? (
         data.products.map((product) => {
-          return <ProductCard key={product.id} product={product} />;
+          return (
+            <ProductCard key={product.id} product={product} parent="products" />
+          );
         })
       ) : (
         <p>no products found.</p>

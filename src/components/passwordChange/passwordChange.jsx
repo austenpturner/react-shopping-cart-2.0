@@ -66,7 +66,7 @@ export default function PasswordChange() {
   }
 
   return (
-    <div className={styles.accountPasswordView}>
+    <>
       <h2 className="page-subheader">account password</h2>
       <Button
         text="change password"
@@ -90,6 +90,6 @@ export default function PasswordChange() {
         {successMsg && <p className={styles.successMsg}>{successMsg}</p>}
         {loading && <p className="loading">Loading... </p>}
       </div>
-    </div>
+    </>
   );
 }

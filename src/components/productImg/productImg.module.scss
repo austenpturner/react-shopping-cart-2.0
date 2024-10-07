@@ -2,11 +2,11 @@
 
 .imgContainer {
   position: relative;
+  width: 100%;
   span {
     background-color: var(--light-grey);
     border-radius: 5px;
     display: block;
-    width: 100%;
   }
   > button {
     display: none;

@@ -1,9 +1,7 @@
-// import Button from "../button";
-
 export default function Reviews() {
   const orders = [];
   return (
-    <div>
+    <>
       <h2 className="page-subheader">reviews</h2>
       {orders?.length ? (
         orders.map((order) => {
@@ -12,9 +10,8 @@ export default function Reviews() {
       ) : (
         <div>
           <p>{`you haven't left any reviews.`}</p>
-          {/* <Button text="review a product" /> */}
         </div>
       )}
-    </div>
+    </>
   );
 }

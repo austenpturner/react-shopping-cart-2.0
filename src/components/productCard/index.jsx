@@ -1,17 +1,22 @@
 import styles from "./productCard.module.scss";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProductImg from "../productImg/productImg.jsx";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, parent }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
-    <li className={styles.productCard}>
-      <ProductImg product={product} parent="products" />
+    <li className={`${styles.productCard} ${styles[parent]}`}>
+      <ProductImg product={product} parent={parent} />
       <p
         className={styles.title}
-        onClick={() => navigate(`/product-details/${product.id}`)}
+        onClick={() =>
+          navigate(`/product-details/${product.id}`, {
+            state: { from: location },
+          })
+        }
       >
         {product.title}
       </p>
@@ -22,5 +27,6 @@ export default function ProductCard({ product }) {
 
 ProductCard.propTypes = {
   product: PropTypes.object,
+  parent: PropTypes.string,
   handleAddToCart: PropTypes.func,
 };
