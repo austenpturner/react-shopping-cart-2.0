@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useCartActions from "../../hooks/useCartActions";
 import Button from "../button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function CartCard({ item }) {
   const { title, price, thumbnail, quantity } = item;
   const navigate = useNavigate();
   const { handleRemoveFromCart, handleUpdateQuantity } = useCartActions();
+  const location = useLocation();
 
   return (
     <div className={styles.cartCard}>
@@ -20,14 +21,25 @@ export default function CartCard({ item }) {
           width={80}
           height={80}
           className={styles.image}
-          onClick={() => navigate(`/product-details/${item.id}`)}
+          onClick={() =>
+            navigate(`/product-details/${item.id}`, {
+              state: { from: location },
+            })
+          }
         />
-        <p
-          className={styles.title}
-          onClick={() => navigate(`/product-details/${item.id}`)}
-        >
-          {title}
-        </p>
+        <div>
+          <p
+            className={styles.title}
+            onClick={() =>
+              navigate(`/product-details/${item.id}`, {
+                state: { from: location },
+              })
+            }
+          >
+            {title}
+          </p>
+          <p>${price}</p>
+        </div>
       </div>
       <div className={`${styles.col} ${styles.itemQuantityContainer}`}>
         <p className={styles.quantity}>{quantity}</p>

@@ -33,6 +33,9 @@ export default function DetailsPage() {
       case "/account":
         setNavigateBackTo("favorites");
         break;
+      case "/cart":
+        setNavigateBackTo("cart");
+        break;
       default:
         setNavigateBackTo("products");
         break;
