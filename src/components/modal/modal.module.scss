@@ -28,15 +28,10 @@
     display: block;
   }
   button[class="closeModal"] {
-    background-color: transparent;
-    font-family: var(--font-quicksand);
-    font-size: 20px;
-    font-weight: 500;
     position: absolute;
     top: 0;
     right: 0;
     aspect-ratio: 1;
-    width: 36px;
   }
 }
 

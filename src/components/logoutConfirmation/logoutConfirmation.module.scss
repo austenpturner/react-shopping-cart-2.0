@@ -2,8 +2,13 @@
 
 .logoutConfirmationModal {
   @include flex-col(space-evenly, center, 10px);
-  padding: 20px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 4px 1px var(--box-shadow);
+  padding: 36px;
   div {
     @include flex-row(space-around, center, 10px);
+    h3 {
+      margin: 0 auto;
+    }
   }
 }

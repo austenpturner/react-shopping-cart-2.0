@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../button";
-import styles from "./requestLogin.module.scss";
+import styles from "./loginRequest.module.scss";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 
-export default function RequestLogin() {
+export default function LoginRequest() {
   const navigate = useNavigate();
   const { uiDispatch } = useContext(UIContext);
 
@@ -14,9 +14,9 @@ export default function RequestLogin() {
   }
 
   return (
-    <div className={styles.requestLoginModal}>
+    <div className={styles.loginRequestModal}>
       <div>
-        <h2>Please log in to add to favorites</h2>
+        <h3>Please log in to add to favorites</h3>
         <Button text="Log In" type="login" handleAction={handleLoginRedirect} />
       </div>
     </div>

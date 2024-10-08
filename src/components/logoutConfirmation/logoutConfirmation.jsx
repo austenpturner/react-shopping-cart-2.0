@@ -16,11 +16,11 @@ export default function LogoutConfirmation() {
     <div className={styles.logoutConfirmationModal}>
       {logoutConfirmed ? (
         <div>
-          <h2>You have been logged out.</h2>
+          <h3>You have been logged out.</h3>
         </div>
       ) : (
         <div>
-          <h2>Are you sure you want to log out?</h2>
+          <h3>Are you sure you want to log out?</h3>
           <Button
             text="yes"
             type="confirmation"

@@ -4,8 +4,9 @@ import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import styles from "./modal.module.scss";
 import QuickShop from "../quickShop/quickShop";
-import RequestLogin from "../requestLogin/requestLogin";
+import LoginRequest from "../loginRequest/loginRequest";
 import LogoutConfirmation from "../logoutConfirmation/logoutConfirmation";
+import { IoCloseOutline } from "react-icons/io5";
 
 export default function Modal() {
   const { state, uiDispatch } = useContext(UIContext);
@@ -20,7 +21,7 @@ export default function Modal() {
       case "quickShop":
         return <QuickShop product={content} />;
       case "requestLogin":
-        return <RequestLogin />;
+        return <LoginRequest />;
       case "logoutConfirmation":
         return <LogoutConfirmation />;
       default:
@@ -33,7 +34,11 @@ export default function Modal() {
       className={`${styles.modal} ${styles[type]}`}
       data-visible={isVisible ? true : false}
     >
-      <Button handleAction={handleCloseModal} text="X" type="closeModal" />
+      <Button
+        handleAction={handleCloseModal}
+        icon={<IoCloseOutline />}
+        type="closeModal"
+      />
       {renderModalContent()}
     </div>
   );

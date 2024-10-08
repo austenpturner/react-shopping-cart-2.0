@@ -24,7 +24,6 @@ button {
   text-transform: uppercase;
 }
 
-// .navigate,
 .back,
 .update,
 .dropDown,
@@ -56,7 +55,7 @@ button {
 .quickShop,
 .favorite {
   &:hover {
-    box-shadow: 2px 2px 4px 1px #bfbfbf89;
+    box-shadow: 2px 2px 4px 1px var(--box-shadow);
   }
 }
 
@@ -85,6 +84,16 @@ button {
 
 .back {
   padding: 4px 16px;
+}
+
+.closeModal {
+  background-color: transparent;
+  color: var(--darker-grey);
+  padding: 2px;
+  svg {
+    height: 32px;
+    width: 32px;
+  }
 }
 
 .navigate,
