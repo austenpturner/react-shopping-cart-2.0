@@ -7,6 +7,7 @@ import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
 import { FaStar } from "react-icons/fa";
 import ProductImg from "../productImg/productImg";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function QuickShop({ product }) {
   const navigate = useNavigate();
@@ -44,8 +45,9 @@ export default function QuickShop({ product }) {
           />
         </div>
         <Button
-          text="details page"
-          type="details"
+          text="view full details"
+          icon={<FaArrowRightLong />}
+          type="navigate"
           handleAction={handleNavigateToDetails}
         />
       </div>

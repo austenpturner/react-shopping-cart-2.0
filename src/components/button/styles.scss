@@ -1,42 +1,71 @@
 @use "../../styles//utilStyles/" as *;
 
+// * default styles
 button {
   border: none;
-  border-radius: 3px;
+  border-radius: 2px;
+  color: var(--dark-text);
   cursor: pointer;
   font-size: 12px;
-  padding: 4px 8px;
-  svg {
-    margin-left: 5px;
+  padding: 4px 10px;
+}
+
+.addToCart,
+.logout,
+.quickShop,
+.update,
+.removeFromCart,
+.checkOut,
+.confirmation,
+.login,
+.submit,
+.register {
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.navigate,
+.back,
+.update,
+.dropDown,
+.confirmation,
+.login,
+.submit,
+.logout,
+.register {
+  background-color: var(--light-grey);
+  &:hover {
+    background-color: var(--lighter-grey);
   }
 }
 
 .addToCart,
-.removeFromCart,
 .checkOut {
+  background-color: var(--medium-grey);
+  &:hover {
+    background-color: var(--medium-grey-hover);
+  }
+}
+
+.addToCart,
+.checkOut,
+.removeFromCart {
   color: var(--light-text);
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+}
+
+.quickShop,
+.favorite {
   &:hover {
     box-shadow: 2px 2px 4px 1px #bfbfbf89;
   }
 }
 
-.addToCart,
-.checkOut {
-  background-color: var(--dark-grey);
-}
-
-.addToCart {
-  min-width: 106px;
-}
-
 .removeFromCart {
   background-color: var(--coral);
-  font-size: 10.5px;
-  font-weight: 500;
   padding: 4px 12px;
+  &:hover {
+    background-color: var(--coral-hover);
+  }
 }
 
 .increaseQuantity,
@@ -46,65 +75,62 @@ button {
   width: 24px;
 }
 
+.addToCart {
+  min-width: 106px;
+}
+
 .checkOut {
-  border: 1px solid var(--medium-grey);
   padding: 6px 20px;
 }
 
-.logout,
-.login,
-.register,
-.submit,
-.navigate,
-.quickShop,
-.details,
-.confirmation {
-  background-color: var(--light-grey);
-  padding: 4px 10px;
-  letter-spacing: 1.1px;
-  text-transform: uppercase;
-  &:hover {
-    box-shadow: 2px 2px 4px 1px #bfbfbf89;
-  }
+.back {
+  padding: 4px 16px;
 }
 
-.quickShop,
-.favorite {
-  background-color: var(--light-background);
-  &:hover {
-    background-color: var(--light-text);
-    box-shadow: 2px 2px 4px 1px #bfbfbf89;
-  }
+.navigate,
+.dropDown {
+  @include flex-row(center, center, 6px);
+  padding: 6px 10px;
+  text-align: center;
 }
 
 .quickShop {
+  background-color: var(--light-text);
   bottom: 10%;
+  color: var(--dark-text);
   left: 10%;
   width: 80%;
 }
+
 .favorite {
+  background-color: transparent;
+  border-radius: 50%;
+  height: 40px;
+  padding: 0;
+  width: 40px;
   top: 3%;
   right: 3%;
+  &:hover {
+    background-color: var(--light-text);
+  }
   @include breakpoint(large) {
     top: 3%;
     right: 5%;
   }
   svg {
-    margin: 0;
     height: 1.2rem;
+    margin: 0 auto;
+    padding: 0;
     width: 1.2rem;
+    vertical-align: middle;
     &.red {
       color: var(--coral);
     }
     &.grey {
       color: var(--medium-grey);
     }
-  }
-}
-
-.update {
-  &:hover {
-    box-shadow: none;
-    background-color: var(--lighter-grey);
+    @include breakpoint-down(medium) {
+      margin-top: 2px;
+    }
   }
 }

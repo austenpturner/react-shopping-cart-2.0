@@ -72,7 +72,7 @@ export default function PasswordChange() {
         text="change password"
         icon={<FaCaretDown />}
         handleAction={() => setChangePassword(true)}
-        type="update"
+        type="dropDown"
       />
       <div
         className={styles.passwordUpdateContainer}

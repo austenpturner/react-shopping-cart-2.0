@@ -2,7 +2,7 @@ import Button from "../button";
 import PropTypes from "prop-types";
 import styles from "./productDetails.module.scss";
 import { useContext, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
 import ProductImg from "../productImg/productImg";
@@ -46,8 +46,9 @@ export default function ProductDetails({ product }) {
             <p>{`${product.reviews.length} reviews`}</p>
             <Button
               handleAction={handleShowReviews}
-              type="switch"
+              type="dropDown"
               text="show reviews"
+              icon={showReviews ? <FaCaretUp /> : <FaCaretDown />}
             />
           </div>
           <div className={styles.column}>

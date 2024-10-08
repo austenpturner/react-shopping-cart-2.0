@@ -13,25 +13,12 @@ export default function RequestLogin() {
     navigate("/login");
   }
 
-  function handleCloseModal() {
-    uiDispatch({ type: "HIDE_MODAL" });
-  }
-
   return (
     <div className={styles.requestLoginModal}>
       <div>
         <h2>Please log in to add to favorites</h2>
-        <Button
-          text="Log In"
-          type="navigate"
-          handleAction={handleLoginRedirect}
-        />
+        <Button text="Log In" type="login" handleAction={handleLoginRedirect} />
       </div>
-      <Button
-        text="go back"
-        type="confirmation"
-        handleAction={handleCloseModal}
-      />
     </div>
   );
 }

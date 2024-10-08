@@ -1,23 +1,15 @@
-import { useContext } from "react";
 import useLogout from "../../hooks/useLogout";
 import Button from "../button";
-import { UIContext } from "../../context/uiContext";
 import { useState } from "react";
 import styles from "./logoutConfirmation.module.scss";
 
 export default function LogoutConfirmation() {
   const handleLogout = useLogout();
-  const { uiDispatch } = useContext(UIContext);
   const [logoutConfirmed, setLogoutConfirmed] = useState(false);
 
   function handleLogoutConfirmation() {
     handleLogout();
     setLogoutConfirmed(true);
-  }
-
-  function handleCloseLogoutModal() {
-    uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
-    uiDispatch({ type: "HIDE_MODAL" });
   }
 
   return (
@@ -36,12 +28,6 @@ export default function LogoutConfirmation() {
           />
         </div>
       )}
-
-      <Button
-        text="go back"
-        type="confirmation"
-        handleAction={handleCloseLogoutModal}
-      />
     </div>
   );
 }

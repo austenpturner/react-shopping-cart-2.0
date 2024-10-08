@@ -47,7 +47,7 @@ export default function DetailsPage() {
       <div className="back-btn-container">
         <Button
           handleAction={handleNavigateBack}
-          type="navigate"
+          type="back"
           icon={<FaArrowLeftLong />}
         />
         <span>{navigateBackTo}</span>

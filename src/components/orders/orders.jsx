@@ -12,7 +12,7 @@ export default function Orders() {
       ) : (
         <div>
           <p>you have no past orders.</p>
-          <Button text="go shopping" />
+          <Button text="go shopping" type="navigate" />
         </div>
       )}
     </>
