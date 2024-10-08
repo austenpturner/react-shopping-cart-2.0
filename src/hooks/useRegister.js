@@ -13,7 +13,7 @@ export default function useRegister() {
       );
       const user = userCredential.user;
       await updateProfile(user, {
-        displayName: userCredentials.name,
+        displayName: `${userCredentials.firstname} ${userCredentials.lastname}`,
       });
       const cart = [];
       const cartRef = doc(db, "users", user.uid);
@@ -21,7 +21,6 @@ export default function useRegister() {
       return null;
     } catch (error) {
       console.log(error.code);
-
       return error.code;
     }
   }

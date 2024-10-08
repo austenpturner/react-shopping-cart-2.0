@@ -15,6 +15,7 @@ export default function useLogout() {
         dispatch(setUser(null));
         dispatch(clearCart());
         localStorage.removeItem("cart");
+        sessionStorage.removeItem("currentViewType");
         dispatch(clearFavoritesSlice());
       })
       .catch((error) => {

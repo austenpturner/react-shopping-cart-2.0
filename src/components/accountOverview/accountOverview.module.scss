@@ -6,3 +6,31 @@
     color: var(--dark-grey);
   }
 }
+
+.formContainer form {
+  @include flex-col(flex-start, flex-start, 5px);
+  @include breakpoint(medium) {
+    @include flex-row(flex-start, flex-end, 5px);
+  }
+  div {
+    width: min(100%, 400px);
+    @include breakpoint(medium) {
+      width: 200px;
+    }
+  }
+  button {
+    margin-top: 5px;
+    margin-left: min(100% - 70px, 330px);
+    width: 70px;
+    @include breakpoint(medium) {
+      margin: 5px 0 0 0;
+    }
+  }
+}
+
+.successMsg {
+  color: var(--success-green);
+  font-size: 13px;
+  font-style: italic;
+  margin: 0;
+}

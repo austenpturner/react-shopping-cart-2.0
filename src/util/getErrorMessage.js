@@ -34,6 +34,7 @@ const specificErrors = {
     "auth/invalid-password": "Incorrect password. Please try again.",
     "auth/missing-password": "Please enter your current password.",
   },
+  updateName: {},
 };
 
 export function getErrorMessage(errorCode, context) {

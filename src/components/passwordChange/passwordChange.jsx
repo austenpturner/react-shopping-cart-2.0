@@ -12,6 +12,7 @@ import styles from "./passwordChange.module.scss";
 import { getErrorMessage } from "../../util/getErrorMessage";
 import { isStrongPassword } from "../../util/isStrongPassword";
 import { FaCaretDown } from "react-icons/fa";
+import { PulseLoader } from "react-spinners";
 
 const initialState = {
   current: "",
@@ -34,6 +35,7 @@ export default function PasswordChange() {
 
   async function handlePasswordSubmit(e) {
     e.preventDefault();
+    if (loading) return;
     setSuccessMsg("");
     setErrorMsg("");
     if (passwordUpdate.new !== passwordUpdate.confirm) {
@@ -88,7 +90,7 @@ export default function PasswordChange() {
         />
         {errorMsg && <p className="error">{errorMsg}</p>}
         {successMsg && <p className={styles.successMsg}>{successMsg}</p>}
-        {loading && <p className="loading">Loading... </p>}
+        {loading && <PulseLoader color="#a0a0a0" size={5} />}
       </div>
     </>
   );

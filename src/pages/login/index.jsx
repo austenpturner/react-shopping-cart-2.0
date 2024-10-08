@@ -41,6 +41,7 @@ export default function LoginPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (loading) return;
     const { email, password } = userCredentials;
     let error;
     let result;
