@@ -82,12 +82,13 @@ export default function ProductImg({ product, parent }) {
       },
       details: {
         768: 300,
-        450: 400,
+        432: 400,
         default: width * 0.9,
       },
       quickShop: {
-        450: 300,
-        default: width * 0.7,
+        768: 300,
+        432: Math.min(width * 0.7 - 72, 320),
+        default: width * 0.8 - 72,
       },
     };
 

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styles from "./quickShop.module.scss";
 import Button from "../button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
@@ -14,9 +14,12 @@ export default function QuickShop({ product }) {
   const { state, uiDispatch } = useContext(UIContext);
   const buttonText = state.buttonText[product.id] || "Add to cart";
   const { handleAddToCart } = useCartActions();
+  const location = useLocation();
 
   function handleNavigateToDetails() {
-    navigate(`/product-details/${product.id}`);
+    navigate(`/product-details/${product.id}`, {
+      state: { from: location },
+    });
     uiDispatch({ type: "HIDE_MODAL" });
   }
 

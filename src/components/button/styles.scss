@@ -24,7 +24,7 @@ button {
   text-transform: uppercase;
 }
 
-.navigate,
+// .navigate,
 .back,
 .update,
 .dropDown,
@@ -92,6 +92,14 @@ button {
   @include flex-row(center, center, 6px);
   padding: 6px 10px;
   text-align: center;
+}
+
+.navigate {
+  background-color: var(--light-text);
+  border: 1px solid var(--medium-grey);
+  &:hover {
+    border-color: var(--dark-text);
+  }
 }
 
 .quickShop {

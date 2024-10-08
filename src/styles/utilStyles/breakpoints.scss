@@ -13,6 +13,10 @@ $breakpoints-down: (
   "large": "74.9375em",
 );
 
+$breakpoints-height: (
+  "mobile": "46em",
+);
+
 @mixin breakpoint($size) {
   @media (min-width: map-get($breakpoints-up, $size)) {
     @content;
@@ -21,6 +25,12 @@ $breakpoints-down: (
 
 @mixin breakpoint-down($size) {
   @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-height($size) {
+  @media (max-height: map-get($breakpoints-height, $size)) {
     @content;
   }
 }

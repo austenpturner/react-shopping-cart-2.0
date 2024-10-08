@@ -1,16 +1,14 @@
 @use "../../styles//utilStyles/" as *;
 
 .quickShopContainer {
-  @include flex-col(space-between, center, 20px);
+  @include flex-col(center, center, 10px);
+  margin: 0 auto;
+  max-width: 380px;
   @include breakpoint(medium) {
     @include flex-row(space-between, stretch, 20px);
+    max-width: none;
   }
-  padding: 50px 30px;
-  .quickShopImg {
-    background-color: var(--light-grey);
-    border-radius: 3px;
-    width: 300px;
-  }
+  padding: 36px;
   h4 {
     margin: 0;
   }
@@ -21,9 +19,21 @@
   }
   .detailsContainer {
     @include flex-col(space-between, stretch, 14px);
+    width: 100%;
+    @include breakpoint(medium) {
+      height: 300px;
+    }
     .description {
-      font-size: 13px;
+      font-size: 11.5px;
       line-height: 1.5;
+      margin-bottom: 10px;
+      @include breakpoint-height(mobile) {
+        display: none;
+      }
+      @include breakpoint(medium) {
+        font-size: 13px;
+        margin-bottom: none;
+      }
     }
     .rating {
       @include flex-row(flex-start, center, 10px);

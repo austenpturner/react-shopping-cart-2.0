@@ -2,10 +2,9 @@
 
 .imgContainer {
   position: relative;
-  width: 100%;
   span {
     background-color: var(--light-grey);
-    border-radius: 5px;
+    border-radius: 2px;
     display: block;
   }
   > button {

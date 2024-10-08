@@ -29,9 +29,12 @@ export default function Modal() {
   }
 
   return (
-    <div className={styles.modal} data-visible={isVisible ? true : false}>
+    <div
+      className={`${styles.modal} ${styles[type]}`}
+      data-visible={isVisible ? true : false}
+    >
       <Button handleAction={handleCloseModal} text="X" type="closeModal" />
-      <div className={styles.modalContent}>{renderModalContent()}</div>
+      {renderModalContent()}
     </div>
   );
 }
