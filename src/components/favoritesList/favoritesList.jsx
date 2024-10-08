@@ -3,6 +3,7 @@ import useFetchFavorites from "../../hooks/useFetchFavorites";
 import { useEffect, useState } from "react";
 import ProductCard from "../productCard";
 import styles from "./favoriteList.module.scss";
+import { PulseLoader } from "react-spinners";
 
 export default function FavoritesList() {
   const favoritesLoaded = useFetchFavorites();
@@ -36,7 +37,11 @@ export default function FavoritesList() {
   return (
     <>
       <h2 className="page-subheader">favorites</h2>
-      {loading ? <p>loading... </p> : favoritesList}
+      {loading ? (
+        <PulseLoader color="#a0a0a0" margin={1} size={8} />
+      ) : (
+        favoritesList
+      )}
     </>
   );
 }

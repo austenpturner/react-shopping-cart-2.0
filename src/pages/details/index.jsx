@@ -6,6 +6,7 @@ import usePageSetup from "../../hooks/usePageSetup";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import "./styles.scss";
 import { useEffect, useState } from "react";
+import { PulseLoader } from "react-spinners";
 
 export default function DetailsPage() {
   const params = useParams();
@@ -54,7 +55,7 @@ export default function DetailsPage() {
       </div>
 
       {loading ? (
-        <p className="loading-message">Loading... </p>
+        <PulseLoader color="#a0a0a0" margin={1} size={12} />
       ) : (
         getProductDetailContent()
       )}

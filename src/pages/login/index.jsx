@@ -12,6 +12,7 @@ import useCartSync from "../../hooks/useCartSync";
 import "./styles.scss";
 import useFavoriteActions from "../../hooks/useFavoriteActions";
 import { isStrongPassword } from "../../util/isStrongPassword";
+import { PulseLoader } from "react-spinners";
 
 const initialState = {
   name: "",
@@ -108,9 +109,10 @@ export default function LoginPage() {
           />
         </div>
       )}
-      <p className="login-page-error-message">
-        {errorMessage ? errorMessage : ""}
-      </p>
+      {errorMessage && (
+        <p className="login-page-error-message">{errorMessage}</p>
+      )}
+      {loading && <PulseLoader color="#a0a0a0" margin={0} size={8} />}
       <div
         className={!registerUser ? "register-btn-container" : "btn-container"}
       >

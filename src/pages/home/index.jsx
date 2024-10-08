@@ -2,6 +2,7 @@ import ProductCard from "../../components/productCard";
 import "./styles.scss";
 import useFetch from "../../hooks/useFetch";
 import usePageSetup from "../../hooks/usePageSetup";
+import { PulseLoader } from "react-spinners";
 
 export default function HomePage() {
   const { data, dataLoaded } = useFetch(`https://dummyjson.com/products/`);
@@ -24,7 +25,11 @@ export default function HomePage() {
   return (
     <div className="page-container home-page">
       <h1 className="page-header home-page-header">Products</h1>
-      {loading ? <p className="page-loading">Loading... </p> : productList}
+      {loading ? (
+        <PulseLoader color="#a0a0a0" margin={1} size={12} />
+      ) : (
+        productList
+      )}
     </div>
   );
 }

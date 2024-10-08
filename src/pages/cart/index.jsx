@@ -5,6 +5,7 @@ import useFetchCart from "../../hooks/useFetchCart";
 import { useNavigate } from "react-router-dom";
 import "./styles.scss";
 import Button from "../../components/button";
+import { PulseLoader } from "react-spinners";
 
 export default function CartPage() {
   const cartLoaded = useFetchCart();
@@ -13,8 +14,6 @@ export default function CartPage() {
   const cartTotal = useSelector((state) => state.cart.total);
   const cartItems = useSelector((state) => state.cart.items);
   const user = useSelector((state) => state.users.currentUser);
-
-  // console.log(cartLoaded, cartItems);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/cart" } });
@@ -76,7 +75,11 @@ export default function CartPage() {
   return (
     <div className="page-container cart-page">
       <h1 className="page-header cart-page-header">Cart</h1>
-      {loading ? <p className="page-loading">Loading... </p> : cartElements}
+      {loading ? (
+        <PulseLoader color="#a0a0a0" margin={1} size={12} />
+      ) : (
+        cartElements
+      )}
     </div>
   );
 }
