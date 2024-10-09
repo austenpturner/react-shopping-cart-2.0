@@ -87,14 +87,18 @@ export default function CommonForm({
           </div>
         );
       })}
-      <Button type="submit" text={btnText || "submit"} />
+      <Button
+        type="submit"
+        text={typeof btnText === "string" ? btnText : ""}
+        icon={typeof btnText === "object" ? btnText : ""}
+      />
     </form>
   );
 }
 
 CommonForm.propTypes = {
   formControls: PropTypes.array,
-  btnText: PropTypes.string,
+  btnText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   formData: PropTypes.object,
   onSubmit: PropTypes.func,
   setFormData: PropTypes.func,

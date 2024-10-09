@@ -1,7 +1,40 @@
 @use "../../styles//utilStyles/index" as *;
 
+.top-menu {
+  @include flex-row(space-between);
+  border-bottom: 1px solid var(--light-grey);
+  margin: 0 0 46px;
+  padding: 0 0 12px;
+  .category-list {
+    @include flex-row(flex-start, stretch, 10px);
+  }
+  form {
+    @include flex-row();
+    input {
+      border: none;
+      border-bottom: 1px solid var(--medium-grey);
+    }
+    button {
+      background-color: transparent;
+      padding: 2px 6px;
+      &:hover {
+        background-color: transparent;
+      }
+      svg {
+        height: 18px;
+        width: 18px;
+      }
+    }
+  }
+}
+
+.clear {
+  float: right;
+  margin-top: -36px;
+}
+
 .product-list {
-  @include flex-row-wrap(space-between, 10px);
+  @include flex-row-wrap(flex-start, 10px);
   list-style: none;
   padding: 0;
 }

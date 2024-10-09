@@ -7,6 +7,8 @@ export default function ProductCard({ product, parent }) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // console.log(product);
+
   return (
     <li className={`${styles.productCard} ${styles[parent]}`}>
       <ProductImg product={product} parent={parent} />
