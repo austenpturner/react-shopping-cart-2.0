@@ -28,11 +28,6 @@
   }
 }
 
-.clear {
-  float: right;
-  margin-top: -36px;
-}
-
 .product-list {
   @include flex-row-wrap(flex-start, 10px);
   list-style: none;

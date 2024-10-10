@@ -83,6 +83,7 @@ const initialState = {
     searchInProgress: false,
     searchResults: [],
   },
+  openMobileCategories: false,
 };
 
 export default function UIProvider({ children }) {

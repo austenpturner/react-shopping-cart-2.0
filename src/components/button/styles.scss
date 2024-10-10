@@ -100,9 +100,11 @@ button {
 .clear {
   @include flex-row(space-between, center, 3px);
   color: var(--darker-grey);
-  // font-style: italic;
   font-size: 13px;
   padding: 3px 6px 3px 8px;
+  position: absolute;
+  right: 0px;
+  top: 50px;
   svg {
     height: 20px;
     width: 20px;

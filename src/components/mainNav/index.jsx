@@ -6,6 +6,9 @@ import Button from "../button/index.jsx";
 import { useContext, useEffect, useState } from "react";
 import useWindowResize from "../../hooks/useWindowResize.js";
 import { UIContext } from "../../context/uiContext.jsx";
+import { mainNavItems } from "../../config/pages.js";
+// import HamburgerBtn from "../hamburgerBtn/hamburgerBtn.jsx";
+// import useToggleMobileNav from "../../hooks/useToggleMobileNav.js";
 
 export default function MainNav() {
   const loading = useAuth();
@@ -14,36 +17,13 @@ export default function MainNav() {
   const { state, uiDispatch } = useContext(UIContext);
   const [mobileNavOpen, setMobileNavOpen] = useState(state.openMobileNav);
   const { width } = useWindowResize();
-
-  const pages = [
-    {
-      name: "products",
-      link: "/",
-    },
-    {
-      name: "cart",
-      link: "/cart",
-    },
-    {
-      name: "account",
-      link: "/account",
-    },
-  ];
+  // const handleToggleMobileNav = useToggleMobileNav();
 
   function handleNavigate(page) {
     if (page.name === "account") {
       sessionStorage.setItem("currentViewType", "overview");
     }
-    handleToggleMobileNav();
-  }
-
-  function handleToggleMobileNav() {
-    if (width < 1024) {
-      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: !state.overlayVisible });
-      uiDispatch({ type: "TOGGLE_OVERLAY", payload: !state.overlayVisible });
-    } else {
-      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
-    }
+    // handleToggleMobileNav(width);
   }
 
   function handleShowLogoutConfirmation() {
@@ -56,12 +36,12 @@ export default function MainNav() {
     });
   }
 
-  function handleClick() {
+  function handleClickLogInOutBtn() {
     if (user) {
       handleShowLogoutConfirmation();
       uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
     } else {
-      handleToggleMobileNav();
+      // handleToggleMobileNav(width);
       navigate("/login");
     }
   }
@@ -81,63 +61,22 @@ export default function MainNav() {
 
   return (
     <div className={styles.mainNavContainer}>
-      <button
-        aria-label={
-          mobileNavOpen ? "close navigation menu" : "open navigation menu"
-        }
-        aria-expanded={mobileNavOpen}
-        aria-controls="mainNav"
-        className={styles.mobileNavBtn}
-        onClick={handleToggleMobileNav}
-        tabIndex={state.modal.isVisible ? "-1" : "0"}
-      >
-        <svg
-          className={styles.hamburger}
-          viewBox="0 0 100 100"
-          width="35"
-          aria-hidden="true"
-        >
-          <rect
-            className={`${styles.line} ${styles.line__top}`}
-            width="90"
-            height="10"
-            x="5"
-            y="25"
-            rx="5"
-          ></rect>
-          <rect
-            className={`${styles.line} ${styles.line__middle}`}
-            width="90"
-            height="10"
-            x="5"
-            y="45"
-            rx="5"
-          ></rect>
-          <rect
-            className={`${styles.line} ${styles.line__bottom}`}
-            width="90"
-            height="10"
-            x="5"
-            y="65"
-            rx="5"
-          ></rect>
-        </svg>
-      </button>
+      {/* <HamburgerBtn handleAction={handleToggleMobileNav} /> */}
       <nav>
         <ul
           className={styles.mainNav}
           id="mainNav"
-          data-visible={mobileNavOpen ? true : false}
+          // data-visible={mobileNavOpen ? true : false}
         >
-          {pages.map((page, index) => {
+          {mainNavItems.map((item) => {
             return (
               <Link
-                key={index}
-                onClick={() => handleNavigate(page)}
-                to={page.link}
+                key={item.id}
+                onClick={() => handleNavigate(item)}
+                to={item.link}
                 tabIndex={mobileNavOpen || width >= 1024 ? "0" : "-1"}
               >
-                {page.name}
+                {<item.icon />}
               </Link>
             );
           })}
@@ -146,7 +85,7 @@ export default function MainNav() {
               <button></button>
             ) : (
               <Button
-                handleAction={handleClick}
+                handleAction={handleClickLogInOutBtn}
                 text={user ? "Logout" : "Log in"}
                 type={user ? "logout" : "login"}
               />

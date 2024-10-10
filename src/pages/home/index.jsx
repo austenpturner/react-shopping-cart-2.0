@@ -70,7 +70,7 @@ export default function HomePage() {
 
   return (
     <div className="page-container home-page">
-      <h1 className="page-header home-page-header">Products</h1>
+      {/* <h1 className="page-header home-page-header">Products</h1> */}
       <div className="top-menu">
         <CategoryMenu />
         <SearchBar content={data?.products} />

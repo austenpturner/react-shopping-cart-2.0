@@ -6,6 +6,7 @@ import { UIContext } from "../../context/uiContext";
 import PropTypes from "prop-types";
 import Button from "../button";
 import { IoCloseOutline } from "react-icons/io5";
+import styles from "./searchBar.module.scss";
 
 export default function SearchBar({ content }) {
   const { state, uiDispatch } = useContext(UIContext);
@@ -57,8 +58,7 @@ export default function SearchBar({ content }) {
   }
 
   return (
-    <>
-      {" "}
+    <div className={styles.searchbar}>
       <CommonForm
         formControls={searchFormControls}
         formData={searchInput}
@@ -74,7 +74,7 @@ export default function SearchBar({ content }) {
           handleAction={handleClearSearch}
         />
       )}
-    </>
+    </div>
   );
 }
 
