@@ -48,6 +48,21 @@ function uiReducer(state, action) {
         },
         overlayVisible: false,
       };
+    case "UPDATE_CATEGORY":
+      return {
+        ...state,
+        selectedCategory: action.payload,
+      };
+    case "SEARCH_SUBMITTED":
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          searchSubmitted: action.payload.searchSubmitted,
+          searchInProgress: action.payload.searchInProgress,
+          searchResults: action.payload.searchResults,
+        },
+      };
     default:
       return state;
   }
@@ -61,6 +76,12 @@ const initialState = {
     isVisible: false,
     content: null,
     type: null,
+  },
+  selectedCategory: null,
+  search: {
+    searchSubmitted: "",
+    searchInProgress: false,
+    searchResults: [],
   },
 };
 

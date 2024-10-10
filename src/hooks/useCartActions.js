@@ -58,7 +58,7 @@ export default function useCartActions() {
     return { updatedCartItem, updatedItems };
   }
 
-  function handleAddToCart(product) {
+  async function handleAddToCart(product) {
     const { id, title, price, thumbnail } = product;
     const existingItem = cartItems.find((item) => item.id === id);
 
@@ -80,7 +80,7 @@ export default function useCartActions() {
     updateCartInFirestore(updatedItems);
   }
 
-  function handleUpdateQuantity(item, action) {
+  async function handleUpdateQuantity(item, action) {
     let newFirestoreCart;
 
     if (action === "increase") {
