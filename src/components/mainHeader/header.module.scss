@@ -6,12 +6,19 @@
   margin: 0 auto;
   max-width: 1024px;
   padding: 10px 20px 20px;
+  @include breakpoint(medium) {
+    padding: 10px 20px 30px;
+  }
 }
 
 .mainHeader h4 {
   cursor: pointer;
   font-size: 20px;
   font-weight: 500;
-  margin: 0;
+  margin: 0 0 0 calc(50% - 81px);
   text-transform: uppercase;
+  width: 162px;
+  @include breakpoint(large) {
+    margin: 0;
+  }
 }

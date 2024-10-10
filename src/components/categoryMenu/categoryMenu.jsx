@@ -2,15 +2,20 @@ import { useContext } from "react";
 import { categories } from "../../config/categories";
 import Button from "../button";
 import { UIContext } from "../../context/uiContext";
-// import HamburgerBtn from "../hamburgerBtn/hamburgerBtn";
+// import styles from "./categoryMenu.module.scss";
+import "./styles.scss";
+import HamburgerBtn from "../hamburgerBtn/hamburgerBtn";
 
 export default function CategoryMenu() {
   const { state, uiDispatch } = useContext(UIContext);
 
   return (
     <>
-      {/* <HamburgerBtn /> */}
-      <ul className="category-list">
+      <HamburgerBtn />
+      <ul
+        className="categoryMenu"
+        data-visible={state.openMobileNav ? true : false}
+      >
         {categories.map((category) => {
           return (
             <li

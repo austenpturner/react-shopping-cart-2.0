@@ -13,7 +13,7 @@ export default function HamburgerBtn() {
         state.openMobileNav ? "close navigation menu" : "open navigation menu"
       }
       aria-expanded={state.openMobileNav}
-      aria-controls="mainNav"
+      aria-controls="categoryMenu"
       className={styles.mobileNavBtn}
       onClick={() => handleToggleMobileNav()}
       tabIndex={state.modal.isVisible ? "-1" : "0"}

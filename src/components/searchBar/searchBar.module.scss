@@ -1,3 +1,24 @@
+@use "../../styles/utilStyles/" as *;
+
 .searchbar {
   position: relative;
+  form {
+    @include flex-row(flex-start, stretch, 5px);
+    input {
+      border: none;
+      border-bottom: 1px solid var(--medium-grey);
+      button {
+        background-color: transparent;
+        display: inline-block;
+        padding: 2px 6px;
+        &:hover {
+          background-color: transparent;
+        }
+        svg {
+          height: 18px;
+          width: 18px;
+        }
+      }
+    }
+  }
 }

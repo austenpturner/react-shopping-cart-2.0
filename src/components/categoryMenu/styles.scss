@@ -1,0 +1,22 @@
+@use "../../styles/utilStyles/" as *;
+
+.categoryMenu {
+  @include breakpoint-down(medium) {
+    @include flex-col(flex-start, flex-start, 20px);
+    background-color: var(--light-background);
+    padding: min(20vh, 120px) 8%;
+    position: fixed;
+    inset: 0 0 0 max(-50%, -250px);
+    width: min(50%, 250px);
+    transform: translateX(0%);
+    transition: transform 300ms ease-in-out;
+    z-index: 2000;
+    &[data-visible="true"] {
+      transform: translateX(100%);
+    }
+  }
+
+  @include breakpoint(large) {
+    @include flex-row(space-evenly, flex-start, 10px);
+  }
+}
