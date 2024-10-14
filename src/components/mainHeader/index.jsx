@@ -5,15 +5,15 @@ import styles from "./header.module.scss";
 export default function MainHeader() {
   const navigate = useNavigate();
 
-  function handleNavigate(event) {
-    if (event.key === "Enter") {
-      navigate("/");
-    }
-  }
-
   return (
     <header className={styles.mainHeader}>
-      <h4 tabIndex="0" onKeyDown={handleNavigate} onClick={() => navigate("/")}>
+      <h4
+        tabIndex="0"
+        onKeyDown={(e) => {
+          e.key === "Enter" && navigate("/");
+        }}
+        onClick={() => navigate("/")}
+      >
         React Cart App
       </h4>
       <MainNav />

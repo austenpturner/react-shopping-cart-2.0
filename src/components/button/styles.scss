@@ -31,7 +31,6 @@ button {
 .confirmation,
 .login,
 .submit,
-.logout,
 .register {
   background-color: var(--light-grey);
   &:hover {
@@ -85,6 +84,16 @@ button {
 
 .back {
   padding: 4px 16px;
+}
+
+.logout {
+  background-color: transparent;
+  font-size: 13px;
+  padding: 0;
+  width: 100%;
+  @include breakpoint(medium) {
+    text-align: left;
+  }
 }
 
 .closeModal,

@@ -4,14 +4,10 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import "./styles.scss";
-import AccountOverview from "../../components/accountOverview/accountOverview";
-import FavoritesList from "../../components/favoritesList/favoritesList";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import useWindowResize from "../../hooks/useWindowResize";
-import PasswordChange from "../../components/passwordChange/passwordChange";
-import Orders from "../../components/orders/orders";
-import Reviews from "../../components/reviews/reviews";
 import { UIContext } from "../../context/uiContext";
+import { views } from "../../config/accountViews";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -23,6 +19,7 @@ export default function AccountPage() {
   const [showViewTypes, setShowViewTypes] = useState(false);
   const { width } = useWindowResize();
   const { state } = useContext(UIContext);
+  const { uiDispatch } = useContext(UIContext);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
@@ -36,6 +33,28 @@ export default function AccountPage() {
     }
   }
 
+  function handleShowLogoutConfirmation() {
+    uiDispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        content: null,
+        type: "logoutConfirmation",
+      },
+    });
+  }
+
+  function handleClickLogInOutBtn() {
+    if (width < 768) {
+      setShowViewTypes(false);
+    }
+    if (user) {
+      handleShowLogoutConfirmation();
+      uiDispatch({ type: "TOGGLE_MOBILE_NAV", payload: false });
+    } else {
+      navigate("/login");
+    }
+  }
+
   useEffect(() => {
     if (width >= 768) {
       setShowViewTypes(true);
@@ -44,32 +63,12 @@ export default function AccountPage() {
     }
   }, [width]);
 
-  const views = [
-    {
-      name: "overview",
-      component: <AccountOverview />,
-    },
-    {
-      name: "password",
-      component: <PasswordChange />,
-    },
-    {
-      name: "orders",
-      component: <Orders />,
-    },
-    {
-      name: "review",
-      component: <Reviews />,
-    },
-    {
-      name: "favorites",
-      component: <FavoritesList />,
-    },
-  ];
-
-  const currentView = views.find(
-    (view) => view.name === currentViewType
-  )?.component;
+  function getCurrentView() {
+    const CurrentView = views.find(
+      (view) => view.name === currentViewType
+    )?.component;
+    return <CurrentView />;
+  }
 
   const pageContent = (
     <>
@@ -116,11 +115,22 @@ export default function AccountPage() {
                   </li>
                 );
               })}
+              <li>
+                {loading ? (
+                  <button></button>
+                ) : (
+                  <Button
+                    handleAction={handleClickLogInOutBtn}
+                    text={"sign out"}
+                    type={"logout"}
+                  />
+                )}
+              </li>
             </ul>
           ) : (
             ""
           )}
-          <div className="current-view">{currentView}</div>
+          <div className="current-view">{getCurrentView()}</div>
         </div>
       )}
     </>
