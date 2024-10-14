@@ -1,13 +1,10 @@
 @use "../../styles//utilStyles/index" as *;
 
-.top-menu {
+.search-container {
   @include flex-row(flex-end);
   border-bottom: 1px solid var(--light-grey);
   margin: 0 0 46px;
   padding: 0 0 12px;
-  @include breakpoint(large) {
-    @include flex-row(space-between);
-  }
 }
 
 .product-list {

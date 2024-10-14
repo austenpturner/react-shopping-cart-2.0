@@ -4,7 +4,6 @@ import useFetch from "../../hooks/useFetch";
 import usePageSetup from "../../hooks/usePageSetup";
 import { PulseLoader } from "react-spinners";
 import { useContext } from "react";
-import CategoryMenu from "../../components/categoryMenu/categoryMenu";
 import { UIContext } from "../../context/uiContext";
 import SearchBar from "../../components/searchBar/searchBar";
 
@@ -70,9 +69,7 @@ export default function HomePage() {
 
   return (
     <div className="page-container home-page">
-      {/* <h1 className="page-header home-page-header">Products</h1> */}
-      <div className="top-menu">
-        <CategoryMenu />
+      <div className="search-container">
         <SearchBar content={data?.products} />
       </div>
       {renderProducts()}

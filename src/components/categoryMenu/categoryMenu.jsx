@@ -2,18 +2,23 @@ import { useContext, useEffect } from "react";
 import { categories } from "../../config/categories";
 import Button from "../button";
 import { UIContext } from "../../context/uiContext";
-// import styles from "./categoryMenu.module.scss";
 import "./styles.scss";
 import HamburgerBtn from "../hamburgerBtn/hamburgerBtn";
 import useWindowResize from "../../hooks/useWindowResize";
 import useToggleMobileMenu from "../../hooks/useToggleMobileMenu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function CategoryMenu() {
   const { state, uiDispatch } = useContext(UIContext);
   const { width } = useWindowResize();
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleToggleMobileMenu = useToggleMobileMenu();
 
   function handleCategoryClick(category) {
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
     uiDispatch({
       type: "UPDATE_CATEGORY",
       payload: category.filter,
