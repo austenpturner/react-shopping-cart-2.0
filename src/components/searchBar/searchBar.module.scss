@@ -1,12 +1,22 @@
 @use "../../styles/utilStyles/" as *;
 
 .searchbar {
-  position: relative;
+  @include breakpoint-down(medium) {
+    width: 100%;
+  }
   form {
-    @include flex-row(flex-start, stretch, 5px);
+    @include flex-row(center, stretch, 5px);
     input {
       border: none;
       border-bottom: 1px solid var(--medium-grey);
+      @include breakpoint-down(medium) {
+        width: calc(100vw - 90px);
+      }
+      &::placeholder {
+        font-size: 13px;
+        font-style: italic;
+        text-transform: capitalize;
+      }
       button {
         background-color: transparent;
         display: inline-block;

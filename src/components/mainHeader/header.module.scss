@@ -1,24 +1,43 @@
 @use "../../styles//utilStyles/" as *;
 
 .mainHeader {
-  @include flex-row(space-between, center);
   background-color: var(--light-background);
-  margin: 0 auto;
+  border-bottom: 1px solid var(--lighter-grey);
+  margin: 0 auto 20px;
   max-width: 1024px;
-  padding: 10px 20px 20px;
-  @include breakpoint(medium) {
-    padding: 10px 20px 30px;
+  width: 100vw;
+  .topRow {
+    @include flex-row(space-between, center);
+    padding: 10px 20px 5px;
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
+  .bottomRow {
+    @include flex-row(flex-end);
+    padding: 5px 20px 12px;
+    width: 100%;
+    @include breakpoint(large) {
+      @include flex-row(space-between, center);
+    }
   }
 }
 
 .mainHeader h4 {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
-  margin: 0 0 0 calc(50% - 81px);
+  margin: 0 0 0 calc(50% - 65px);
   text-transform: uppercase;
-  width: 162px;
+  width: 130px;
+  @include breakpoint(medium) {
+    font-size: 20px;
+    margin: 0 0 0 calc(50% - 85px);
+    width: 170px;
+  }
   @include breakpoint(large) {
+    font-size: 24px;
     margin: 0;
+    width: 100%;
   }
 }

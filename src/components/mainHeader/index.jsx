@@ -4,6 +4,7 @@ import styles from "./header.module.scss";
 import CategoryMenu from "../categoryMenu/categoryMenu";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
+import SearchBar from "../searchBar/searchBar";
 
 export default function MainHeader() {
   const navigate = useNavigate();
@@ -23,17 +24,22 @@ export default function MainHeader() {
 
   return (
     <header className={styles.mainHeader}>
-      <CategoryMenu />
-      <h4
-        tabIndex="0"
-        onKeyDown={(e) => {
-          e.key === "Enter" && handleNavigate();
-        }}
-        onClick={() => handleNavigate()}
-      >
-        React Cart App
-      </h4>
-      <MainNav />
+      <div className={styles.topRow}>
+        <h4
+          tabIndex="0"
+          onKeyDown={(e) => {
+            e.key === "Enter" && handleNavigate();
+          }}
+          onClick={() => handleNavigate()}
+        >
+          React Cart App
+        </h4>
+        <MainNav />
+      </div>
+      <div className={styles.bottomRow}>
+        <CategoryMenu />
+        <SearchBar />
+      </div>
     </header>
   );
 }

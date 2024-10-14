@@ -5,7 +5,7 @@ import usePageSetup from "../../hooks/usePageSetup";
 import { PulseLoader } from "react-spinners";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
-import SearchBar from "../../components/searchBar/searchBar";
+// import SearchBar from "../../components/searchBar/searchBar";
 
 export default function HomePage() {
   const { data, dataLoaded } = useFetch(`https://dummyjson.com/products/`);
@@ -69,9 +69,9 @@ export default function HomePage() {
 
   return (
     <div className="page-container home-page">
-      <div className="search-container">
-        <SearchBar content={data?.products} />
-      </div>
+      {/* <div className="search-container">
+        <SearchBar />
+      </div> */}
       {renderProducts()}
     </div>
   );

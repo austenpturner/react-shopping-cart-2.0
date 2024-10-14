@@ -7,8 +7,10 @@ import PropTypes from "prop-types";
 import Button from "../button";
 import { IoCloseOutline } from "react-icons/io5";
 import styles from "./searchBar.module.scss";
+import useFetch from "../../hooks/useFetch";
 
-export default function SearchBar({ content }) {
+export default function SearchBar() {
+  const { data } = useFetch(`https://dummyjson.com/products/`);
   const { state, uiDispatch } = useContext(UIContext);
   const [searchInput, setSearchInput] = useState({});
 
@@ -29,7 +31,7 @@ export default function SearchBar({ content }) {
         searchResults: state.search.searchResults,
       },
     });
-    const matches = content.filter((product) => {
+    const matches = data?.products.filter((product) => {
       const lowerCaseTitle = product.title.toLowerCase();
       const lowerCaseSearch = searchInput.searchTerm.toLowerCase();
       return lowerCaseTitle.includes(lowerCaseSearch);

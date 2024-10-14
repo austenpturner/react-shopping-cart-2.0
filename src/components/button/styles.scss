@@ -103,9 +103,22 @@ button {
   padding: 2px;
 }
 
-.mainNav svg {
-  height: 18px;
-  width: 18px;
+.mainNav {
+  padding: 4px;
+  &:hover {
+    background-color: var(--lighter-grey);
+  }
+  @include breakpoint(medium) {
+    padding: 4px 8px;
+  }
+  svg {
+    height: 18px;
+    width: 18px;
+    @include breakpoint(medium) {
+      height: 20px;
+      width: 20px;
+    }
+  }
 }
 
 .closeModal svg {
