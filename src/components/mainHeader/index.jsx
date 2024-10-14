@@ -4,9 +4,18 @@ import styles from "./header.module.scss";
 
 export default function MainHeader() {
   const navigate = useNavigate();
+
+  function handleNavigate(event) {
+    if (event.key === "Enter") {
+      navigate("/");
+    }
+  }
+
   return (
     <header className={styles.mainHeader}>
-      <h4 onClick={() => navigate("/")}>React Cart App</h4>
+      <h4 tabIndex="0" onKeyDown={handleNavigate} onClick={() => navigate("/")}>
+        React Cart App
+      </h4>
       <MainNav />
     </header>
   );

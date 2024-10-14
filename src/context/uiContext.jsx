@@ -18,10 +18,10 @@ function uiReducer(state, action) {
         ...state,
         buttonText: initialState.buttonText,
       };
-    case "TOGGLE_MOBILE_NAV":
+    case "TOGGLE_MOBILE_CATEGORY_MENU":
       return {
         ...state,
-        openMobileNav: action.payload,
+        openMobileCategoryMenu: action.payload,
       };
     case "TOGGLE_OVERLAY":
       return {
@@ -70,7 +70,7 @@ function uiReducer(state, action) {
 
 const initialState = {
   buttonText: {},
-  openMobileNav: false,
+  // openMobileNav: false,
   overlayVisible: false,
   modal: {
     isVisible: false,
@@ -83,7 +83,7 @@ const initialState = {
     searchInProgress: false,
     searchResults: [],
   },
-  openMobileCategories: false,
+  openMobileCategoryMenu: false,
 };
 
 export default function UIProvider({ children }) {

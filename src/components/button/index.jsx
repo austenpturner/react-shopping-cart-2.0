@@ -18,9 +18,9 @@ export default function Button({
       return "0";
     } else if (state.overlayVisible && type === "closeModal") {
       return "0";
-    } else if (type === "logout" && !state.openMobileNav) {
+    } else if (!state.openMobileCategoryMenu && type === "filter") {
       return "-1";
-    } else if (state.openMobileNav && type !== "logout") {
+    } else if (state.openMobileCategoryMenu && type !== "filter") {
       return "-1";
     } else {
       return "0";

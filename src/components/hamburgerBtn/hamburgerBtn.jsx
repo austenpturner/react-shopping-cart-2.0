@@ -1,21 +1,23 @@
 import { useContext } from "react";
 import styles from "./hamburgerBtn.module.scss";
 import { UIContext } from "../../context/uiContext";
-import useToggleMobileNav from "../../hooks/useToggleMobileNav";
+import useToggleMobileMenu from "../../hooks/useToggleMobileMenu";
 
 export default function HamburgerBtn() {
   const { state } = useContext(UIContext);
-  const handleToggleMobileNav = useToggleMobileNav();
+  const handleToggleMobileMenu = useToggleMobileMenu();
 
   return (
     <button
       aria-label={
-        state.openMobileNav ? "close navigation menu" : "open navigation menu"
+        state.openMobileCategoryMenu
+          ? "close category menu"
+          : "open category menu"
       }
-      aria-expanded={state.openMobileNav}
+      aria-expanded={state.openMobileCategoryMenu}
       aria-controls="categoryMenu"
       className={styles.mobileNavBtn}
-      onClick={() => handleToggleMobileNav()}
+      onClick={() => handleToggleMobileMenu()}
       tabIndex={state.modal.isVisible ? "-1" : "0"}
     >
       <svg

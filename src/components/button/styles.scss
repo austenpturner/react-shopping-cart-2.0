@@ -87,14 +87,21 @@ button {
   padding: 4px 16px;
 }
 
-.closeModal {
+.closeModal,
+.mainNav {
   background-color: transparent;
   color: var(--darker-grey);
   padding: 2px;
-  svg {
-    height: 32px;
-    width: 32px;
-  }
+}
+
+.mainNav svg {
+  height: 18px;
+  width: 18px;
+}
+
+.closeModal svg {
+  height: 32px;
+  width: 32px;
 }
 
 .clear {
