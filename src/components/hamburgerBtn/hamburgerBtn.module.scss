@@ -18,9 +18,7 @@
     }
   }
   &[aria-expanded="true"] {
-    background-color: var(--medium-grey);
     .hamburger > .line {
-      fill: #fff;
       &__top,
       &__bottom {
         y: 45;

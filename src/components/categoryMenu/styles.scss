@@ -2,7 +2,7 @@
 
 .categoryMenu {
   @include breakpoint-down(medium) {
-    @include flex-col(flex-start, flex-start, 20px);
+    @include flex-col(flex-start, flex-start, 24px);
     background-color: var(--light-background);
     padding: min(20vh, 120px) 8%;
     position: fixed;
@@ -17,6 +17,6 @@
   }
 
   @include breakpoint(large) {
-    @include flex-row(space-evenly, flex-start, 10px);
+    @include flex-row(space-evenly, flex-start, 16px);
   }
 }
