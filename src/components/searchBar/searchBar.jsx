@@ -9,6 +9,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import styles from "./searchBar.module.scss";
 import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
+import useFetchSearchMatches from "../../hooks/useFetchSearchMatches";
 
 export default function SearchBar() {
   const { data } = useFetch(`https://dummyjson.com/products/`);
@@ -16,6 +17,7 @@ export default function SearchBar() {
   const [searchInput, setSearchInput] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
+  const getSearchMatches = useFetchSearchMatches();
 
   function handleSearch(e) {
     setSearchInput({
@@ -37,11 +39,9 @@ export default function SearchBar() {
         searchResults: state.search.searchResults,
       },
     });
-    const matches = data?.products.filter((product) => {
-      const lowerCaseTitle = product.title.toLowerCase();
-      const lowerCaseSearch = searchInput.searchTerm.toLowerCase();
-      return lowerCaseTitle.includes(lowerCaseSearch);
-    });
+
+    const matches = getSearchMatches(searchInput.searchTerm, data);
+
     uiDispatch({
       type: "SEARCH_SUBMITTED",
       payload: {
