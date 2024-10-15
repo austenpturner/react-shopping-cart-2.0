@@ -16,8 +16,8 @@ export default function CategoryMenu() {
   const handleToggleMobileMenu = useToggleMobileMenu();
 
   function handleCategoryClick(category) {
-    if (location.pathname !== "/") {
-      navigate("/");
+    if (location.pathname !== "/products") {
+      navigate("/products");
     }
     uiDispatch({
       type: "UPDATE_CATEGORY",

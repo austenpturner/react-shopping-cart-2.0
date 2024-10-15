@@ -28,8 +28,8 @@ export default function SearchBar() {
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
-    if (location.pathname !== "/") {
-      navigate("/");
+    if (location.pathname !== "/products") {
+      navigate("/products");
     }
     uiDispatch({
       type: "SEARCH_SUBMITTED",
