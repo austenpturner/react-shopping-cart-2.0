@@ -4,7 +4,7 @@ import usePageSetup from "../../hooks/usePageSetup";
 import "./styles.scss";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Button from "../../components/button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 
@@ -13,6 +13,7 @@ export default function HomePage() {
   const { loading } = usePageSetup(data?.products?.length > 0, dataLoaded);
   const navigate = useNavigate();
   const { uiDispatch } = useContext(UIContext);
+  const location = useLocation();
 
   function handleNavigateCategory(category) {
     uiDispatch({ type: "UPDATE_CATEGORY", payload: category });
@@ -22,7 +23,15 @@ export default function HomePage() {
   const homePageContent = (
     <div>
       <div className="hero">
-        <img src={data?.products[0].thumbnail} alt={data?.products[0].title} />
+        <img
+          src={data?.products[0].thumbnail}
+          alt={data?.products[0].title}
+          onClick={() =>
+            navigate(`/product-details/${data?.products[0].id}`, {
+              state: { from: location },
+            })
+          }
+        />
         <div>
           <h2>New Beauty Products</h2>
           <Button
@@ -48,6 +57,11 @@ export default function HomePage() {
                   src={product.thumbnail}
                   alt={product.title}
                   key={product.id}
+                  onClick={() =>
+                    navigate(`/product-details/${product.id}`, {
+                      state: { from: location },
+                    })
+                  }
                 />
               );
             }
@@ -60,6 +74,11 @@ export default function HomePage() {
             <img
               src={data?.products[29].thumbnail}
               alt={data?.products[29].title}
+              onClick={() =>
+                navigate(`/product-details/${data?.products[29].id}`, {
+                  state: { from: location },
+                })
+              }
             />
           </div>
           <div className="text-container">
@@ -86,6 +105,11 @@ export default function HomePage() {
             <img
               src={data?.products[7].thumbnail}
               alt={data?.products[7].title}
+              onClick={() =>
+                navigate(`/product-details/${data?.products[7].id}`, {
+                  state: { from: location },
+                })
+              }
             />
           </div>
         </div>
