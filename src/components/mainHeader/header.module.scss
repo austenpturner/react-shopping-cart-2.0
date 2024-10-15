@@ -8,17 +8,27 @@
   width: 100vw;
   .topRow {
     @include flex-row(space-between, center);
-    padding: 10px 20px 5px;
+    padding: 10px 10px 5px;
     @include breakpoint(medium) {
       width: 100%;
+    }
+    @include breakpoint(medium) {
+      padding: 10px 10px 5px;
+    }
+    @include breakpoint(medium) {
+      padding: 10px 0px 5px;
     }
   }
   .bottomRow {
     @include flex-row(flex-end);
-    padding: 5px 20px 12px;
+    padding: 5px 15px 12px;
     width: 100%;
-    @include breakpoint(large) {
+    @include breakpoint(medium) {
       @include flex-row(space-between, center);
+      padding: 5px 10px 12px 10px;
+    }
+    @include breakpoint(large) {
+      padding: 5px 0px 12px;
     }
   }
 }

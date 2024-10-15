@@ -9,4 +9,7 @@
   margin: 0 auto 50px;
   max-width: 1024px;
   padding: 0 20px;
+  @include breakpoint(large) {
+    padding: 0;
+  }
 }

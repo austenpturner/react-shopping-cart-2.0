@@ -6,12 +6,15 @@
     width: 100%;
   }
   form {
-    @include flex-row(center, stretch, 5px);
+    @include flex-row(flex-end, stretch, 10px);
+    @include breakpoint(large) {
+      @include flex-row(flex-start, stretch, 10px);
+    }
     input {
       border: none;
       border-bottom: 1px solid var(--medium-grey);
       @include breakpoint-down(medium) {
-        width: calc(100vw - 85px);
+        width: calc(100vw - 80px);
       }
       &::placeholder {
         font-size: 13px;
