@@ -63,6 +63,11 @@ function uiReducer(state, action) {
           searchResults: action.payload.searchResults,
         },
       };
+    case "UPDATE_ACCOUNT_VIEW_TYPE":
+      return {
+        ...state,
+        currentAccountViewType: action.payload,
+      };
     default:
       return state;
   }
@@ -70,7 +75,6 @@ function uiReducer(state, action) {
 
 const initialState = {
   buttonText: {},
-  // openMobileNav: false,
   overlayVisible: false,
   modal: {
     isVisible: false,
@@ -84,6 +88,7 @@ const initialState = {
     searchResults: [],
   },
   openMobileCategoryMenu: false,
+  currentAccountViewType: "overview",
 };
 
 export default function UIProvider({ children }) {

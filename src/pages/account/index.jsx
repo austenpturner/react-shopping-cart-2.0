@@ -13,21 +13,20 @@ export default function AccountPage() {
   const navigate = useNavigate();
   const loading = useAuth();
   const user = useSelector((state) => state.users.currentUser);
-  const [currentViewType, setCurrentViewType] = useState(() => {
-    return sessionStorage.getItem("currentViewType") || "overview";
-  });
   const [showViewTypes, setShowViewTypes] = useState(false);
   const { width } = useWindowResize();
-  const { state } = useContext(UIContext);
-  const { uiDispatch } = useContext(UIContext);
+  const { state, uiDispatch } = useContext(UIContext);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
   }
 
   function handleChangeView(name) {
-    setCurrentViewType(name);
-    sessionStorage.setItem("currentViewType", name);
+    uiDispatch({
+      type: "UPDATE_ACCOUNT_VIEW_TYPE",
+      payload: name,
+    });
+    sessionStorage.setItem("currentAccountViewType", name);
     if (width < 768) {
       setShowViewTypes(false);
     }
@@ -63,11 +62,27 @@ export default function AccountPage() {
     }
   }, [width]);
 
-  function getCurrentView() {
-    const CurrentView = views.find(
-      (view) => view.name === currentViewType
-    )?.component;
+  function getViewComponent(viewType) {
+    const CurrentView = views.find((view) => view.name === viewType)?.component;
     return <CurrentView />;
+  }
+
+  function getCurrentView() {
+    const savedView = sessionStorage.getItem("currentAccountViewType");
+    if (savedView) {
+      return getViewComponent(savedView);
+    } else {
+      return getViewComponent(state.currentAccountViewType);
+    }
+  }
+
+  function getCurrentViewType() {
+    const savedViewType = sessionStorage.getItem("currentAccountViewType");
+    if (savedViewType) {
+      return savedViewType;
+    } else {
+      return state.currentAccountViewType;
+    }
   }
 
   const pageContent = (
@@ -91,7 +106,7 @@ export default function AccountPage() {
               e.key === "Enter" && setShowViewTypes(!showViewTypes)
             }
           >
-            <span>{currentViewType}</span>
+            <span>{getCurrentViewType()}</span>
             {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
           </p>
           {showViewTypes ? (
@@ -103,7 +118,7 @@ export default function AccountPage() {
                     tabIndex={state.overlayVisible ? "-1" : "0"}
                     onClick={() => handleChangeView(view.name)}
                     className={
-                      currentViewType === view.name && width >= 768
+                      getCurrentViewType() === view.name && width >= 768
                         ? "current"
                         : ""
                     }
