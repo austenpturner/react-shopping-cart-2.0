@@ -3,7 +3,7 @@ export const searchFormControls = [
     label: "",
     id: "search",
     name: "searchTerm",
-    placeholder: "search... ",
+    placeholder: "Search products... ",
     componentType: "input",
     type: "text",
   },

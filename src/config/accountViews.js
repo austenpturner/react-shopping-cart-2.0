@@ -18,7 +18,7 @@ export const views = [
     component: Orders,
   },
   {
-    name: "review",
+    name: "reviews",
     component: Reviews,
   },
   {

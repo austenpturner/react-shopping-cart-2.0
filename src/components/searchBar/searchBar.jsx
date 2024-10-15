@@ -8,11 +8,14 @@ import Button from "../button";
 import { IoCloseOutline } from "react-icons/io5";
 import styles from "./searchBar.module.scss";
 import useFetch from "../../hooks/useFetch";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
   const { data } = useFetch(`https://dummyjson.com/products/`);
   const { state, uiDispatch } = useContext(UIContext);
   const [searchInput, setSearchInput] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
   function handleSearch(e) {
     setSearchInput({
@@ -23,6 +26,9 @@ export default function SearchBar() {
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
     uiDispatch({
       type: "SEARCH_SUBMITTED",
       payload: {

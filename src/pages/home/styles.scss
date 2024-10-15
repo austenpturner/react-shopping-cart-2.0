@@ -10,5 +10,6 @@
 .product-list {
   @include flex-row-wrap(flex-start, 10px);
   list-style: none;
+  margin-top: 50px;
   padding: 0;
 }

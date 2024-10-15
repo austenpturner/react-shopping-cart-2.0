@@ -1,6 +1,7 @@
 @use "../../styles/utilStyles/" as *;
 
 .searchbar {
+  position: relative;
   @include breakpoint-down(medium) {
     width: 100%;
   }
@@ -10,12 +11,11 @@
       border: none;
       border-bottom: 1px solid var(--medium-grey);
       @include breakpoint-down(medium) {
-        width: calc(100vw - 90px);
+        width: calc(100vw - 85px);
       }
       &::placeholder {
         font-size: 13px;
         font-style: italic;
-        text-transform: capitalize;
       }
       button {
         background-color: transparent;
