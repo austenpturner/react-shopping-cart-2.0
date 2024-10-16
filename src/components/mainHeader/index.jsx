@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import MainNav from "../mainNav";
 import styles from "./header.module.scss";
-import CategoryMenu from "../categoryMenu/categoryMenu";
+import CategoryMenu from "../categoryMenu";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
-import SearchBar from "../searchBar/searchBar";
+import SearchBar from "../searchBar";
 
 export default function MainHeader() {
   const navigate = useNavigate();

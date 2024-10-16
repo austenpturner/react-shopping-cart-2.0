@@ -3,9 +3,9 @@ import Button from "../button";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import styles from "./modal.module.scss";
-import QuickShop from "../quickShop/quickShop";
-import LoginRequest from "../loginRequest/loginRequest";
-import LogoutConfirmation from "../logoutConfirmation/logoutConfirmation";
+import QuickShop from "../quickShop";
+import LoginRequest from "../loginRequest";
+import LogoutConfirmation from "../logoutConfirmation";
 import { IoCloseOutline } from "react-icons/io5";
 
 export default function Modal() {

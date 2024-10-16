@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import { UIContext } from "../../context/uiContext";
 import useCartActions from "../../hooks/useCartActions";
-import ProductImg from "../productImg/productImg";
+import ProductImg from "../productImg";
 
 export default function ProductDetails({ product }) {
   const { state } = useContext(UIContext);

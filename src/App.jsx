@@ -10,7 +10,7 @@ import DetailsPage from "./pages/details";
 import CartPage from "./pages/cart";
 import LoginPage from "./pages/login";
 import AccountPage from "./pages/account";
-import ErrorPage from "./pages/error/error";
+import ErrorPage from "./pages/error";
 import ProductPage from "./pages/products";
 import PlaceholderPage from "./pages/placeholder";
 

@@ -3,7 +3,7 @@ import { categories } from "../../config/categories";
 import Button from "../button";
 import { UIContext } from "../../context/uiContext";
 import "./styles.scss";
-import HamburgerBtn from "../hamburgerBtn/hamburgerBtn";
+import HamburgerBtn from "../hamburgerBtn";
 import useWindowResize from "../../hooks/useWindowResize";
 import useToggleMobileMenu from "../../hooks/useToggleMobileMenu";
 import { useLocation, useNavigate } from "react-router-dom";
