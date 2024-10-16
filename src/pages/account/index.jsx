@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./styles.scss";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import useWindowResize from "../../hooks/useWindowResize";
@@ -16,6 +16,26 @@ export default function AccountPage() {
   const [showViewTypes, setShowViewTypes] = useState(false);
   const { width } = useWindowResize();
   const { state, uiDispatch } = useContext(UIContext);
+
+  const viewTypeRef = useRef(null);
+  const viewListRef = useRef(null);
+
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (
+        showViewTypes &&
+        viewListRef.current &&
+        !viewListRef.current.contains(event.target) &&
+        !viewTypeRef.current.contains(event.target)
+      ) {
+        setShowViewTypes(false);
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [showViewTypes]);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
@@ -105,12 +125,13 @@ export default function AccountPage() {
             onKeyDown={(e) =>
               e.key === "Enter" && setShowViewTypes(!showViewTypes)
             }
+            ref={viewTypeRef}
           >
             <span>{getCurrentViewType()}</span>
             {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
           </p>
           {showViewTypes ? (
-            <ul className="view-list">
+            <ul className="view-list" ref={viewListRef}>
               {views.map((view, index) => {
                 return (
                   <li

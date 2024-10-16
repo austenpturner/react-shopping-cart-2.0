@@ -140,7 +140,7 @@ export default function LoginPage() {
   );
 
   return (
-    <div className="login-page-component">
+    <div className="page-container login-page-component">
       <h1 className="page-header">{`${
         registerUser ? "Register" : "Log In"
       }:`}</h1>
