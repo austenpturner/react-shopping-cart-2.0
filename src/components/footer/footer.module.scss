@@ -4,10 +4,10 @@
   background-color: var(--light-background);
   padding: 60px 0 10px;
   @include breakpoint(medium) {
-    padding: 60px 0 30px;
+    padding: 60px 0 20px;
   }
   @include breakpoint(large) {
-    padding: 80px 0 30px;
+    padding: 100px 0 20px;
   }
   ul {
     @include flex-row(center, center, 10px);
@@ -15,7 +15,7 @@
       @include flex-row(center, center, 30px);
     }
     @include breakpoint(large) {
-      @include flex-row(center, center, 50px);
+      @include flex-row(center, center, 40px);
     }
   }
 }

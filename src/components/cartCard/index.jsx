@@ -29,8 +29,8 @@ export default function CartCard({ item }) {
           src={thumbnail}
           alt={title}
           effect="blur"
-          width={80}
-          height={80}
+          width={100}
+          height={100}
           className={styles.image}
           tabIndex={state.overlayVisible ? "-1" : "0"}
           onClick={() =>

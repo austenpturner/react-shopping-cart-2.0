@@ -3,14 +3,18 @@
 .cartCard {
   border: 1px solid var(--light-grey);
   border-radius: 1px;
-  @include flex-row-wrap(space-between, 10px);
-  height: 100px;
+  @include breakpoint(medium) {
+    @include flex-row(space-between, stretch);
+    height: 116px;
+  }
   margin: 5px auto;
   padding: 8px;
 }
 
 .col {
-  width: 30%;
+  @include breakpoint(medium) {
+    width: 50%;
+  }
 }
 
 .title,
@@ -22,6 +26,10 @@
 
 .itemDetailsContainer {
   @include flex-row(left, flex-start);
+  max-width: 70%;
+  @include breakpoint(medium) {
+    max-width: 100%;
+  }
   img,
   .title {
     cursor: pointer;
@@ -40,7 +48,12 @@
 }
 
 .itemQuantityContainer {
-  @include flex-row(center, flex-start);
+  @include flex-row(flex-end);
+  margin-top: -100px;
+  @include breakpoint(medium) {
+    @include flex-row(center, flex-start);
+    margin: 0;
+  }
   .quantity {
     margin: 4px 6px 0 0;
   }
@@ -52,5 +65,10 @@
 }
 
 .itemPriceContainer {
-  @include flex-col(space-between, flex-end);
+  @include flex-col(flex-end, flex-end, 5px);
+  margin-top: 20px;
+  @include breakpoint(medium) {
+    @include flex-col(space-between, flex-end);
+    margin: 0;
+  }
 }

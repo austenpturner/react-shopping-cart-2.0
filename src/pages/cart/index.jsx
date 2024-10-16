@@ -56,7 +56,7 @@ export default function CartPage() {
             <Button
               handleAction={handleLoginRedirect}
               text="Log in to checkout"
-              type="navigate"
+              type="login"
             />
           )}
         </div>
@@ -74,7 +74,7 @@ export default function CartPage() {
 
   return (
     <div className="page-container cart-page">
-      <h1 className="page-header cart-page-header">Cart</h1>
+      <h1 className="page-header cart-page-header">Shopping Bag</h1>
       {loading ? (
         <PulseLoader color="#a0a0a0" margin={1} size={12} />
       ) : (
