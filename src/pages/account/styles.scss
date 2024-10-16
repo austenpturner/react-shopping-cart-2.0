@@ -1,12 +1,5 @@
 @use "../../styles/utilStyles/" as *;
 
-// .account-page {
-//   min-height: calc(100vh - 270px);
-//   @include breakpoint(medium) {
-//     min-height: calc(100vh - 315px);
-//   }
-// }
-
 .view-container {
   @include breakpoint(medium) {
     @include flex-row();
