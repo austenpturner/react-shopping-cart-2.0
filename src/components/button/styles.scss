@@ -39,7 +39,8 @@ button {
 }
 
 .addToCart,
-.checkOut {
+.checkOut,
+.scrollToTop {
   background-color: var(--medium-grey);
   &:hover {
     background-color: var(--medium-grey-hover);
@@ -53,7 +54,8 @@ button {
 }
 
 .quickShop,
-.favorite {
+.favorite,
+.scrollToTop {
   &:hover {
     box-shadow: 2px 2px 4px 1px var(--box-shadow);
   }
@@ -224,5 +226,19 @@ button {
     @include breakpoint-down(medium) {
       margin-top: 2px;
     }
+  }
+}
+
+.scrollToTop {
+  border-radius: 50%;
+  color: var(--light-text);
+  padding: 6px 8px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  svg {
+    height: 16px;
+    width: 16px;
   }
 }
