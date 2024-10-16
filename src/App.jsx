@@ -12,6 +12,7 @@ import LoginPage from "./pages/login";
 import AccountPage from "./pages/account";
 import ErrorPage from "./pages/error/error";
 import ProductPage from "./pages/products";
+import PlaceholderPage from "./pages/placeholder";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,10 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/account" element={<AccountPage />} />
+      <Route path="/terms" element={<PlaceholderPage />} />
+      <Route path="/about" element={<PlaceholderPage />} />
+      <Route path="/contact" element={<PlaceholderPage />} />
+      <Route path="/help" element={<PlaceholderPage />} />
       <Route path="/product-details/:id" element={<DetailsPage />} />
     </Route>
   )

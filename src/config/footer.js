@@ -12,22 +12,22 @@ export const footerLinks = [
   {
     id: 3,
     name: "help",
-    link: "",
+    link: "/help",
   },
   {
     id: 4,
     name: "contact",
-    link: "",
+    link: "/contact",
   },
   {
     id: 5,
     name: "about",
-    link: "",
+    link: "/about",
   },
   {
     id: 6,
     name: "terms",
-    link: "",
+    link: "/terms",
   },
 ];
 
