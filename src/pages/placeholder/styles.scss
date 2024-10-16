@@ -1,10 +1,6 @@
 @use "../../styles/utilStyles/" as *;
 
 .placeholder-page {
-  min-height: calc(100vh - 270px);
-  @include breakpoint(medium) {
-    min-height: calc(100vh - 315px);
-  }
   h1 {
     font-weight: 400;
   }
