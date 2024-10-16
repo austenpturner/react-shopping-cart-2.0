@@ -169,6 +169,23 @@ button {
   border-bottom: 1px solid var(--dark-text);
 }
 
+.social {
+  background-color: var(--light-text);
+  padding: 4px 8px;
+  &:hover {
+    background-color: var(--lighter-grey);
+  }
+  svg {
+    color: var(--darker-grey);
+    height: 24px;
+    width: 24px;
+    @include breakpoint(medium) {
+      height: 32px;
+      width: 32px;
+    }
+  }
+}
+
 .quickShop {
   background-color: var(--light-text);
   bottom: 10%;

@@ -6,7 +6,7 @@
 
 .page-container {
   background-color: var(--light-background);
-  margin: 0 auto 50px;
+  margin: 0 auto;
   max-width: 1024px;
   padding: 0 20px;
   @include breakpoint(large) {

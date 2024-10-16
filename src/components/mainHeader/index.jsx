@@ -10,6 +10,7 @@ export default function MainHeader() {
   const navigate = useNavigate();
   const { uiDispatch } = useContext(UIContext);
   const location = useLocation();
+  const { state } = useContext(UIContext);
 
   function handleNavigate() {
     if (location.pathname !== "/") {
@@ -26,7 +27,7 @@ export default function MainHeader() {
     <header className={styles.mainHeader}>
       <div className={styles.topRow}>
         <h4
-          tabIndex="0"
+          tabIndex={state.modal.isVisible || state.overlayVisible ? "-1" : "0"}
           onKeyDown={(e) => {
             e.key === "Enter" && handleNavigate();
           }}
