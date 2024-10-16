@@ -7,7 +7,6 @@ import Button from "../../components/button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
-import { socials } from "../../config/socials";
 
 export default function HomePage() {
   const { data, dataLoaded } = useFetch(`https://dummyjson.com/products/`);
@@ -114,21 +113,6 @@ export default function HomePage() {
             />
           </div>
         </div>
-      </div>
-      <div className="socials">
-        <ul>
-          {socials.map((social) => {
-            return (
-              <li key={social.id}>
-                <Button
-                  icon={<social.icon />}
-                  type="social"
-                  handleAction={() => navigate(social.link)}
-                />
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@
   @include breakpoint(medium) {
     min-height: calc(100vh - 315px);
   }
-  @include breakpoint(large) {
+  @include breakpoint(xlarge) {
     padding: 0;
   }
 }
