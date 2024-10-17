@@ -43,9 +43,20 @@ span {
   margin: 0;
 }
 
-.error {
-  color: var(--error-red);
+.error,
+.success {
+  border-radius: 2px;
+  color: var(--light-text);
   font-size: 13px;
   font-style: italic;
+  padding: 3px 5px;
+}
+
+.error {
+  background-color: var(--error-red);
   margin: 5px 0 0;
+}
+
+.success {
+  background-color: var(--success-green);
 }

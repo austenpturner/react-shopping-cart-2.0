@@ -29,7 +29,13 @@ export default function AccountOverview() {
     e.preventDefault();
     if (loading) return;
     setSuccessMsg("");
+    setErrorMsg("");
     setLoading(true);
+    if (nameUpdate.firstname === "" || nameUpdate.lastname === "") {
+      setErrorMsg("Please fill out both fields.");
+      setLoading(false);
+      return;
+    }
     try {
       const currentUser = auth.currentUser;
       await updateProfile(currentUser, {
@@ -67,8 +73,10 @@ export default function AccountOverview() {
           btnText={"update"}
           className="nameInput"
         />
-        {errorMsg && <p className="error">{errorMsg}</p>}
-        {successMsg && <p className={styles.successMsg}>{successMsg}</p>}
+        {errorMsg && <p className={`error ${styles.resultMsg}`}>{errorMsg}</p>}
+        {successMsg && (
+          <p className={`success ${styles.resultMsg}`}>{successMsg}</p>
+        )}
         {loading && <PulseLoader color="#a0a0a0" size={5} />}
       </div>{" "}
     </>

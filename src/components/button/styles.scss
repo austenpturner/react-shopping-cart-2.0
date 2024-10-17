@@ -99,10 +99,18 @@ button {
 }
 
 .closeModal,
-.mainNav {
+.mainNav,
+.forgotPassword {
   background-color: transparent;
   color: var(--darker-grey);
   padding: 2px;
+}
+
+.forgotPassword {
+  border-bottom: 1px solid var(--darker-grey);
+  border-radius: 0;
+  margin: 10px auto;
+  padding: 2px 0px;
 }
 
 .mainNav {

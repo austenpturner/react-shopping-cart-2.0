@@ -12,8 +12,11 @@
   }
 }
 
-.form-container button {
-  margin: 10px 0 5px;
+.form-container {
+  @include flex-col();
+  form button {
+    margin: 10px 0 5px;
+  }
 }
 
 .register-btn-container,
@@ -34,9 +37,6 @@
 }
 
 .login-page-error-message {
-  color: var(--error-red);
-  font-size: 13px;
-  font-style: italic;
-  height: 40px;
+  min-height: 43px;
   margin: 5px 0 0;
 }

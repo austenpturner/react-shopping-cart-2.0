@@ -28,9 +28,9 @@
   }
 }
 
-.successMsg {
-  color: var(--success-green);
-  font-size: 13px;
-  font-style: italic;
-  margin: 0;
+.resultMsg {
+  width: min(100%, 400px);
+  @include breakpoint(medium) {
+    width: 200px;
+  }
 }

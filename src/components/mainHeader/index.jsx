@@ -19,7 +19,6 @@ export default function MainHeader() {
         payload: null,
       });
     }
-
     navigate("/");
   }
 

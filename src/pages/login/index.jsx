@@ -85,6 +85,7 @@ export default function LoginPage() {
   }
 
   function handleForgotPassword() {
+    setErrorMessage("");
     uiDispatch({
       type: "SHOW_MODAL",
       payload: {
@@ -122,11 +123,12 @@ export default function LoginPage() {
           <Button
             text="forgot your password?"
             handleAction={handleForgotPassword}
+            type="forgotPassword"
           />
         </div>
       )}
       {errorMessage && (
-        <p className="login-page-error-message">{errorMessage}</p>
+        <p className={`error login-page-error-message`}>{errorMessage}</p>
       )}
       {loading && <PulseLoader color="#a0a0a0" margin={0} size={8} />}
       <div

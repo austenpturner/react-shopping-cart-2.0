@@ -37,7 +37,7 @@ export default function PasswordReset() {
       setErrorMsg("");
       setUserEmail(initialState);
     } catch (error) {
-      setErrorMsg(getErrorMessage(error.code, "updatePassword"));
+      setErrorMsg(getErrorMessage(error.code, "login"));
       console.log(error.code);
       setLoading(false);
     }
@@ -45,8 +45,10 @@ export default function PasswordReset() {
 
   return (
     <div className={styles.passwordResetModal}>
-      {errorMsg && <p className="error">{errorMsg}</p>}
-      {successMsg && <p className={styles.successMsg}>{successMsg}</p>}
+      {errorMsg && <p className={`error ${styles.resultMsg}`}>{errorMsg}</p>}
+      {successMsg && (
+        <p className={`success ${styles.resultMsg}`}>{successMsg}</p>
+      )}
       {loading && <PulseLoader color="#a0a0a0" size={5} />}
       <div>
         <CommonForm
