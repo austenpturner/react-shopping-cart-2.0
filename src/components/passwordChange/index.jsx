@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { passwordUpdateControls } from "../../config/accountUpdateConfig";
 import CommonForm from "../commonForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../button";
 import styles from "./passwordChange.module.scss";
 import { getErrorMessage } from "../../util/getErrorMessage";
@@ -66,6 +66,10 @@ export default function PasswordChange() {
     }
   }
 
+  useEffect(() => {
+    console.log(changePassword);
+  }, [changePassword]);
+
   return (
     <>
       <h2 className="page-subheader">account password</h2>
@@ -87,8 +91,10 @@ export default function PasswordChange() {
           onSubmit={handlePasswordSubmit}
           className="passwordUpdate"
         />
-        {errorMsg && <p className="error">{errorMsg}</p>}
-        {successMsg && <p className={styles.successMsg}>{successMsg}</p>}
+        {errorMsg && <p className={`error ${styles.resultMsg}`}>{errorMsg}</p>}
+        {successMsg && (
+          <p className={`success ${styles.resultMsg}`}>{successMsg}</p>
+        )}
         {loading && <PulseLoader color="#a0a0a0" size={5} />}
       </div>
     </>
