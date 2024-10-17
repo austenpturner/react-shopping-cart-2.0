@@ -64,7 +64,6 @@ export default function PasswordChange() {
       setErrorMsg(getErrorMessage(error.code, "updatePassword"));
       setLoading(false);
     }
-    console.log(passwordUpdate);
   }
 
   return (

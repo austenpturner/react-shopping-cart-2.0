@@ -38,3 +38,14 @@ export const passwordUpdateControls = [
     type: "password",
   },
 ];
+
+export const passwordResetControls = [
+  {
+    label: "Email address",
+    id: "user-email",
+    name: "userEmail",
+    placeholder: "Enter email... ",
+    componentType: "input",
+    type: "email",
+  },
+];

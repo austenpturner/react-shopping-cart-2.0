@@ -19,7 +19,7 @@ export default function Overlay() {
       className={styles.overlay}
       data-visible={state.overlayVisible ? true : false}
       aria-hidden="true"
-      style={state.modal.isVisible ? { zIndex: 4000 } : null}
+      style={state.modal.isVisible ? { zIndex: 8000 } : null}
       onClick={handleCloseComponents}
     ></div>
   );

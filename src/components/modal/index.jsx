@@ -7,6 +7,7 @@ import QuickShop from "../quickShop";
 import LoginRequest from "../loginRequest";
 import LogoutConfirmation from "../logoutConfirmation";
 import { IoCloseOutline } from "react-icons/io5";
+import PasswordReset from "../passwordReset";
 
 export default function Modal() {
   const { state, uiDispatch } = useContext(UIContext);
@@ -24,6 +25,8 @@ export default function Modal() {
         return <LoginRequest />;
       case "logoutConfirmation":
         return <LogoutConfirmation />;
+      case "passwordReset":
+        return <PasswordReset />;
       default:
         return null;
     }

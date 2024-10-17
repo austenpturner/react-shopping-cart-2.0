@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommonForm from "../../components/commonForm";
 import { loginFormControls } from "../../config/formConfig";
 import { registerFormControls } from "../../config/formConfig";
@@ -13,6 +13,7 @@ import "./styles.scss";
 import useFavoriteActions from "../../hooks/useFavoriteActions";
 import { isStrongPassword } from "../../util/isStrongPassword";
 import { PulseLoader } from "react-spinners";
+import { UIContext } from "../../context/uiContext";
 
 const initialState = {
   name: "",
@@ -31,6 +32,7 @@ export default function LoginPage() {
   const handleUserRegister = useRegister();
   useCartSync();
   const { handleAddToFavorites } = useFavoriteActions();
+  const { uiDispatch } = useContext(UIContext);
 
   function handleCredentials(e) {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
@@ -82,6 +84,16 @@ export default function LoginPage() {
     navigate(redirectTo);
   }
 
+  function handleForgotPassword() {
+    uiDispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        content: null,
+        type: "passwordReset",
+      },
+    });
+  }
+
   useEffect(() => {
     setErrorMessage(null);
   }, [registerUser]);
@@ -106,6 +118,10 @@ export default function LoginPage() {
             setFormData={handleCredentials}
             onSubmit={handleSubmit}
             btnText={"submit"}
+          />
+          <Button
+            text="forgot your password?"
+            handleAction={handleForgotPassword}
           />
         </div>
       )}

@@ -7,7 +7,7 @@ export default function useToggleMobileMenu() {
   const { width } = useWindowResize();
 
   function handleToggleMobileMenu() {
-    if (width < 1024) {
+    if (width < 1024 && !state.modal.isVisible) {
       uiDispatch({
         type: "TOGGLE_MOBILE_CATEGORY_MENU",
         payload: !state.openMobileCategoryMenu,
