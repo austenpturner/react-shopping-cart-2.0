@@ -19,8 +19,8 @@ export default function CartPage() {
     navigate("/login", { state: { from: "/cart" } });
   }
 
-  function handleHomeRedirect() {
-    navigate("/");
+  function handleShoppingRedirect() {
+    navigate("/products");
   }
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function CartPage() {
         <Button
           text="Go shopping"
           type="navigate"
-          handleAction={handleHomeRedirect}
+          handleAction={handleShoppingRedirect}
         />
       </div>
     );

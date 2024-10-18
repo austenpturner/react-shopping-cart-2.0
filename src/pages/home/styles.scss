@@ -13,7 +13,7 @@
 }
 
 .hero {
-  @include flex-col(center);
+  @include flex-col(center, center);
   background-color: var(--lighter-grey);
   padding: 10px 0 40px;
   @include breakpoint(small) {
@@ -60,7 +60,7 @@
 }
 
 .category-container {
-  @include flex-row(space-evenly, center, 5px);
+  @include flex-row(flex-start, center, 5px);
   margin: 10px 0;
   overflow-x: scroll;
   padding: 25px;
