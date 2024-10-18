@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/" />
+  </head>
+  <body>
+    <script>
+      // Redirect all 404s to the main app's index.html for React routing
+      var redirectToHome = function () {
+        window.location.replace("/react-shopping-cart-2.0/");
+      };
+
+      setTimeout(redirectToHome, 100); // Small delay to ensure that the error message shows briefly
+    </script>
+  </body>
+</html>
