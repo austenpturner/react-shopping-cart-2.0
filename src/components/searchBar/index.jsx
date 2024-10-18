@@ -72,7 +72,7 @@ export default function SearchBar() {
         formData={searchInput}
         setFormData={handleSearch}
         onSubmit={handleSearchSubmit}
-        btnText={<FiSearch />}
+        btnIcon={<FiSearch />}
       />
       {state.search.searchSubmitted && (
         <Button

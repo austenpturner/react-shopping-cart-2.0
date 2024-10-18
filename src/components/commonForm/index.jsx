@@ -13,6 +13,7 @@ const formElementTypes = {
 export default function CommonForm({
   formControls = [],
   btnText,
+  btnIcon,
   formData,
   setFormData,
   onSubmit,
@@ -87,18 +88,16 @@ export default function CommonForm({
           </div>
         );
       })}
-      <Button
-        type="submit"
-        text={typeof btnText === "string" ? btnText : ""}
-        icon={typeof btnText === "object" ? btnText : ""}
-      />
+      <Button type="submit" text={btnText} icon={btnIcon} />
     </form>
   );
 }
 
 CommonForm.propTypes = {
   formControls: PropTypes.array,
-  btnText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  // btnText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  btnText: PropTypes.string,
+  btnIcon: PropTypes.object,
   formData: PropTypes.object,
   onSubmit: PropTypes.func,
   setFormData: PropTypes.func,

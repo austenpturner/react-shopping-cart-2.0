@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { passwordUpdateControls } from "../../config/accountUpdateConfig";
 import CommonForm from "../commonForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../button";
 import styles from "./passwordChange.module.scss";
 import { getErrorMessage } from "../../util/getErrorMessage";
@@ -65,10 +65,6 @@ export default function PasswordChange() {
       setLoading(false);
     }
   }
-
-  useEffect(() => {
-    console.log(changePassword);
-  }, [changePassword]);
 
   return (
     <>

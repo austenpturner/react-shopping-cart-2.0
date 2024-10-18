@@ -70,7 +70,7 @@ export default function AccountOverview() {
           formData={nameUpdate}
           setFormData={handleNameUpdate}
           onSubmit={handleNameSubmit}
-          btnText={"update"}
+          btnText="update"
           className="nameInput"
         />
         {errorMsg && <p className={`error ${styles.resultMsg}`}>{errorMsg}</p>}
