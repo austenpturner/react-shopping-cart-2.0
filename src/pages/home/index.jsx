@@ -21,7 +21,7 @@ export default function HomePage() {
   }
 
   const homePageContent = (
-    <div>
+    <>
       <div className="hero">
         <img
           src={data?.products[0].thumbnail}
@@ -114,13 +114,13 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 
   return (
     <div className="home-page">
       {loading ? (
-        <PulseLoader color="#a0a0a0" margin={1} size={12} />
+        <PulseLoader color="#a0a0a0" margin={1} size={12} className="loading" />
       ) : (
         homePageContent
       )}
