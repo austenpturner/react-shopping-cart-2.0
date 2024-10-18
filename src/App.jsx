@@ -1,5 +1,6 @@
 import {
-  createBrowserRouter,
+  // createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -14,7 +15,7 @@ import ErrorPage from "./pages/error";
 import ProductPage from "./pages/products";
 import PlaceholderPage from "./pages/placeholder";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
       <Route index element={<Home />} />
