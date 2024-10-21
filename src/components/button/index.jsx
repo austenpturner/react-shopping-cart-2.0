@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
+import useWindowResize from "../../hooks/useWindowResize";
 
 export default function Button({
   type,
@@ -12,19 +13,28 @@ export default function Button({
   icon,
 }) {
   const { state } = useContext(UIContext);
+  const { width } = useWindowResize();
 
   function getTabIndex() {
-    if (state.overlayVisible && type === "confirmation") {
-      return "0";
-    } else if (state.overlayVisible && type === "closeModal") {
-      return "0";
-    } else if (!state.openMobileCategoryMenu && type === "filter") {
-      return "-1";
-    } else if (state.openMobileCategoryMenu && type !== "filter") {
-      return "-1";
-    } else {
+    if (
+      state.overlayVisible &&
+      (type === "confirmation" || type === "closeModal")
+    ) {
       return "0";
     }
+    if (!state.openMobileCategoryMenu && type === "filter" && width <= 1024) {
+      return "-1";
+    }
+    if (state.openMobileCategoryMenu && type !== "filter") {
+      return "-1";
+    }
+    if (
+      state.modal.isVisible &&
+      ["social", "mainNav", "submit", "logout", "filter"].includes(type)
+    ) {
+      return "-1";
+    }
+    return "0";
   }
 
   return (

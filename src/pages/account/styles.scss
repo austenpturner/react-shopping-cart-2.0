@@ -14,7 +14,6 @@
     text-align: center;
     text-transform: uppercase;
     width: 100%;
-    // z-index: 5000;
     @include breakpoint(medium) {
       display: none;
     }
@@ -24,7 +23,10 @@
   }
   .view-list {
     @include flex-col(center, center);
-    background-color: var(--light-grey);
+    @include breakpoint-down(small) {
+      background-color: var(--light-text);
+      box-shadow: 2px 2px 4px 1px var(--box-shadow);
+    }
     position: absolute;
     left: 0;
     width: 100%;
@@ -37,7 +39,12 @@
       width: auto;
       z-index: 0;
     }
+
     li {
+      @include breakpoint-down(small) {
+        border: 1px solid var(--light-grey);
+        border-top: none;
+      }
       cursor: pointer;
       font-size: 13px;
       letter-spacing: 1.2px;
@@ -52,6 +59,16 @@
       @include breakpoint(medium) {
         text-align: left;
       }
+      &:last-child {
+        padding: 0;
+      }
+      button {
+        padding: 10px;
+        &:hover,
+        &:focus {
+          background-color: var(--lighter-grey);
+        }
+      }
     }
   }
   .current-view {
@@ -62,7 +79,7 @@
       padding: 0;
     }
     h2 {
-      margin: 0 0 10px 0;
+      margin: 0 0 8px 0;
     }
   }
 }
@@ -71,14 +88,20 @@
   background-color: var(--lighter-grey);
 }
 
-.usernameInput,
-.nameInput {
-  @include flex-row(flex-start, flex-end, 5px);
-  margin-bottom: 10px;
+.nameUpdate,
+.passwordUpdate {
+  label {
+    font-size: 12.5px;
+  }
   input {
     border: 1px solid var(--medium-grey);
     padding: 3px;
   }
+}
+
+.nameUpdate {
+  @include flex-row(flex-start, flex-end, 5px);
+  margin-bottom: 10px;
   button {
     font-size: 11px;
     margin: 0;
@@ -91,7 +114,7 @@
 
 .passwordUpdate {
   @include flex-col(flex-start, stretch, 5px);
-  margin: 15px 0 0;
+  margin-bottom: 10px;
   input {
     max-width: 400px;
   }

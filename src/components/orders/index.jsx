@@ -7,18 +7,18 @@ export default function Orders() {
 
   return (
     <>
-      <h2 className="page-subheader">orders</h2>
+      <h1 className="page-header">Orders</h1>
       {orders?.length ? (
         orders.map((order) => {
           <div key={order.index}>{order.name}</div>;
         })
       ) : (
         <div>
-          <p>you have no past orders.</p>
+          <p>You have no past orders.</p>
           <Button
             text="go shopping"
             type="navigate"
-            handleAction={() => navigate("/")}
+            handleAction={() => navigate("/products")}
           />
         </div>
       )}

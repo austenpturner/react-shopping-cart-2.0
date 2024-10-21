@@ -1,10 +1,25 @@
 @use "../../styles//utilStyles/" as *;
 
+.welcomeMsg {
+  margin: 15px 0 12px;
+}
+
 .accountEmail {
   font-size: 14px;
+  margin: 12px 0;
   span {
     color: var(--dark-grey);
   }
+}
+
+.usernameHeader,
+.passwordHeader {
+  font-size: 14px;
+  margin: 20px 0 10px;
+}
+
+.msgContainer {
+  height: 24px;
 }
 
 .formContainer form {
@@ -31,6 +46,18 @@
 .resultMsg {
   width: min(100%, 400px);
   @include breakpoint(medium) {
-    width: 200px;
+    width: 405px;
+  }
+}
+
+.passwordUpdateContainer {
+  form button {
+    font-size: 11px;
+    margin-top: 5px;
+    margin-left: min(100% - 70px, 330px);
+    width: 70px;
+    @include breakpoint(medium) {
+      margin: 5px 0 0 0;
+    }
   }
 }

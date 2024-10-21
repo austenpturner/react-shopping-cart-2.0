@@ -28,9 +28,12 @@ span {
 }
 
 .page-header {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
   margin-top: 0;
+  @include breakpoint(medium) {
+    font-size: 28px;
+  }
 }
 
 .page-subheader {

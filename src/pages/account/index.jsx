@@ -26,7 +26,8 @@ export default function AccountPage() {
         showViewTypes &&
         viewListRef.current &&
         !viewListRef.current.contains(event.target) &&
-        !viewTypeRef.current.contains(event.target)
+        !viewTypeRef.current.contains(event.target) &&
+        width < 768
       ) {
         setShowViewTypes(false);
       }
@@ -174,7 +175,6 @@ export default function AccountPage() {
 
   return (
     <div className="page-container account-page">
-      <h1 className="page-header account-page-header">Account Details</h1>
       {loading ? <p className="page-loading">Loading... </p> : pageContent}
     </div>
   );

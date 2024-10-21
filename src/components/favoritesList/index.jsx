@@ -36,7 +36,7 @@ export default function FavoritesList() {
 
   return (
     <>
-      <h2 className="page-subheader">favorites</h2>
+      <h1 className="page-header">Favorites</h1>
       {loading ? (
         <PulseLoader color="#a0a0a0" margin={1} size={8} />
       ) : (
