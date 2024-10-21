@@ -27,16 +27,10 @@
       &__top {
         rotate: 45deg;
         transform-origin: 50% 50%;
-        @include breakpoint-down(small) {
-          y: 28px;
-        }
       }
       &__bottom {
         rotate: -45deg;
         transform-origin: 50% 50%;
-        @include breakpoint-down(small) {
-          y: 62px;
-        }
       }
       &__middle {
         opacity: 0;
