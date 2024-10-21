@@ -26,7 +26,9 @@ export default function CommonInput({
         value={value || ""}
         onChange={onChange}
         className={className}
-        tabIndex={state.overlayVisible ? "-1" : "0"}
+        tabIndex={
+          state.overlayVisible || state.accountViewListOpen ? "-1" : "0"
+        }
       />
     </div>
   );

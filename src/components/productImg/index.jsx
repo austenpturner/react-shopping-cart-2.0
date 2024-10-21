@@ -148,7 +148,11 @@ export default function ProductImg({ product, parent }) {
         onKeyDown={(e) => {
           e.key === "Enter" && handleNavigate();
         }}
-        tabIndex={state.overlayVisible || !navigateOnClick ? "-1" : "0"}
+        tabIndex={
+          state.overlayVisible || state.accountViewListOpen || !navigateOnClick
+            ? "-1"
+            : "0"
+        }
       />
       <Button
         icon={

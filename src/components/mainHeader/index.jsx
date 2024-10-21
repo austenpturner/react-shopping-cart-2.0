@@ -26,7 +26,13 @@ export default function MainHeader() {
     <header className={styles.mainHeader}>
       <div className={styles.topRow}>
         <h4
-          tabIndex={state.modal.isVisible || state.overlayVisible ? "-1" : "0"}
+          tabIndex={
+            state.modal.isVisible ||
+            state.overlayVisible ||
+            state.accountViewListOpen
+              ? "-1"
+              : "0"
+          }
           onKeyDown={(e) => {
             e.key === "Enter" && handleNavigate();
           }}

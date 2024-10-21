@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Button from "../../components/button/index";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./styles.scss";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import useWindowResize from "../../hooks/useWindowResize";
@@ -13,7 +13,6 @@ export default function AccountPage() {
   const navigate = useNavigate();
   const loading = useAuth();
   const user = useSelector((state) => state.users.currentUser);
-  const [showViewTypes, setShowViewTypes] = useState(false);
   const { width } = useWindowResize();
   const { state, uiDispatch } = useContext(UIContext);
 
@@ -23,20 +22,23 @@ export default function AccountPage() {
   useEffect(() => {
     function handleOutsideClick(event) {
       if (
-        showViewTypes &&
+        state.accountViewListOpen &&
         viewListRef.current &&
         !viewListRef.current.contains(event.target) &&
         !viewTypeRef.current.contains(event.target) &&
         width < 768
       ) {
-        setShowViewTypes(false);
+        uiDispatch({
+          type: "ACCOUNT_VIEW_LIST_OPEN",
+          payload: false,
+        });
       }
     }
     document.addEventListener("mousedown", handleOutsideClick);
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [showViewTypes]);
+  }, [state.accountViewListOpen]);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });
@@ -49,7 +51,10 @@ export default function AccountPage() {
     });
     sessionStorage.setItem("currentAccountViewType", name);
     if (width < 768) {
-      setShowViewTypes(false);
+      uiDispatch({
+        type: "ACCOUNT_VIEW_LIST_OPEN",
+        payload: false,
+      });
     }
   }
 
@@ -65,7 +70,10 @@ export default function AccountPage() {
 
   function handleClickLogInOutBtn() {
     if (width < 768) {
-      setShowViewTypes(false);
+      uiDispatch({
+        type: "ACCOUNT_VIEW_LIST_OPEN",
+        payload: false,
+      });
     }
     if (user) {
       handleShowLogoutConfirmation();
@@ -77,9 +85,15 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (width >= 768) {
-      setShowViewTypes(true);
+      uiDispatch({
+        type: "ACCOUNT_VIEW_LIST_OPEN",
+        payload: true,
+      });
     } else {
-      setShowViewTypes(false);
+      uiDispatch({
+        type: "ACCOUNT_VIEW_LIST_OPEN",
+        payload: false,
+      });
     }
   }, [width]);
 
@@ -122,16 +136,25 @@ export default function AccountPage() {
           <p
             className="current-view-type"
             tabIndex={state.overlayVisible ? "-1" : "0"}
-            onClick={() => setShowViewTypes(!showViewTypes)}
+            onClick={() =>
+              uiDispatch({
+                type: "ACCOUNT_VIEW_LIST_OPEN",
+                payload: !state.accountViewListOpen,
+              })
+            }
             onKeyDown={(e) =>
-              e.key === "Enter" && setShowViewTypes(!showViewTypes)
+              e.key === "Enter" &&
+              uiDispatch({
+                type: "ACCOUNT_VIEW_LIST_OPEN",
+                payload: !state.accountViewListOpen,
+              })
             }
             ref={viewTypeRef}
           >
             <span>{getCurrentViewType()}</span>
-            {showViewTypes ? <FaCaretUp /> : <FaCaretDown />}
+            {state.accountViewListOpen ? <FaCaretUp /> : <FaCaretDown />}
           </p>
-          {showViewTypes ? (
+          {state.accountViewListOpen ? (
             <ul className="view-list" ref={viewListRef}>
               {views.map((view, index) => {
                 return (

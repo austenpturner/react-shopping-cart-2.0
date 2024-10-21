@@ -35,7 +35,11 @@ export default function Footer() {
                 key={link.id}
                 onClick={() => navigate(link.link)}
                 tabIndex={
-                  state.modal.isVisible || state.overlayVisible ? "-1" : "0"
+                  state.modal.isVisible ||
+                  state.overlayVisible ||
+                  state.accountViewListOpen
+                    ? "-1"
+                    : "0"
                 }
               >
                 {link.name}

@@ -18,7 +18,7 @@ export default function HamburgerBtn() {
       aria-controls="categoryMenu"
       className={styles.mobileNavBtn}
       onClick={() => handleToggleMobileMenu()}
-      tabIndex={state.modal.isVisible ? "-1" : "0"}
+      tabIndex={state.modal.isVisible || state.accountViewListOpen ? "-1" : "0"}
     >
       <svg
         className={styles.hamburger}

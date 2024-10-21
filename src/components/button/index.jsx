@@ -28,6 +28,9 @@ export default function Button({
     if (state.openMobileCategoryMenu && type !== "filter") {
       return "-1";
     }
+    if (state.accountViewListOpen && type !== "logout") {
+      return "-1";
+    }
     if (
       state.modal.isVisible &&
       ["social", "mainNav", "submit", "logout", "filter"].includes(type)

@@ -68,6 +68,11 @@ function uiReducer(state, action) {
         ...state,
         currentAccountViewType: action.payload,
       };
+    case "ACCOUNT_VIEW_LIST_OPEN":
+      return {
+        ...state,
+        accountViewListOpen: action.payload,
+      };
     default:
       return state;
   }
@@ -89,6 +94,7 @@ const initialState = {
   },
   openMobileCategoryMenu: false,
   currentAccountViewType: "overview",
+  accountViewListOpen: false,
 };
 
 export default function UIProvider({ children }) {
