@@ -25,14 +25,25 @@
         y: 45;
       }
       &__top {
-        transform: translateY(10px) rotate(45deg);
         // rotate: 45deg;
-        // transform-origin: 50% 50%;
+        // transform: rotate(45deg);
+        // transform: rotate(45deg);
+        transform: translateY(20px) rotate(45deg);
+
+        // transform-origin: 50%;
+        @include breakpoint(small) {
+          transform: translateY(10px) rotate(45deg);
+        }
       }
       &__bottom {
-        transform: translateY(-10px) rotate(-45deg);
-        // rotate: -45deg;
+        // rotate: 45deg;
+        // transform: rotate(-45deg);
+        transform: translateY(-20px) rotate(-45deg);
+
         // transform-origin: 50% 50%;
+        @include breakpoint(small) {
+          transform: translateY(-10px) rotate(-45deg);
+        }
       }
       &__middle {
         opacity: 0;
