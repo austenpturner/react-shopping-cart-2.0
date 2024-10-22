@@ -25,12 +25,14 @@
         y: 45;
       }
       &__top {
-        rotate: 45deg;
-        transform-origin: 50% 50%;
+        transform: translateY(10px) rotate(45deg);
+        // rotate: 45deg;
+        // transform-origin: 50% 50%;
       }
       &__bottom {
-        rotate: -45deg;
-        transform-origin: 50% 50%;
+        transform: translateY(-10px) rotate(-45deg);
+        // rotate: -45deg;
+        // transform-origin: 50% 50%;
       }
       &__middle {
         opacity: 0;

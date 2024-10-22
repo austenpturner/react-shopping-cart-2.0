@@ -20,7 +20,7 @@ export default function HamburgerBtn() {
       onClick={() => handleToggleMobileMenu()}
       tabIndex={state.modal.isVisible || state.accountViewListOpen ? "-1" : "0"}
     >
-      <svg
+      {/* <svg
         className={styles.hamburger}
         viewBox="0 0 100 100"
         width="35"
@@ -49,6 +49,47 @@ export default function HamburgerBtn() {
           x="5"
           y="65"
           rx="5"
+        ></rect>
+      </svg> */}
+      <svg
+        className={styles.hamburger}
+        viewBox="0 0 120 100" // Slightly widen the viewBox
+        width="35"
+        aria-hidden="true"
+      >
+        <rect
+          className={`${styles.line} ${styles.line__top}`}
+          width="70" // Shrink the width for better alignment
+          height="8" // Thinner lines might help align better on mobile
+          x="10" // Adjust x to ensure the lines are centered
+          y="25"
+          rx="4"
+        >
+          {/* <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 50 50"
+            to="45 50 50"
+            begin="click"
+            dur="0.3s"
+            fill="freeze"
+          /> */}
+        </rect>
+        <rect
+          className={`${styles.line} ${styles.line__middle}`}
+          width="70"
+          height="8"
+          x="10"
+          y="45"
+          rx="4"
+        ></rect>
+        <rect
+          className={`${styles.line} ${styles.line__bottom}`}
+          width="70"
+          height="8"
+          x="10"
+          y="65"
+          rx="4"
         ></rect>
       </svg>
     </button>
