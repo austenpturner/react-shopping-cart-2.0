@@ -27,7 +27,7 @@
       &__top {
         // rotate: 45deg;
         // transform: rotate(45deg);
-        transform: translateY(15px) rotate(45deg);
+        transform: translateY(25px) rotate(45deg);
         transform-origin: 50% 50%;
         @include breakpoint(small) {
           transform: translateY(10px) rotate(45deg);
@@ -36,7 +36,7 @@
       &__bottom {
         // rotate: 45deg;
         // transform: rotate(-45deg);
-        transform: translateY(-15px) rotate(-45deg);
+        transform: translateY(-25px) rotate(-45deg);
         transform-origin: 50% 50%;
         @include breakpoint(small) {
           transform: translateY(-10px) rotate(-45deg);
