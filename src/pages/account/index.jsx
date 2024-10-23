@@ -35,10 +35,11 @@ export default function AccountPage() {
       }
     }
     document.addEventListener("mousedown", handleOutsideClick);
+
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [state.accountViewListOpen]);
+  }, [state.accountViewListOpen, width]);
 
   function handleLoginRedirect() {
     navigate("/login", { state: { from: "/account" } });

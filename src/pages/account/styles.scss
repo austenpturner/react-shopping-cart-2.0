@@ -90,6 +90,7 @@
 
 .nameUpdate,
 .passwordUpdate {
+  margin-bottom: 10px;
   label {
     font-size: 12.5px;
   }
@@ -97,32 +98,26 @@
     border: 1px solid var(--medium-grey);
     padding: 3px;
   }
+  button:hover {
+    box-shadow: none;
+    background-color: var(--lighter-grey);
+  }
 }
 
 .nameUpdate {
   @include flex-row(flex-start, flex-end, 5px);
-  margin-bottom: 10px;
   button {
     font-size: 11px;
     margin: 0;
-    &:hover {
-      box-shadow: none;
-      background-color: var(--lighter-grey);
-    }
   }
 }
 
 .passwordUpdate {
   @include flex-col(flex-start, stretch, 5px);
-  margin-bottom: 10px;
   input {
     max-width: 400px;
   }
   button {
     width: 80px;
-    &:hover {
-      box-shadow: none;
-      background-color: var(--lighter-grey);
-    }
   }
 }
