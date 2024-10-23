@@ -8,7 +8,16 @@ import Button from "../button";
 
 export default function Footer() {
   const navigate = useNavigate();
-  const { state } = useContext(UIContext);
+  const { state, uiDispatch } = useContext(UIContext);
+
+  function handleAccountNavigate() {
+    uiDispatch({
+      type: "UPDATE_ACCOUNT_VIEW_TYPE",
+      payload: "overview",
+    });
+    sessionStorage.setItem("currentAccountViewType", "overview");
+    navigate("/account");
+  }
 
   return (
     <footer>
@@ -33,7 +42,11 @@ export default function Footer() {
             return (
               <li
                 key={link.id}
-                onClick={() => navigate(link.link)}
+                onClick={
+                  link.name === "account"
+                    ? handleAccountNavigate
+                    : () => navigate(link.link)
+                }
                 tabIndex={
                   state.modal.isVisible ||
                   state.overlayVisible ||

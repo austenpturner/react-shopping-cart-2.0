@@ -48,7 +48,9 @@ export default function CategoryMenu() {
               <Button
                 text={category.name}
                 type={
-                  category.name === state.selectedCategory
+                  category.name === state.selectedCategory &&
+                  location.pathname === "/products" &&
+                  state.search.searchSubmitted === ""
                     ? "filter selected-filter"
                     : "filter"
                 }

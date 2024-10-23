@@ -69,6 +69,7 @@
   padding: 25px;
   @include breakpoint(medium) {
     @include flex-row(center, center, 5px);
+    overflow-x: hidden;
     padding: 25px 10px;
   }
   button {
