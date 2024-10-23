@@ -29,7 +29,7 @@ export default function Footer() {
                 <Button
                   icon={<social.icon />}
                   type="social"
-                  handleAction={() => navigate(social.link)}
+                  // handleAction={() => navigate(social.link)}
                 />
               </li>
             );
