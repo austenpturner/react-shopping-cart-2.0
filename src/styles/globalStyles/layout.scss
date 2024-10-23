@@ -11,7 +11,7 @@
   min-height: calc(100vh - 372px);
   padding: 0 20px;
   @include breakpoint(medium) {
-    min-height: calc(100vh - 432px);
+    min-height: calc(100vh - 435px);
   }
   @include breakpoint(large) {
     min-height: calc(100vh - 472px);

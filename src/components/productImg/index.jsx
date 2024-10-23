@@ -72,8 +72,8 @@ export default function ProductImg({ product, parent }) {
     const breakpoints = {
       products: {
         1024: (1024 - 80) / 5,
-        768: (width - 70) / 4,
-        default: (width - 50) / 2,
+        768: (width - 85) / 4,
+        default: (width - 65) / 2,
       },
       favorites: {
         1024: (1024 - 200) / 5,

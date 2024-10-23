@@ -2,9 +2,9 @@
 
 .productCard {
   @include flex-col(space-between);
-  width: calc((100vw - 50px) / 2);
+  width: calc((100vw - 65px) / 2);
   @include breakpoint(medium) {
-    width: calc((100vw - 70px) / 4);
+    width: calc((100vw - 85px) / 4);
   }
   @include breakpoint(large) {
     width: calc((100% - 40px) / 5);
