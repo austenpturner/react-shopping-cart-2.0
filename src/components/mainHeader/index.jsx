@@ -24,8 +24,6 @@ export default function MainHeader() {
     navigate("/");
   }
 
-  console.log(state.accountViewListOpen);
-
   return (
     <header className={styles.mainHeader}>
       <div className={styles.topRow}>
