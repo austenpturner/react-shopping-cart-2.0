@@ -5,12 +5,14 @@ import CategoryMenu from "../categoryMenu";
 import { useContext } from "react";
 import { UIContext } from "../../context/uiContext";
 import SearchBar from "../searchBar";
+import useWindowResize from "../../hooks/useWindowResize";
 
 export default function MainHeader() {
   const navigate = useNavigate();
   const { uiDispatch } = useContext(UIContext);
   const location = useLocation();
   const { state } = useContext(UIContext);
+  const { width } = useWindowResize();
 
   function handleNavigate() {
     if (location.pathname !== "/") {
@@ -22,6 +24,8 @@ export default function MainHeader() {
     navigate("/");
   }
 
+  console.log(state.accountViewListOpen);
+
   return (
     <header className={styles.mainHeader}>
       <div className={styles.topRow}>
@@ -29,7 +33,7 @@ export default function MainHeader() {
           tabIndex={
             state.modal.isVisible ||
             state.overlayVisible ||
-            state.accountViewListOpen
+            (state.accountViewListOpen && width <= 768)
               ? "-1"
               : "0"
           }

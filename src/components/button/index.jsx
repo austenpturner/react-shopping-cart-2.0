@@ -28,7 +28,7 @@ export default function Button({
     if (state.openMobileCategoryMenu && type !== "filter") {
       return "-1";
     }
-    if (state.accountViewListOpen && type !== "logout") {
+    if (state.accountViewListOpen && type !== "logout" && width <= 768) {
       return "-1";
     }
     if (

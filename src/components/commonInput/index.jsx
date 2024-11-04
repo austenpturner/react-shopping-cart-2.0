@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styles from "./commonInput.module.scss";
 import PropTypes from "prop-types";
 import { UIContext } from "../../context/uiContext";
+import useWindowResize from "../../hooks/useWindowResize";
 
 export default function CommonInput({
   label,
@@ -14,6 +15,7 @@ export default function CommonInput({
   className,
 }) {
   const { state } = useContext(UIContext);
+  const { width } = useWindowResize();
 
   return (
     <div className={styles.commonInputContainer}>
@@ -27,7 +29,9 @@ export default function CommonInput({
         onChange={onChange}
         className={className}
         tabIndex={
-          state.overlayVisible || state.accountViewListOpen ? "-1" : "0"
+          state.overlayVisible || (state.accountViewListOpen && width <= 768)
+            ? "-1"
+            : "0"
         }
       />
     </div>
