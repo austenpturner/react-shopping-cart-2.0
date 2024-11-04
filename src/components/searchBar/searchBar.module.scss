@@ -14,9 +14,6 @@
       border: none;
       border-bottom: 1px solid var(--medium-grey);
       @include breakpoint-down(medium) {
-        width: calc(100vw - 95px);
-      }
-      @include breakpoint-height(mobile) {
         width: calc(100vw - 80px);
       }
       &::placeholder {

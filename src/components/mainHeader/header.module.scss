@@ -4,14 +4,7 @@
   background-color: var(--light-background);
   border-bottom: 1px solid var(--lighter-grey);
   margin: 0 auto 20px;
-  max-width: 1200px;
-  padding-right: 15px;
-  @include breakpoint-height(mobile) {
-    padding-right: 0;
-  }
-  @include breakpoint(large) {
-    padding-right: 0;
-  }
+  max-width: 1220px;
   width: 100vw;
   .topRow {
     @include flex-row(space-between, center);
@@ -20,11 +13,11 @@
       padding: 10px 10px 5px;
     }
     @include breakpoint(xlarge) {
-      padding: 10px 0px 5px;
+      padding: 10px 10px 5px;
     }
   }
   .bottomRow {
-    @include flex-row(flex-end);
+    @include flex-row(center);
     padding: 5px 15px 12px;
     width: 100%;
     @include breakpoint(medium) {
@@ -32,7 +25,7 @@
       padding: 5px 15px 10px;
     }
     @include breakpoint(xlarge) {
-      padding: 5px 0px 12px;
+      padding: 5px 10px 12px;
     }
   }
 }
