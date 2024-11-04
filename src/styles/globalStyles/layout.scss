@@ -7,7 +7,7 @@
 .page-container {
   background-color: var(--light-background);
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: 1200px;
   min-height: calc(100vh - 372px);
   padding: 0 20px;
   @include breakpoint(medium) {
@@ -17,6 +17,6 @@
     min-height: calc(100vh - 472px);
   }
   @include breakpoint(xlarge) {
-    padding: 0;
+    padding: 0 10px;
   }
 }

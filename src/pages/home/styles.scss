@@ -2,7 +2,7 @@
 
 .home-page {
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: 1200px;
   min-height: calc(100vh - 270px);
   @include breakpoint(medium) {
     min-height: calc(100vh - 315px);

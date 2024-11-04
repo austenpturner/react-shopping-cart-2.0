@@ -71,6 +71,7 @@ export default function ProductImg({ product, parent }) {
   function getImageSize() {
     const breakpoints = {
       products: {
+        1200: (1200 - 80) / 5,
         1024: (1024 - 80) / 5,
         768: (width - 85) / 4,
         default: (width - 65) / 2,
